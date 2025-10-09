@@ -38,3 +38,18 @@ export async function fetchUpcomingMovies() {
     throw err;
   }
 }
+
+// NowPlaying Movies
+export async function fetchNowPlayingMovies() {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR&page=1`,
+      options
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (err) {
+    console.log("Failed to fetch NowPlaying Movies", err);
+    throw err;
+  }
+}
