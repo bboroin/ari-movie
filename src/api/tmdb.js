@@ -22,3 +22,19 @@ export async function fetchTrendingMovies() {
     throw err;
   }
 }
+
+// Upcoming Movies
+export async function fetchUpcomingMovies() {
+  try {
+    const today = new Date().toISOString().split("T")[0];
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&sort_by=primary_release_date.asc&primary_release_date.gte=${today}&with_original_language=ko&page=1`,
+      options
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (err) {
+    console.log("Failed to fetch Upcoming Movies", err);
+    throw err;
+  }
+}
