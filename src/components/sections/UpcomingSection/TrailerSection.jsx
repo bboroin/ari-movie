@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchNowPlayingMovies } from "../../../api/tmdb";
+import { fetchTrailerMovies } from "../../../api/tmdb";
 
 const TrailerSection = () => {
   const [data, setData] = useState([]);
@@ -7,7 +7,7 @@ const TrailerSection = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const data = await fetchNowPlayingMovies();
+        const data = await fetchTrailerMovies();
         setData(data);
       } catch (err) {
         console.error("fetchMovies failed:", err);
@@ -19,8 +19,17 @@ const TrailerSection = () => {
   return (
     <div>
       <h3>TrailerSection</h3>
-      {data.map((movie) => (
-        <p key={movie.id}>{movie.title}</p>
+      {data.map(({ movie, trailer }) => (
+        <div key={movie.id}>
+          <p>{movie.title}</p>
+          <iframe
+            width="560"
+            height="315"
+            src={`https://www.youtube.com/embed/${trailer.key}`}
+            title={movie.title}
+            allowFullScreen
+          />
+        </div>
       ))}
     </div>
   );
