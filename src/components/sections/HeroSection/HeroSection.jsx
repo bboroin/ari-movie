@@ -18,6 +18,7 @@ const HeroSection = () => {
     };
     fetchMovies();
   }, []);
+
   return (
     <div>
       {data.map((movie) => (
@@ -32,11 +33,10 @@ const HeroSection = () => {
           <div className="hero-content">
             <h2 className="hero-title">{movie.title}</h2>
             <p className="hero-overview">{movie.overview}</p>
-            <div className="hero-meta">
-              <span className="hero-tag">
-                {movie.genre_ids.map((id) => genreMap[id]).join(", ")}
-              </span>
-              <span className="hero-tag">{movie.vote_average}</span>
+            <div className="hero-tags">
+              {movie.genre_ids.map((id) => (
+                <span className="hero-tag">{genreMap[id]}</span>
+              ))}
             </div>
             <button>TRAILER</button>
           </div>
