@@ -1,8 +1,17 @@
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay, A11y } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 import { useEffect, useState } from "react";
 import { fetchHeroMovies } from "../../../api/tmdb";
+import { useGenres } from "../../../hooks/useGenres";
+import "./HeroSection.css";
 
 const HeroSection = () => {
   const [data, setData] = useState([]);
+  const genreMap = useGenres(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -15,13 +24,41 @@ const HeroSection = () => {
     };
     fetchMovies();
   }, []);
+
   return (
-    <div>
-      <h3>HeroSection</h3>
-      {data.map((movie) => (
-        <p key={movie.id}>{movie.title}</p>
-      ))}
-    </div>
+    <section className="hero-section">
+      <Swiper
+        modules={[Pagination, Autoplay, A11y]}
+        slidesPerView={1}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+      >
+        {data.map((movie) => (
+          <SwiperSlide key={movie.id}>
+            <div
+              className="hero-banner"
+              style={{
+                backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})`,
+              }}
+            >
+              <div className="hero-overlay" />
+              <div className="hero-content">
+                <h2 className="hero-title">{movie.title}</h2>
+                <p className="hero-overview">{movie.overview}</p>
+                <div className="hero-tags">
+                  {movie.genre_ids.map((id) => (
+                    <span key={id} className="hero-tag">
+                      {genreMap[id]}
+                    </span>
+                  ))}
+                </div>
+                <button className="hero-trailerBtn">▶ TRAILER</button>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </section>
   );
 };
 
