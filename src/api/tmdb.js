@@ -8,6 +8,21 @@ const options = {
   },
 };
 
+// Hero Movies
+export async function fetchHeroMovies() {
+  try {
+    const res = await fetch(
+      "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&sort_by=vote_average.desc&primary_release_date.gte=2025-04-01&vote_count.gte=100&page=1",
+      options
+    );
+    const data = await res.json();
+    return data.results.slice(0, 5);
+  } catch (err) {
+    console.log("Failed to fetch Hero Movies", err);
+    throw err;
+  }
+}
+
 // Trending Movies
 export async function fetchTrendingMovies() {
   try {
