@@ -17,9 +17,25 @@ const HeroSection = () => {
   }, []);
   return (
     <div>
-      <h3>HeroSection</h3>
       {data.map((movie) => (
-        <p key={movie.id}>{movie.title}</p>
+        <div
+          key={movie.id}
+          className="hero-banner"
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/w1280/${movie.backdrop_path})`,
+          }}
+        >
+          <div className="hero-overlay" />
+          <div className="hero-content">
+            <h2 className="hero-title">{movie.title}</h2>
+            <p className="hero-overview">{movie.overview}</p>
+            <div className="hero-meta">
+              <span className="hero-tag">{movie.genre_ids}</span>
+              <span className="hero-tag">{movie.vote_average}</span>
+            </div>
+            <button>TRAILER</button>
+          </div>
+        </div>
       ))}
     </div>
   );
