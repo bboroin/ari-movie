@@ -1,3 +1,5 @@
+import { getToday, getMonthsAgo } from "../utils/date";
+
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 const options = {
@@ -11,8 +13,9 @@ const options = {
 // Hero Movies
 export async function fetchHeroMovies() {
   try {
+    const fromDate = getMonthsAgo(6);
     const res = await fetch(
-      "https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&sort_by=vote_average.desc&primary_release_date.gte=2025-04-01&vote_count.gte=100&page=1",
+      `https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&sort_by=vote_average.desc&primary_release_date.gte=${fromDate}&vote_count.gte=100&page=1`,
       options
     );
     const data = await res.json();
@@ -41,7 +44,7 @@ export async function fetchTrendingMovies() {
 // Upcoming Movies
 export async function fetchUpcomingMovies() {
   try {
-    const today = new Date().toISOString().split("T")[0];
+    const today = getToday();
     const response = await fetch(
       `https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&sort_by=primary_release_date.asc&primary_release_date.gte=${today}&with_original_language=ko&page=1`,
       options
