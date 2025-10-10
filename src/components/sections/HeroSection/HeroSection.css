@@ -1,3 +1,16 @@
+.hero-section .swiper-pagination-bullet {
+  width: 16px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.534);
+  opacity: 1; /* Swiper 기본 opacity 제어 무시 */
+  transition: width 0.25s ease, transform 0.3s ease;
+}
+.hero-section .swiper-pagination-bullet-active {
+  width: 28px;
+  background: #1ed5aa;
+}
+
 .hero-banner {
   position: relative;
   width: 100%;
