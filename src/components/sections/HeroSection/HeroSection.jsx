@@ -38,7 +38,7 @@ const HeroSection = () => {
                 <span className="hero-tag">{genreMap[id]}</span>
               ))}
             </div>
-            <button>TRAILER</button>
+            <button className="hero-trailerBtn">▶ TRAILER</button>
           </div>
         </div>
       ))}

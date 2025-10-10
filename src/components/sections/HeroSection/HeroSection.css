@@ -52,3 +52,14 @@
   padding: 0 5px;
   font-size: 10px;
 }
+
+.hero-trailerBtn {
+  background: linear-gradient(to right, #1ed5aa8a 0%, #01b3e479 100%);
+  border-radius: 5px;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+}
+.hero-trailerBtn:hover {
+  background: linear-gradient(to right, #1ed5aa 0%, #01b3e4 100%);
+}
