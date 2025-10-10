@@ -1,6 +1,22 @@
 /* ================= Design Tokens ================= */
 :root {
-  /* layers */
+  /* Brand */
+  --color-primary: #1ed5aa;
+  --gradient-primary: linear-gradient(to right, #1ed5aa 0%, #01b3e4 100%);
+  --gradient-primary-soft: linear-gradient(
+    to right,
+    #1ed5aa8a 0%,
+    #01b3e479 100%
+  );
+
+  /* Neutral */
+  --color-gray-100: rgba(255, 255, 255, 0.53);
+  --color-gray-200: rgba(128, 128, 128, 0.53);
+
+  /* Backgrounds */
+  --bg-overlay: rgba(0, 0, 0, 0.9);
+
+  /* Layers */
   --z-hero-overlay: 100;
   --z-hero-content: 101;
 }

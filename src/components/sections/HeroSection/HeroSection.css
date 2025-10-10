@@ -2,13 +2,13 @@
   width: 16px;
   height: 4px;
   border-radius: 2px;
-  background: rgba(255, 255, 255, 0.534);
+  background: var(--color-gray-100);
   opacity: 1; /* Swiper 기본 opacity 제어 무시 */
   transition: width 0.25s ease, transform 0.3s ease;
 }
 .hero-section .swiper-pagination-bullet-active {
   width: 28px;
-  background: #1ed5aa;
+  background: var(--color-primary);
 }
 
 .hero-banner {
@@ -23,7 +23,7 @@
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.9), transparent);
+  background: linear-gradient(to right, var(--bg-overlay), transparent);
   z-index: var(--z-hero-overlay);
 }
 
@@ -51,6 +51,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin-top: 15px;
+  font-size: 11px;
 }
 
 .hero-tags {
@@ -61,18 +62,18 @@
 
 .hero-tag {
   border-radius: 5px;
-  background-color: rgba(128, 128, 128, 0.534);
+  background-color: var(--color-gray-200);
   padding: 0 5px;
   font-size: 10px;
 }
 
 .hero-trailerBtn {
-  background: linear-gradient(to right, #1ed5aa8a 0%, #01b3e479 100%);
+  background: var(--gradient-primary-soft);
   border-radius: 5px;
   width: 100px;
   padding: 5px;
   text-align: center;
 }
 .hero-trailerBtn:hover {
-  background: linear-gradient(to right, #1ed5aa 0%, #01b3e4 100%);
+  background: var(--gradient-primary);
 }
