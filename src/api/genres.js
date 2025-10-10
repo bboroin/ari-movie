@@ -19,7 +19,7 @@ export async function fetchGenreMap({ signal } = {}) {
     const genreMap = Object.fromEntries(data.genres.map((g) => [g.id, g.name]));
     return genreMap;
   } catch (err) {
-    console.log("Failed to fetch Movie Genres", err);
+    if (err.name === "AbortError") return null;
     throw err;
   }
 }

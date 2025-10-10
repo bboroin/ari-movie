@@ -14,10 +14,9 @@ export function useGenres() {
         setGenreMap(data);
       } catch (err) {
         // AbortError인 경우는 무시
-        if (err.name === "AbortError") {
-          console.log("fetchGenreMap aborted");
-        } else {
-          console.error("fetchGenreMap failed:", err);
+        if (err.name === "AbortError") return;
+        else {
+          console.error("Failed to fetch Movie Genres", err);
         }
       }
     })();
