@@ -1,4 +1,11 @@
-/* 전역 스타일 */
+/* ================= Design Tokens ================= */
+:root {
+  /* layers */
+  --z-hero-overlay: 100;
+  --z-hero-content: 101;
+}
+
+/* ===================== Reset ===================== */
 * {
   margin: 0;
   padding: 0;
@@ -10,6 +17,7 @@ body {
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
   background-color: #ffffff;
   color: #0f0f0f;
+  font-size: 14px;
 }
 
 a {
