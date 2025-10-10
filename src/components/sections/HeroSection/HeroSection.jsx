@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchHeroMovies } from "../../../api/tmdb";
+import { useGenres } from "../../../hooks/useGenres";
+import "./HeroSection.css";
 
 const HeroSection = () => {
   const [data, setData] = useState([]);
+  const genreMap = useGenres();
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -30,7 +33,9 @@ const HeroSection = () => {
             <h2 className="hero-title">{movie.title}</h2>
             <p className="hero-overview">{movie.overview}</p>
             <div className="hero-meta">
-              <span className="hero-tag">{movie.genre_ids}</span>
+              <span className="hero-tag">
+                {movie.genre_ids.map((id) => genreMap[id]).join(", ")}
+              </span>
               <span className="hero-tag">{movie.vote_average}</span>
             </div>
             <button>TRAILER</button>
