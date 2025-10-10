@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { fetchTrendingMovies } from "../../../api/tmdb";
+import { fetchHeroMovies } from "../../../api/tmdb";
 
-const TrendingSection = () => {
+const HeroSection = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const data = await fetchTrendingMovies();
+        const data = await fetchHeroMovies();
         setData(data);
       } catch (err) {
         console.error("fetchMovies failed:", err);
@@ -15,10 +15,9 @@ const TrendingSection = () => {
     };
     fetchMovies();
   }, []);
-
   return (
     <div>
-      <h3>TrendingSection</h3>
+      <h3>HeroSection</h3>
       {data.map((movie) => (
         <p key={movie.id}>{movie.title}</p>
       ))}
@@ -26,4 +25,4 @@ const TrendingSection = () => {
   );
 };
 
-export default TrendingSection;
+export default HeroSection;
