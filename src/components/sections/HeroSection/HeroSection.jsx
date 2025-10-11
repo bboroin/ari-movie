@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { fetchHeroMovies } from "../../../api/tmdb";
 import { useGenres } from "../../../hooks/useGenres";
 import "./HeroSection.css";
+import playIcon from "../../../assets/icons/play.svg";
 
 const HeroSection = () => {
   const [data, setData] = useState([]);
@@ -48,11 +49,14 @@ const HeroSection = () => {
                 <div className="hero-tags">
                   {movie.genre_ids.map((id) => (
                     <span key={id} className="hero-tag">
-                      {genreMap[id]}
+                      {genreMap?.[id] ?? ""}
                     </span>
                   ))}
                 </div>
-                <button className="hero-trailerBtn">▶ TRAILER</button>
+                <button className="hero-trailer-btn">
+                  <img src={playIcon} alt="트레일러 재생 버튼" />
+                  <span>TRAILER</span>
+                </button>
               </div>
             </div>
           </SwiperSlide>
