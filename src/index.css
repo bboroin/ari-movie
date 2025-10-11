@@ -19,6 +19,7 @@
   /* Layers */
   --z-hero-overlay: 100;
   --z-hero-content: 101;
+  --z-header: 1000;
 }
 
 /* ===================== Reset ===================== */
@@ -33,7 +34,6 @@ body {
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
   background-color: #ffffff;
   color: #0f0f0f;
-  font-size: 14px;
 }
 
 a {

@@ -1,3 +1,4 @@
+import "./Header.css";
 import searchIcon from "../../assets/icons/search.svg";
 import avatarIcon from "../../assets/icons/avatar.svg";
 
