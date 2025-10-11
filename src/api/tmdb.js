@@ -61,7 +61,7 @@ export async function fetchUpcomingMovies() {
 export async function fetchNowPlayingMovies(page = 1) {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR&${page}`,
+      `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR&page=${page}`,
       options
     );
     const data = await response.json();
@@ -70,6 +70,14 @@ export async function fetchNowPlayingMovies(page = 1) {
     console.log("Failed to fetch NowPlaying Movies", err);
     throw err;
   }
+}
+
+export async function fetchNowPlayingPages() {
+  const [p1, p2] = await Promise.all([
+    fetchNowPlayingMovies(1),
+    fetchNowPlayingMovies(2),
+  ]);
+  return { page1: p1, page2: p2 };
 }
 
 // Trailers
