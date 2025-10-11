@@ -58,10 +58,10 @@ export async function fetchUpcomingMovies() {
 }
 
 // NowPlaying Movies
-export async function fetchNowPlayingMovies() {
+export async function fetchNowPlayingMovies(page = 1) {
   try {
     const response = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR&page=1`,
+      `https://api.themoviedb.org/3/movie/now_playing?language=ko-KR&region=KR&${page}`,
       options
     );
     const data = await response.json();
@@ -88,26 +88,6 @@ export async function fetchTrailers(movieId) {
     return trailers.length > 0 ? trailers[0] : null;
   } catch (err) {
     console.log("Failed to fetch Trailers", err);
-    throw err;
-  }
-}
-
-// Trailer Movies
-export async function fetchTrailerMovies() {
-  try {
-    const nowPlaying = await fetchNowPlayingMovies();
-
-    // 각 영화의 트레일러 요청
-    const trailers = await Promise.all(
-      nowPlaying.map(async (movie) => {
-        const trailer = await fetchTrailers(movie.id);
-        if (!trailer) return null; // 트레일러 없는 건 제외
-        return { movie, trailer };
-      })
-    );
-    return trailers.filter(Boolean);
-  } catch (err) {
-    console.log("Failed to fetch Trailer Movies", err);
     throw err;
   }
 }

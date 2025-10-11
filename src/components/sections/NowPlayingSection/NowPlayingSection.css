@@ -1,0 +1,41 @@
+.playing-container {
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+}
+
+.row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marqueeHalf var(--speed, 50s) linear infinite;
+}
+
+.playing-container.is-paused .row {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeHalf {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  } /* 복제했으니 절반만 이동 */
+}
+
+.playing-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.playing-card {
+  flex: 0 0 auto;
+  width: 220px;
+}
