@@ -14,7 +14,7 @@
   --color-gray-200: rgba(128, 128, 128, 0.53);
 
   /* Backgrounds */
-  --bg-overlay: rgba(0, 0, 0, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 1);
 
   /* Layers */
   --z-hero-overlay: 100;
@@ -32,8 +32,8 @@
 html,
 body {
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
-  background-color: #ffffff;
-  color: #0f0f0f;
+  color: #ffffff;
+  background-color: #0f0f0f;
 }
 
 a {
