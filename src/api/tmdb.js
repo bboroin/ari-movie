@@ -72,14 +72,6 @@ export async function fetchNowPlayingMovies(page = 1) {
   }
 }
 
-export async function fetchNowPlayingPages() {
-  const [p1, p2] = await Promise.all([
-    fetchNowPlayingMovies(1),
-    fetchNowPlayingMovies(2),
-  ]);
-  return { page1: p1, page2: p2 };
-}
-
 // Trailers
 export async function fetchTrailers(movieId) {
   try {
@@ -89,13 +81,39 @@ export async function fetchTrailers(movieId) {
     );
     const data = await response.json();
 
-    // YouTube + Trailer 타입만 남김
-    const trailers = data.results.filter(
-      (v) => v.site === "YouTube" && v.type === "Trailer"
-    );
-    return trailers.length > 0 ? trailers[0] : null;
+    // YouTube 영상 중 첫 번째 사용
+    const trailer = data.results.find((v) => v.site === "YouTube");
+    return trailer
+      ? `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1`
+      : null;
   } catch (err) {
     console.log("Failed to fetch Trailers", err);
     throw err;
   }
+}
+
+// Now Playing With Trailer
+export async function fetchNowPlayingWithTrailers(page = 1) {
+  const movies = await fetchNowPlayingMovies(page);
+
+  // 병렬로 트레일러 조회
+  const settled = await Promise.allSettled(
+    movies.map(async (m) => {
+      const url = await fetchTrailers(m.id);
+      return { ...m, trailerUrl: url };
+    })
+  );
+
+  // 트레일러 URL이 있는 항목만
+  return settled
+    .filter((r) => r.status === "fulfilled" && r.value.trailerUrl)
+    .map((r) => r.value);
+}
+
+export async function fetchNowPlayingPagesWithTrailers() {
+  const [p1, p2] = await Promise.all([
+    fetchNowPlayingWithTrailers(1),
+    fetchNowPlayingWithTrailers(2),
+  ]);
+  return { page1: p1, page2: p2 };
 }
