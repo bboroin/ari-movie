@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchNowPlayingPagesWithTrailers } from "../../../api/tmdb";
 import "./NowPlayingSection.css";
+import TrailerModal from "./TrailerModal";
 
 const NowPlayingSection = () => {
   const [rows, setRows] = useState({ page1: [], page2: [] });
@@ -41,19 +42,7 @@ const NowPlayingSection = () => {
       <h2>Now Playing</h2>
 
       {trailer && (
-        <div className="trailer-modal">
-          <div className="trailer-frame-wrap">
-            <iframe
-              className="trailer-iframe"
-              src={trailer}
-              title="Trailer"
-              allowFullScreen
-            />
-            <button className="trailer-close" onClick={handleTrailerClose}>
-              ✕
-            </button>
-          </div>
-        </div>
+        <TrailerModal trailer={trailer} onClose={handleTrailerClose} />
       )}
 
       <div
