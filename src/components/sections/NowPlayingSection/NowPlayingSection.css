@@ -1,0 +1,57 @@
+.poster-container {
+  position: relative;
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.row {
+  position: relative;
+  width: max-content;
+  overflow: hidden;
+}
+
+.poster-list {
+  display: flex;
+  gap: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 1줄(우->좌): 0 → -50% */
+.poster-list--left {
+  animation: marquee-left 60s linear infinite;
+}
+
+/* 2줄(좌->우): -50% → 0 */
+.poster-list--right {
+  animation: marquee-right 70s linear infinite;
+}
+
+.poster-card {
+  flex: 0 0 auto;
+  width: 220px;
+}
+
+.poster-container.is-paused .poster-list {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

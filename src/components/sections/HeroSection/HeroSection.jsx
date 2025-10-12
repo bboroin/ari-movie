@@ -4,15 +4,18 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
-import { useEffect, useState } from "react";
-import { fetchHeroMovies } from "../../../api/tmdb";
+import { useEffect, useState, useRef } from "react";
+import { fetchHeroMovies, fetchTrailers } from "../../../api/tmdb";
 import { useGenres } from "../../../hooks/useGenres";
 import "./HeroSection.css";
+import TrailerModal from "../NowPlayingSection/TrailerModal";
 import playIcon from "../../../assets/icons/play.svg";
 
 const HeroSection = () => {
   const [data, setData] = useState([]);
   const genreMap = useGenres(null);
+  const [trailer, setTrailer] = useState("");
+  const swiperRef = useRef(null);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -26,6 +29,21 @@ const HeroSection = () => {
     fetchMovies();
   }, []);
 
+  async function handleTrailerOpen(movie) {
+    const url = await fetchTrailers(movie.id);
+    if (!url) {
+      alert("트레일러가 준비되지 않은 영화입니다.");
+      return;
+    }
+    setTrailer(url || "");
+    swiperRef.current?.autoplay?.stop?.();
+  }
+
+  function handleTrailerClose() {
+    setTrailer("");
+    swiperRef.current?.autoplay?.start?.();
+  }
+
   return (
     <section className="hero-section">
       <Swiper
@@ -33,6 +51,7 @@ const HeroSection = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
+        onSwiper={(sw) => (swiperRef.current = sw)}
       >
         {data.map((movie) => (
           <SwiperSlide key={movie.id}>
@@ -53,11 +72,21 @@ const HeroSection = () => {
                     </span>
                   ))}
                 </div>
-                <button className="hero-trailer-btn">
+                <button
+                  className="hero-trailer-btn"
+                  onClick={() => handleTrailerOpen(movie)}
+                >
                   <img src={playIcon} alt="트레일러 재생 버튼" />
                   <span>TRAILER</span>
                 </button>
               </div>
+              {trailer && (
+                <TrailerModal
+                  trailer={trailer}
+                  onClose={handleTrailerClose}
+                  display="right"
+                />
+              )}
             </div>
           </SwiperSlide>
         ))}
