@@ -42,7 +42,11 @@ const NowPlayingSection = () => {
       <h2>Now Playing</h2>
 
       {trailer && (
-        <TrailerModal trailer={trailer} onClose={handleTrailerClose} />
+        <TrailerModal
+          trailer={trailer}
+          onClose={handleTrailerClose}
+          display="center"
+        />
       )}
 
       <div

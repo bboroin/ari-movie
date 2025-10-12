@@ -5,7 +5,15 @@
   z-index: var(--z-trailer-modal);
   display: flex;
   align-items: center;
+}
+
+.trailer-modal--center {
   justify-content: center;
+}
+
+.trailer-modal--right {
+  justify-content: flex-end;
+  padding-right: 30px;
 }
 
 .trailer-frame-wrap {
