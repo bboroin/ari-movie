@@ -11,6 +11,7 @@ import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 import release from "../../../assets/icons/release.svg";
 import popularity from "../../../assets/icons/popularity.svg";
+import noPoster from "../../../assets/poster-default.svg";
 
 const UpcomingSection = () => {
   const [data, setData] = useState([]);
@@ -63,7 +64,11 @@ const UpcomingSection = () => {
               <div className="upcoming-card">
                 <div className="upcoming-poster">
                   <img
-                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                    src={
+                      movie.poster_path
+                        ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
+                        : noPoster
+                    }
                     alt={movie.title}
                   />
                   {movie.release_date && (

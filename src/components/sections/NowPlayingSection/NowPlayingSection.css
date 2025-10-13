@@ -1,5 +1,5 @@
 .nowplaying-section {
-  padding: 30px;
+  padding: 100px;
 }
 
 .nowplaying-header--bar {
@@ -17,6 +17,10 @@
   border-radius: 2px;
   background: var(--color-primary);
 }
+.nowplaying-title {
+  font-size: 33px;
+}
+
 .nowplaying-desc {
   margin: 0 0 14px;
   font-size: 13px;

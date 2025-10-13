@@ -1,6 +1,6 @@
 .trending-section {
   position: relative;
-  padding: 30px;
+  padding: 100px;
 }
 
 .trending-header {
@@ -23,6 +23,9 @@
   width: 4px;
   border-radius: 2px;
   background: var(--color-primary);
+}
+.trending-title {
+  font-size: 33px;
 }
 
 .trending-desc {

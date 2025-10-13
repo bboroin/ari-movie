@@ -1,6 +1,6 @@
 .upcoming-section {
   position: relative;
-  padding: 30px;
+  padding: 100px;
 }
 
 .upcoming-header {
@@ -8,6 +8,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
+  font-size: ;
 }
 .upcoming-header--bar {
   position: relative;
@@ -23,6 +24,9 @@
   width: 4px;
   border-radius: 2px;
   background: var(--color-primary);
+}
+.upcoming-title {
+  font-size: 33px;
 }
 
 .upcoming-desc {
