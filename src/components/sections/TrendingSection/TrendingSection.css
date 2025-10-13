@@ -1,0 +1,105 @@
+.trending-section {
+  position: relative;
+  padding: 30px;
+}
+
+.trending-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.trending-header--bar {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 6px;
+}
+.trending-header--bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--color-primary);
+}
+
+.trending-desc {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: #9aa0a6;
+  border-bottom: 1px solid #1ed5aa8a;
+  padding-bottom: 10px;
+}
+
+.trending-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.trending-prev,
+.trending-next {
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.57);
+}
+.trending-prev:hover,
+.trending-next:hover {
+  color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.trend-card {
+  background: #151515;
+  overflow: hidden;
+}
+
+.trend-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+}
+
+.trend-content {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.trend-movie-title {
+  margin: 0 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
+}
+
+.trend-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.trending-swiper .swiper {
+  padding: 4px 2px 6px;
+}
