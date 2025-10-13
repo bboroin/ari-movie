@@ -1,3 +1,34 @@
+.nowplaying-section {
+  padding: 100px;
+}
+
+.nowplaying-header--bar {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 6px;
+}
+.nowplaying-header--bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--color-primary);
+}
+.nowplaying-title {
+  font-size: 33px;
+}
+
+.nowplaying-desc {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--color-gray-300);
+  border-bottom: 1px solid var(--color-primary-soft);
+  padding-bottom: 10px;
+}
+
 .poster-container {
   position: relative;
   overflow: hidden;

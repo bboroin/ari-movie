@@ -2,6 +2,7 @@
 :root {
   /* Brand */
   --color-primary: #1ed5aa;
+  --color-primary-soft: #1ed5aa8a;
   --gradient-primary: linear-gradient(to right, #1ed5aa 0%, #01b3e4 100%);
   --gradient-primary-soft: linear-gradient(
     to right,
@@ -12,15 +13,19 @@
   /* Neutral */
   --color-gray-100: rgba(255, 255, 255, 0.53);
   --color-gray-200: rgba(128, 128, 128, 0.53);
+  --color-gray-300: #9aa0a6;
 
   /* Backgrounds */
   --bg-overlay: rgba(0, 0, 0, 1);
+  --bg-card: #151515;
+  --bg-pill: rgba(255, 255, 255, 0.08);
 
   /* Layers */
+  --z-upcoming-dday: 5;
   --z-hero-overlay: 100;
   --z-hero-content: 101;
-  --z-header: 1000;
   --z-trailer-modal: 500;
+  --z-header: 1000;
 }
 
 /* ===================== Reset ===================== */

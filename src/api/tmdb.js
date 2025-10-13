@@ -41,12 +41,41 @@ export async function fetchTrendingMovies() {
   }
 }
 
+// Movie Details
+export async function fetchMovieDetails(id) {
+  try {
+    const res = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`,
+      options
+    );
+    if (!res.ok) throw new Error("Failed to fetch movie details");
+    return await res.json();
+  } catch (err) {
+    console.log("Failed to fetch Movie Details", err);
+    throw err;
+  }
+}
+
+// Trending Movies With Runtime
+export async function fetchTrendingMoviesWithRuntime() {
+  const list = await fetchTrendingMovies();
+  const settled = await Promise.allSettled(
+    list.map((m) => fetchMovieDetails(m.id))
+  );
+
+  return list.map((m, i) => ({
+    ...m,
+    runtime:
+      settled[i].status === "fulfilled" ? settled[i].value.runtime : null,
+  }));
+}
+
 // Upcoming Movies
 export async function fetchUpcomingMovies() {
   try {
     const today = getToday();
     const response = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&sort_by=primary_release_date.asc&primary_release_date.gte=${today}&with_original_language=ko&page=1`,
+      `https://api.themoviedb.org/3/discover/movie?language=ko-KR&region=KR&sort_by=popularity.desc&primary_release_date.gte=${today}&with_original_language=ko&page=1`,
       options
     );
     const data = await response.json();

@@ -1,0 +1,123 @@
+.upcoming-section {
+  position: relative;
+  padding: 100px;
+}
+
+.upcoming-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: ;
+}
+.upcoming-header--bar {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 6px;
+}
+.upcoming-header--bar::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 4px;
+  border-radius: 2px;
+  background: var(--color-primary);
+}
+.upcoming-title {
+  font-size: 33px;
+}
+
+.upcoming-desc {
+  margin: 0 0 14px;
+  font-size: 13px;
+  color: var(--color-gray-300);
+  border-bottom: 1px solid var(--color-primary-soft);
+  padding-bottom: 10px;
+}
+
+.upcoming-nav {
+  display: flex;
+  gap: 8px;
+}
+
+.upcoming-prev,
+.upcoming-next {
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid var(--color-gray-300);
+}
+.upcoming-prev:hover,
+.upcoming-next:hover {
+  color: var(--color-primary);
+  background: var(--bg-pill);
+}
+
+.upcoming-card {
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.upcoming-poster img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+}
+
+.poster-d-day {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--color-primary);
+  color: black;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  z-index: var(--z-upcoming-dday);
+}
+
+.upcoming-content {
+  padding: 10px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upcoming-movie-title {
+  margin: 0 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  text-align: center;
+}
+
+.upcoming-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: var(--bg-pill);
+  font-size: 12px;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.upcoming-swiper .swiper {
+  padding: 4px 2px 6px;
+}

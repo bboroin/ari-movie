@@ -39,7 +39,10 @@ const NowPlayingSection = () => {
 
   return (
     <section className="nowplaying-section">
-      <h2>Now Playing</h2>
+      <div className="nowplaying-header nowplaying-header--bar">
+        <h2 className="nowplaying-title">Now Playing</h2>
+      </div>
+      <p className="nowplaying-desc">극장에서 상영 중인 최신 영화들</p>
 
       {trailer && (
         <TrailerModal
