@@ -1,0 +1,60 @@
+.footer {
+  background: #111;
+  color: var(--color-gray-300);
+  padding: 40px 60px;
+  font-size: 14px;
+}
+
+.footer__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 320px;
+}
+
+.footer__logo {
+  width: 120px;
+  margin-bottom: 8px;
+}
+
+.footer__links {
+  display: flex;
+  gap: 20px;
+}
+.footer__links a:hover {
+  color: var(--color-primary);
+}
+
+.footer__social {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.github-logo {
+  width: 28px;
+  height: 28px;
+  background: white;
+  border-radius: 9999px;
+}
+
+.tmdb-logo {
+  width: 100px;
+  height: auto;
+  display: block;
+}
+
+.footer__bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--color-gray-200);
+}

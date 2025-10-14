@@ -1,10 +1,60 @@
-import React from "react";
+import githubLogo from "../../assets/icons/github-logo.png";
+import tmdbLogo from "../../assets/icons/tmdb-logo.svg";
+import "./Footer.css";
 
 const Footer = () => {
   return (
-    <div>
-      <h2>Footer</h2>
-    </div>
+    <footer className="footer">
+      <div className="footer__top">
+        <div className="footer__brand">
+          <img src="/logo.png" alt="사이트 로고" className="footer__logo" />
+          <p className="footer__desc">
+            영화의 모든 정보를 한눈에 — powered by TMDB API
+          </p>
+        </div>
+
+        <ul className="footer__links">
+          <li>
+            <a href="#">서비스 소개</a>
+          </li>
+          <li>
+            <a href="#">개인정보 처리방침</a>
+          </li>
+          <li>
+            <a href="#">이용약관</a>
+          </li>
+          <li>
+            <a href="#">문의하기</a>
+          </li>
+        </ul>
+        <div className="footer__social">
+          <a
+            href="https://github.com/bboroin/ari-tmdb-react"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={githubLogo} alt="GitHub" className="github-logo" />
+          </a>
+          <a
+            href="https://www.themoviedb.org/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src={tmdbLogo} alt="TMDB" className="tmdb-logo" />
+          </a>
+        </div>
+      </div>
+
+      <div className="footer__bottom">
+        <p className="footer__copyright">
+          © {new Date().getFullYear()} ARI MOVIE | Powered by TMDB
+        </p>
+        <p className="footer__notice">
+          This product uses the TMDB API but is not endorsed or certified by
+          TMDB.
+        </p>
+      </div>
+    </footer>
   );
 };
 
