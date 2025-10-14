@@ -5,7 +5,7 @@
   font-size: 14px;
 }
 
-.footer__top {
+.footer-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,27 +13,27 @@
   padding-bottom: 20px;
 }
 
-.footer__brand {
+.footer-brand {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   max-width: 320px;
 }
 
-.footer__logo {
+.footer-logo {
   width: 120px;
   margin-bottom: 8px;
 }
 
-.footer__links {
+.footer-links {
   display: flex;
   gap: 20px;
 }
-.footer__links a:hover {
+.footer-links a:hover {
   color: var(--color-primary);
 }
 
-.footer__social {
+.footer-social {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -52,7 +52,7 @@
   display: block;
 }
 
-.footer__bottom {
+.footer-bottom {
   text-align: center;
   margin-top: 20px;
   font-size: 13px;

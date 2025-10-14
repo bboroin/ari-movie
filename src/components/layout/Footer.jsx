@@ -5,15 +5,15 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer__top">
-        <div className="footer__brand">
-          <img src="/logo.png" alt="사이트 로고" className="footer__logo" />
-          <p className="footer__desc">
+      <div className="footer-top">
+        <div className="footer-brand">
+          <img src="/logo.png" alt="사이트 로고" className="footer-logo" />
+          <p className="footer-desc">
             영화의 모든 정보를 한눈에 — powered by TMDB API
           </p>
         </div>
 
-        <ul className="footer__links">
+        <ul className="footer-links">
           <li>
             <a href="#">서비스 소개</a>
           </li>
@@ -27,7 +27,7 @@ const Footer = () => {
             <a href="#">문의하기</a>
           </li>
         </ul>
-        <div className="footer__social">
+        <div className="footer-social">
           <a
             href="https://github.com/bboroin/ari-tmdb-react"
             target="_blank"
@@ -45,11 +45,11 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="footer__bottom">
-        <p className="footer__copyright">
+      <div className="footer-bottom">
+        <p className="footer-copyright">
           © {new Date().getFullYear()} ARI MOVIE | Powered by TMDB
         </p>
-        <p className="footer__notice">
+        <p className="footer-notice">
           This product uses the TMDB API but is not endorsed or certified by
           TMDB.
         </p>
