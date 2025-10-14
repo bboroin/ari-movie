@@ -28,7 +28,11 @@ const Footer = () => {
           </li>
         </ul>
         <div className="footer__social">
-          <a href="https://github.com/..." target="_blank" rel="noreferrer">
+          <a
+            href="https://github.com/bboroin/ari-tmdb-react"
+            target="_blank"
+            rel="noreferrer"
+          >
             <img src={githubLogo} alt="GitHub" className="github-logo" />
           </a>
           <a
