@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import { fetchTrendingMoviesWithRuntime } from "../../../api/tmdb";
 import "./TrendingSection.css";
+import "../common/Section.css";
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 import vote from "../../../assets/icons/vote.svg";
@@ -35,9 +36,9 @@ const TrendingSection = () => {
   }
 
   return (
-    <section className="trending-section">
-      <div className="trending-header trending-header--bar">
-        <h2 className="trending-title">Trending</h2>
+    <section className="section">
+      <div className="section-header section-header--bar">
+        <h2 className="section-title">Trending</h2>
 
         <div className="trending-period">
           <button
@@ -54,22 +55,23 @@ const TrendingSection = () => {
           </button>
         </div>
 
-        <div className="trending-nav">
-          <button className="trending-prev">
+        <div className="section-nav">
+          <button className="section-prev">
             <img src={arrowPrev} alt="이전 버튼" />
           </button>
-          <button className="trending-next">
+          <button className="section-next">
             <img src={arrowNext} alt="다음 버튼" />
           </button>
         </div>
       </div>
-      <p className="trending-desc">전 세계에서 가장 주목받는 영화들</p>
 
-      <div className="trending-swiper">
+      <p className="section-desc">전 세계에서 가장 주목받는 영화들</p>
+
+      <div className="section-swiper">
         <Swiper
           key={period}
           modules={[Navigation, A11y]}
-          navigation={{ prevEl: ".trending-prev", nextEl: ".trending-next" }}
+          navigation={{ prevEl: ".section-prev", nextEl: ".section-next" }}
           spaceBetween={20}
           a11y={{ enabled: true }}
           slidesPerView={5}
@@ -84,25 +86,23 @@ const TrendingSection = () => {
         >
           {data.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <div className="trend-card">
-                <div className="trend-poster">
+              <div className="card">
+                <div className="card-poster">
                   <img
                     src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
                     alt={movie.title}
                   />
                 </div>
 
-                <div className="trend-content">
-                  <h3 className="trend-movie-title">{movie.title}</h3>
-
-                  <div className="trend-meta">
+                <div className="card-content">
+                  <h3 className="card-title">{movie.title}</h3>
+                  <div className="card-meta">
                     <div className="meta-pill">
-                      <img src={runtime} alt="런타임 아이콘" />
+                      <img src={runtime} alt="런타임" />
                       <span>{formatRuntime(movie.runtime)}</span>
                     </div>
-
                     <div className="meta-pill">
-                      <img src={vote} alt="평점 아이콘" />
+                      <img src={vote} alt="평점" />
                       <span>{(movie.vote_average ?? 0).toFixed(1)}</span>
                     </div>
                   </div>

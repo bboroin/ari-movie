@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import { fetchUpcomingMovies } from "../../../api/tmdb";
 import { getDDay } from "../../../utils/date";
-import "./UpcomingSection.css";
+import "../common/Section.css";
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 import release from "../../../assets/icons/release.svg";
@@ -29,24 +29,25 @@ const UpcomingSection = () => {
   }, []);
 
   return (
-    <section className="upcoming-section">
-      <div className="upcoming-header upcoming-header--bar">
-        <h2 className="upcoming-title">Upcoming</h2>
-        <div className="upcoming-nav">
-          <button className="upcoming-prev">
+    <section className="section">
+      <div className="section-header section-header--bar">
+        <h2 className="section-title">Upcoming</h2>
+        <div className="section-nav">
+          <button className="section-prev">
             <img src={arrowPrev} alt="이전 버튼" />
           </button>
-          <button className="upcoming-next">
+          <button className="section-next">
             <img src={arrowNext} alt="다음 버튼" />
           </button>
         </div>
       </div>
-      <p className="upcoming-desc">개봉을 앞둔 기대작들</p>
 
-      <div className="upcoming-swiper">
+      <p className="section-desc">개봉을 앞둔 기대작들</p>
+
+      <div className="section-swiper">
         <Swiper
           modules={[Navigation, A11y]}
-          navigation={{ prevEl: ".upcoming-prev", nextEl: ".upcoming-next" }}
+          navigation={{ prevEl: ".section-prev", nextEl: ".section-next" }}
           spaceBetween={20}
           a11y={{ enabled: true }}
           slidesPerView={5}
@@ -61,8 +62,8 @@ const UpcomingSection = () => {
         >
           {data.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <div className="upcoming-card">
-                <div className="upcoming-poster">
+              <div className="card">
+                <div className="card-poster">
                   <img
                     src={
                       movie.poster_path
@@ -72,23 +73,21 @@ const UpcomingSection = () => {
                     alt={movie.title}
                   />
                   {movie.release_date && (
-                    <div className="poster-d-day">
+                    <div className="card-badge">
                       {getDDay(movie.release_date)}
                     </div>
                   )}
                 </div>
 
-                <div className="upcoming-content">
-                  <h3 className="upcoming-movie-title">{movie.title}</h3>
-
-                  <div className="upcoming-meta">
+                <div className="card-content">
+                  <h3 className="card-title">{movie.title}</h3>
+                  <div className="card-meta">
                     <div className="meta-pill">
-                      <img src={release} alt="개봉일 아이콘" />
+                      <img src={release} alt="개봉일" />
                       <span>{movie.release_date}</span>
                     </div>
-
                     <div className="meta-pill">
-                      <img src={popularity} alt="인기도 아이콘" />
+                      <img src={popularity} alt="인기도" />
                       <span>{Math.round(movie.popularity)}</span>
                     </div>
                   </div>

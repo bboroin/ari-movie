@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchNowPlayingPagesWithTrailers } from "../../../api/tmdb";
 import "./NowPlayingSection.css";
+import "../common/Section.css";
+
 import TrailerModal from "./TrailerModal";
 
 const NowPlayingSection = () => {
@@ -38,11 +40,11 @@ const NowPlayingSection = () => {
   }
 
   return (
-    <section className="nowplaying-section">
-      <div className="nowplaying-header nowplaying-header--bar">
-        <h2 className="nowplaying-title">Now Playing</h2>
+    <section className="section">
+      <div className="section-header section-header--bar">
+        <h2 className="section-title">Now Playing</h2>
       </div>
-      <p className="nowplaying-desc">극장에서 상영 중인 최신 영화들</p>
+      <p className="section-desc">극장에서 상영 중인 최신 영화들</p>
 
       {trailer && (
         <TrailerModal
