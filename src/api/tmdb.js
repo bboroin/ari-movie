@@ -27,10 +27,10 @@ export async function fetchHeroMovies() {
 }
 
 // Trending Movies
-export async function fetchTrendingMovies() {
+export async function fetchTrendingMovies(period = "day") {
   try {
     const response = await fetch(
-      "https://api.themoviedb.org/3/trending/movie/week?language=ko-KR",
+      `https://api.themoviedb.org/3/trending/movie/${period}?language=ko-KR`,
       options
     );
     const data = await response.json();
@@ -57,8 +57,8 @@ export async function fetchMovieDetails(id) {
 }
 
 // Trending Movies With Runtime
-export async function fetchTrendingMoviesWithRuntime() {
-  const list = await fetchTrendingMovies();
+export async function fetchTrendingMoviesWithRuntime(period = "day") {
+  const list = await fetchTrendingMovies(period);
   const settled = await Promise.allSettled(
     list.map((m) => fetchMovieDetails(m.id))
   );

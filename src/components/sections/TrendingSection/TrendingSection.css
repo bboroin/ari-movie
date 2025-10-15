@@ -36,6 +36,31 @@
   padding-bottom: 10px;
 }
 
+.trending-period {
+  display: inline-flex;
+  gap: 6px;
+  background: var(--bg-pill);
+  padding: 4px;
+  border-radius: 5px;
+  align-self: center;
+}
+.period-btn {
+  border: 0;
+  background: transparent;
+  color: var(--color-gray-100);
+  border-radius: 5px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: transform 0.12s ease, background-color 0.2s ease;
+}
+.period-btn.is-active {
+  background: var(--color-primary);
+  color: #fff;
+}
+.period-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+}
+
 .trending-nav {
   display: flex;
   gap: 8px;
