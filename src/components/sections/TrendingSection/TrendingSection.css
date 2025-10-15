@@ -5,7 +5,7 @@
 
 .trending-header {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 8px;
 }
@@ -63,22 +63,21 @@
 
 .trending-nav {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .trending-prev,
 .trending-next {
-  border-radius: 5px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid var(--color-gray-300);
+  background: var(--bg-pill);
+  border-radius: 5px;
 }
 .trending-prev:hover,
 .trending-next:hover {
-  color: var(--color-primary);
-  background: var(--bg-pill);
+  background: var(--color-primary);
 }
 
 .trend-card {
