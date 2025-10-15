@@ -13,18 +13,19 @@ import runtime from "../../../assets/icons/runtime.svg";
 
 const TrendingSection = () => {
   const [data, setData] = useState([]);
+  const [period, setPeriod] = useState("day");
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const data = await fetchTrendingMoviesWithRuntime();
+        const data = await fetchTrendingMoviesWithRuntime(period);
         setData(data);
       } catch (err) {
         console.error("fetchMovies failed:", err);
       }
     };
     fetchMovies();
-  }, []);
+  }, [period]);
 
   function formatRuntime(mins) {
     if (!mins && mins !== 0) return "-";
@@ -37,6 +38,22 @@ const TrendingSection = () => {
     <section className="trending-section">
       <div className="trending-header trending-header--bar">
         <h2 className="trending-title">Trending</h2>
+
+        <div className="trending-period">
+          <button
+            className={`period-btn ${period === "day" ? "is-active" : ""}`}
+            onClick={() => setPeriod("day")}
+          >
+            오늘
+          </button>
+          <button
+            className={`period-btn ${period === "week" ? "is-active" : ""}`}
+            onClick={() => setPeriod("week")}
+          >
+            이번 주
+          </button>
+        </div>
+
         <div className="trending-nav">
           <button className="trending-prev">
             <img src={arrowPrev} alt="이전 버튼" />
@@ -46,10 +63,11 @@ const TrendingSection = () => {
           </button>
         </div>
       </div>
-      <p className="trending-desc">이번 주 전 세계에서 가장 주목받는 영화들</p>
+      <p className="trending-desc">전 세계에서 가장 주목받는 영화들</p>
 
       <div className="trending-swiper">
         <Swiper
+          key={period}
           modules={[Navigation, A11y]}
           navigation={{ prevEl: ".trending-prev", nextEl: ".trending-next" }}
           spaceBetween={20}
