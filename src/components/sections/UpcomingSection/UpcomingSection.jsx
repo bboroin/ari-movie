@@ -5,13 +5,13 @@ import "swiper/css/navigation";
 
 import { useEffect, useState } from "react";
 import { fetchUpcomingMovies } from "../../../api/tmdb";
-import { getDDay } from "../../../utils/date";
-import "./UpcomingSection.css";
-import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
-import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
+import { getDDay } from "../../../utils/format";
+import "../common/Section.css";
+import SectionHeader from "../common/SectionHeader";
+import SectionCard from "../common/SectionCard";
+
 import release from "../../../assets/icons/release.svg";
 import popularity from "../../../assets/icons/popularity.svg";
-import noPoster from "../../../assets/poster-default.svg";
 
 const UpcomingSection = () => {
   const [data, setData] = useState([]);
@@ -29,24 +29,17 @@ const UpcomingSection = () => {
   }, []);
 
   return (
-    <section className="upcoming-section">
-      <div className="upcoming-header upcoming-header--bar">
-        <h2 className="upcoming-title">Upcoming</h2>
-        <div className="upcoming-nav">
-          <button className="upcoming-prev">
-            <img src={arrowPrev} alt="이전 버튼" />
-          </button>
-          <button className="upcoming-next">
-            <img src={arrowNext} alt="다음 버튼" />
-          </button>
-        </div>
-      </div>
-      <p className="upcoming-desc">개봉을 앞둔 기대작들</p>
+    <section className="section">
+      <SectionHeader
+        title="Upcoming"
+        desc="개봉을 앞둔 기대작들"
+        hasNav={true}
+      />
 
-      <div className="upcoming-swiper">
+      <div className="section-swiper">
         <Swiper
           modules={[Navigation, A11y]}
-          navigation={{ prevEl: ".upcoming-prev", nextEl: ".upcoming-next" }}
+          navigation={{ prevEl: ".section-prev", nextEl: ".section-next" }}
           spaceBetween={20}
           a11y={{ enabled: true }}
           slidesPerView={5}
@@ -61,39 +54,19 @@ const UpcomingSection = () => {
         >
           {data.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <div className="upcoming-card">
-                <div className="upcoming-poster">
-                  <img
-                    src={
-                      movie.poster_path
-                        ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                        : noPoster
-                    }
-                    alt={movie.title}
-                  />
-                  {movie.release_date && (
-                    <div className="poster-d-day">
-                      {getDDay(movie.release_date)}
-                    </div>
-                  )}
-                </div>
-
-                <div className="upcoming-content">
-                  <h3 className="upcoming-movie-title">{movie.title}</h3>
-
-                  <div className="upcoming-meta">
-                    <div className="meta-pill">
-                      <img src={release} alt="개봉일 아이콘" />
-                      <span>{movie.release_date}</span>
-                    </div>
-
-                    <div className="meta-pill">
-                      <img src={popularity} alt="인기도 아이콘" />
-                      <span>{Math.round(movie.popularity)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SectionCard
+                posterPath={movie.poster_path}
+                title={movie.title}
+                badge={movie.release_date ? getDDay(movie.release_date) : null}
+                meta={[
+                  { icon: release, text: movie.release_date, alt: "개봉일" },
+                  {
+                    icon: popularity,
+                    text: Math.round(movie.popularity),
+                    alt: "인기도",
+                  },
+                ]}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -1,21 +1,20 @@
-.upcoming-section {
+.section {
   position: relative;
   padding: 100px;
 }
 
-.upcoming-header {
+.section-header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
+  justify-content: space-between;
   margin-bottom: 8px;
-  font-size: ;
 }
-.upcoming-header--bar {
+.section-header--bar {
   position: relative;
   padding-left: 14px;
   margin-bottom: 6px;
 }
-.upcoming-header--bar::before {
+.section-header--bar::before {
   content: "";
   position: absolute;
   left: 0;
@@ -25,11 +24,30 @@
   border-radius: 2px;
   background: var(--color-primary);
 }
-.upcoming-title {
+
+.section-title {
   font-size: 33px;
 }
 
-.upcoming-desc {
+.section-nav {
+  display: flex;
+  gap: 10px;
+}
+.section-prev,
+.section-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: var(--bg-pill);
+  border-radius: 5px;
+}
+.section-prev:hover,
+.section-next:hover {
+  background: var(--color-primary);
+}
+
+.section-desc {
   margin: 0 0 14px;
   font-size: 13px;
   color: var(--color-gray-300);
@@ -37,52 +55,27 @@
   padding-bottom: 10px;
 }
 
-.upcoming-nav {
-  display: flex;
-  gap: 10px;
+.section-swiper .swiper {
+  padding: 4px 2px 6px;
 }
 
-.upcoming-prev,
-.upcoming-next {
-  border-radius: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: var(--bg-pill);
-}
-.upcoming-prev:hover,
-.upcoming-next:hover {
-  background: var(--color-primary);
-}
-
-.upcoming-card {
+/* 카드 */
+.card {
   background: var(--bg-card);
   overflow: hidden;
 }
 
-.upcoming-poster img {
-  display: block;
+.card-poster {
+  position: relative;
+  aspect-ratio: 2/3;
+}
+.card-poster img {
   width: 100%;
-  height: auto;
-  aspect-ratio: 2 / 3;
+  height: 100%;
+  object-fit: cover;
 }
 
-.poster-d-day {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: var(--color-primary);
-  color: black;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 4px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
-  z-index: var(--z-upcoming-dday);
-}
-
-.upcoming-content {
+.card-content {
   padding: 10px 12px 12px;
   display: flex;
   flex-direction: column;
@@ -90,7 +83,7 @@
   justify-content: center;
 }
 
-.upcoming-movie-title {
+.card-title {
   margin: 0 0 8px;
   white-space: nowrap;
   overflow: hidden;
@@ -99,7 +92,7 @@
   text-align: center;
 }
 
-.upcoming-meta {
+.card-meta {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -112,11 +105,21 @@
   padding: 4px 10px;
   border-radius: 5px;
   background: var(--bg-pill);
+  white-space: nowrap;
   font-size: 12px;
   line-height: 1;
-  white-space: nowrap;
 }
 
-.upcoming-swiper .swiper {
-  padding: 4px 2px 6px;
+.card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--color-primary);
+  color: black;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  z-index: var(--z-upcoming-dday);
 }
