@@ -7,11 +7,10 @@ import { useEffect, useState } from "react";
 import { fetchTrendingMoviesWithRuntime } from "../../../api/tmdb";
 import "./TrendingSection.css";
 import "../common/Section.css";
+import SectionHeader from "../common/SectionHeader";
 import SectionCard from "../common/SectionCard";
 import { formatRuntime } from "../../../utils/format";
 
-import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
-import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 import vote from "../../../assets/icons/vote.svg";
 import runtime from "../../../assets/icons/runtime.svg";
 
@@ -33,9 +32,11 @@ const TrendingSection = () => {
 
   return (
     <section className="section">
-      <div className="section-header section-header--bar">
-        <h2 className="section-title">Trending</h2>
-
+      <SectionHeader
+        title="Trending"
+        desc="전 세계에서 가장 주목받는 영화들"
+        hasNav={true}
+      >
         <div className="trending-period">
           <button
             className={`period-btn ${period === "day" ? "is-active" : ""}`}
@@ -50,18 +51,7 @@ const TrendingSection = () => {
             이번 주
           </button>
         </div>
-
-        <div className="section-nav">
-          <button className="section-prev">
-            <img src={arrowPrev} alt="이전 버튼" />
-          </button>
-          <button className="section-next">
-            <img src={arrowNext} alt="다음 버튼" />
-          </button>
-        </div>
-      </div>
-
-      <p className="section-desc">전 세계에서 가장 주목받는 영화들</p>
+      </SectionHeader>
 
       <div className="section-swiper">
         <Swiper

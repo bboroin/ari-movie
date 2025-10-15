@@ -7,9 +7,9 @@ import { useEffect, useState } from "react";
 import { fetchUpcomingMovies } from "../../../api/tmdb";
 import { getDDay } from "../../../utils/format";
 import "../common/Section.css";
+import SectionHeader from "../common/SectionHeader";
 import SectionCard from "../common/SectionCard";
-import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
-import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
+
 import release from "../../../assets/icons/release.svg";
 import popularity from "../../../assets/icons/popularity.svg";
 
@@ -30,19 +30,11 @@ const UpcomingSection = () => {
 
   return (
     <section className="section">
-      <div className="section-header section-header--bar">
-        <h2 className="section-title">Upcoming</h2>
-        <div className="section-nav">
-          <button className="section-prev">
-            <img src={arrowPrev} alt="이전 버튼" />
-          </button>
-          <button className="section-next">
-            <img src={arrowNext} alt="다음 버튼" />
-          </button>
-        </div>
-      </div>
-
-      <p className="section-desc">개봉을 앞둔 기대작들</p>
+      <SectionHeader
+        title="Upcoming"
+        desc="개봉을 앞둔 기대작들"
+        hasNav={true}
+      />
 
       <div className="section-swiper">
         <Swiper
