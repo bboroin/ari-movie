@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { fetchTrendingMoviesWithRuntime } from "../../../api/tmdb";
 import "./TrendingSection.css";
 import "../common/Section.css";
+import SectionCard from "../common/SectionCard";
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 import vote from "../../../assets/icons/vote.svg";
@@ -86,28 +87,22 @@ const TrendingSection = () => {
         >
           {data.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <div className="card">
-                <div className="card-poster">
-                  <img
-                    src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                </div>
-
-                <div className="card-content">
-                  <h3 className="card-title">{movie.title}</h3>
-                  <div className="card-meta">
-                    <div className="meta-pill">
-                      <img src={runtime} alt="런타임" />
-                      <span>{formatRuntime(movie.runtime)}</span>
-                    </div>
-                    <div className="meta-pill">
-                      <img src={vote} alt="평점" />
-                      <span>{(movie.vote_average ?? 0).toFixed(1)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SectionCard
+                posterPath={movie.poster_path}
+                title={movie.title}
+                meta={[
+                  {
+                    icon: runtime,
+                    text: formatRuntime(movie.runtime),
+                    alt: "런타임",
+                  },
+                  {
+                    icon: vote,
+                    text: (movie.vote_average ?? 0).toFixed(1),
+                    alt: "평점",
+                  },
+                ]}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

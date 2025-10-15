@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import { fetchUpcomingMovies } from "../../../api/tmdb";
 import { getDDay } from "../../../utils/date";
 import "../common/Section.css";
+import SectionCard from "../common/SectionCard";
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 import release from "../../../assets/icons/release.svg";
 import popularity from "../../../assets/icons/popularity.svg";
-import noPoster from "../../../assets/poster-default.svg";
 
 const UpcomingSection = () => {
   const [data, setData] = useState([]);
@@ -62,37 +62,19 @@ const UpcomingSection = () => {
         >
           {data.map((movie) => (
             <SwiperSlide key={movie.id}>
-              <div className="card">
-                <div className="card-poster">
-                  <img
-                    src={
-                      movie.poster_path
-                        ? `https://image.tmdb.org/t/p/original/${movie.poster_path}`
-                        : noPoster
-                    }
-                    alt={movie.title}
-                  />
-                  {movie.release_date && (
-                    <div className="card-badge">
-                      {getDDay(movie.release_date)}
-                    </div>
-                  )}
-                </div>
-
-                <div className="card-content">
-                  <h3 className="card-title">{movie.title}</h3>
-                  <div className="card-meta">
-                    <div className="meta-pill">
-                      <img src={release} alt="개봉일" />
-                      <span>{movie.release_date}</span>
-                    </div>
-                    <div className="meta-pill">
-                      <img src={popularity} alt="인기도" />
-                      <span>{Math.round(movie.popularity)}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <SectionCard
+                posterPath={movie.poster_path}
+                title={movie.title}
+                badge={movie.release_date ? getDDay(movie.release_date) : null}
+                meta={[
+                  { icon: release, text: movie.release_date, alt: "개봉일" },
+                  {
+                    icon: popularity,
+                    text: Math.round(movie.popularity),
+                    alt: "인기도",
+                  },
+                ]}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
