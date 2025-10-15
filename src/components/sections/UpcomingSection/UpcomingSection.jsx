@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 
 import { useEffect, useState } from "react";
 import { fetchUpcomingMovies } from "../../../api/tmdb";
-import { getDDay } from "../../../utils/date";
+import { getDDay } from "../../../utils/format";
 import "../common/Section.css";
 import SectionCard from "../common/SectionCard";
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";

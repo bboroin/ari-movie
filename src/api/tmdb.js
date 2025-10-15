@@ -1,4 +1,4 @@
-import { getToday, getMonthsAgo } from "../utils/date";
+import { getToday, getMonthsAgo } from "../utils/format";
 
 const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 

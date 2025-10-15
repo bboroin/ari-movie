@@ -29,3 +29,11 @@ export function getDDay(releaseDate) {
   if (diffDays === 0) return "D-Day";
   return "개봉";
 }
+
+// 런타임 포맷 (분 → h m)
+export function formatRuntime(mins) {
+  if (!mins && mins !== 0) return "-";
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  return h ? `${h}h ${m}m` : `${m}m`;
+}

@@ -8,6 +8,8 @@ import { fetchTrendingMoviesWithRuntime } from "../../../api/tmdb";
 import "./TrendingSection.css";
 import "../common/Section.css";
 import SectionCard from "../common/SectionCard";
+import { formatRuntime } from "../../../utils/format";
+
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 import vote from "../../../assets/icons/vote.svg";
@@ -28,13 +30,6 @@ const TrendingSection = () => {
     };
     fetchMovies();
   }, [period]);
-
-  function formatRuntime(mins) {
-    if (!mins && mins !== 0) return "-";
-    const h = Math.floor(mins / 60);
-    const m = mins % 60;
-    return h ? `${h}h ${m}m` : `${m}m`;
-  }
 
   return (
     <section className="section">
