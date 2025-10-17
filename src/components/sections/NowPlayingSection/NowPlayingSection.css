@@ -33,6 +33,7 @@
 .poster-card {
   flex: 0 0 auto;
   width: 220px;
+  aspect-ratio: 2 / 3;
 }
 
 .poster-container.is-paused .poster-list {
