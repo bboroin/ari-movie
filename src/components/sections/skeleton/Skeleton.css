@@ -1,0 +1,24 @@
+/* Hero */
+.hero-section .react-loading-skeleton {
+  --base-color: var(--sk-base-color);
+  --highlight-color: var(--sk-highlight-color);
+}
+.section .react-loading-skeleton {
+  --base-color: var(--sk-base-color);
+  --highlight-color: var(--sk-highlight-color);
+}
+
+/* Trending, Upcoming */
+.skeleton-row {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* Now Playing */
+.row-top {
+  transform: translateX(-20px);
+}
+.row-bottom {
+  transform: translateX(-100px);
+}
