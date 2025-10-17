@@ -9,12 +9,14 @@ import { getDDay } from "../../../utils/format";
 import "../common/Section.css";
 import SectionHeader from "../common/SectionHeader";
 import SectionCard from "../common/SectionCard";
+import SwiperSkeleton from "../skeleton/SwiperSkeleton";
 
 import release from "../../../assets/icons/release.svg";
 import popularity from "../../../assets/icons/popularity.svg";
 
 const UpcomingSection = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -23,10 +25,14 @@ const UpcomingSection = () => {
         setData(data);
       } catch (err) {
         console.error("fetchMovies failed:", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMovies();
   }, []);
+
+  if (loading) return <SwiperSkeleton count={5} />;
 
   return (
     <section className="section">

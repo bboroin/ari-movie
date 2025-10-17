@@ -3,12 +3,14 @@ import { fetchNowPlayingPagesWithTrailers } from "../../../api/tmdb";
 import "./NowPlayingSection.css";
 import "../common/Section.css";
 import SectionHeader from "../common/SectionHeader";
+import NowPlayingSkeleton from "../skeleton/NowPlayingSkeleton";
 import TrailerModal from "./TrailerModal";
 
 const NowPlayingSection = () => {
   const [rows, setRows] = useState({ page1: [], page2: [] });
   const [animate, setAnimate] = useState(true);
   const [trailer, setTrailer] = useState(""); // iframe src
+  const [loading, setLoading] = useState(true);
 
   const onStop = () => {
     if (!trailer) setAnimate(false);
@@ -24,6 +26,8 @@ const NowPlayingSection = () => {
         setRows(data);
       } catch (err) {
         console.error("fetchMovies failed:", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMovies();
@@ -38,6 +42,8 @@ const NowPlayingSection = () => {
     setTrailer("");
     setAnimate(true);
   }
+
+  if (loading) return <NowPlayingSkeleton perRow={10} />;
 
   return (
     <section className="section">

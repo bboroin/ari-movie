@@ -7,6 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import { fetchHeroMovies, fetchTrailers } from "../../../api/tmdb";
 import { useGenres } from "../../../hooks/useGenres";
 import "./HeroSection.css";
+import HeroSkeleton from "../skeleton/HeroSkeleton";
 import TrailerModal from "../NowPlayingSection/TrailerModal";
 import playIcon from "../../../assets/icons/play.svg";
 
@@ -15,6 +16,7 @@ const HeroSection = () => {
   const genreMap = useGenres(null);
   const [trailer, setTrailer] = useState("");
   const swiperRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -23,6 +25,8 @@ const HeroSection = () => {
         setData(data);
       } catch (err) {
         console.error("fetchMovies failed:", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMovies();
@@ -42,6 +46,8 @@ const HeroSection = () => {
     setTrailer("");
     swiperRef.current?.autoplay?.start?.();
   }
+
+  if (loading) return <HeroSkeleton />;
 
   return (
     <section className="hero-section">

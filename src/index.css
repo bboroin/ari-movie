@@ -33,6 +33,10 @@
   --z-hero-content: 101;
   --z-trailer-modal: 500;
   --z-header: 1000;
+
+  /* Skeleton */
+  --sk-base-color: #555555ff;
+  --sk-highlight-color: #e2e2e2ff;
 }
 
 /* ===================== Reset ===================== */

@@ -10,13 +10,14 @@ import "../common/Section.css";
 import SectionHeader from "../common/SectionHeader";
 import SectionCard from "../common/SectionCard";
 import { formatRuntime } from "../../../utils/format";
-
+import SwiperSkeleton from "../skeleton/SwiperSkeleton";
 import vote from "../../../assets/icons/vote.svg";
 import runtime from "../../../assets/icons/runtime.svg";
 
 const TrendingSection = () => {
   const [data, setData] = useState([]);
   const [period, setPeriod] = useState("day");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -25,10 +26,14 @@ const TrendingSection = () => {
         setData(data);
       } catch (err) {
         console.error("fetchMovies failed:", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMovies();
   }, [period]);
+
+  if (loading) return <SwiperSkeleton count={5} />;
 
   return (
     <section className="section">
