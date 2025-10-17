@@ -4,36 +4,34 @@ import "./Skeleton.css";
 
 const SwiperSkeleton = ({ count = 5 }) => {
   return (
-    <SkeletonTheme baseColor="#a3a3a3" highlightColor="#ffffff" duration={1.4}>
-      <section className="section">
-        <div className="section-header">
-          <h2 className="section-title">
-            <Skeleton width={160} height={33} />
-          </h2>
-        </div>
+    <section className="section">
+      <div className="section-header">
+        <h2 className="section-title">
+          <Skeleton width={160} height={33} />
+        </h2>
+      </div>
 
-        <div className="section-swiper">
-          <div className="skeleton-row">
-            {Array.from({ length: count }).map((_, i) => (
-              <div className="card" key={i}>
-                <div className="card-poster">
-                  <Skeleton height="100%" />
+      <div className="section-swiper">
+        <div className="skeleton-row">
+          {Array.from({ length: count }).map((_, i) => (
+            <div className="card" key={i}>
+              <div className="card-poster">
+                <Skeleton height="100%" />
+              </div>
+              <div className="card-content">
+                <div className="card-title">
+                  <Skeleton width="80%" height={19} />
                 </div>
-                <div className="card-content">
-                  <div className="card-title">
-                    <Skeleton width="80%" height={19} />
-                  </div>
-                  <div className="card-meta">
-                    <Skeleton height={14} width={50} />
-                    <Skeleton height={14} width={30} />
-                  </div>
+                <div className="card-meta">
+                  <Skeleton height={14} width={50} />
+                  <Skeleton height={14} width={30} />
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-      </section>
-    </SkeletonTheme>
+      </div>
+    </section>
   );
 };
 

@@ -36,69 +36,68 @@ const TrendingSection = () => {
   if (loading) return <SwiperSkeleton count={5} />;
 
   return (
-    // <section className="section">
-    //   <SectionHeader
-    //     title="Trending"
-    //     desc="전 세계에서 가장 주목받는 영화들"
-    //     hasNav={true}
-    //   >
-    //     <div className="trending-period">
-    //       <button
-    //         className={`period-btn ${period === "day" ? "is-active" : ""}`}
-    //         onClick={() => setPeriod("day")}
-    //       >
-    //         오늘
-    //       </button>
-    //       <button
-    //         className={`period-btn ${period === "week" ? "is-active" : ""}`}
-    //         onClick={() => setPeriod("week")}
-    //       >
-    //         이번 주
-    //       </button>
-    //     </div>
-    //   </SectionHeader>
+    <section className="section">
+      <SectionHeader
+        title="Trending"
+        desc="전 세계에서 가장 주목받는 영화들"
+        hasNav={true}
+      >
+        <div className="trending-period">
+          <button
+            className={`period-btn ${period === "day" ? "is-active" : ""}`}
+            onClick={() => setPeriod("day")}
+          >
+            오늘
+          </button>
+          <button
+            className={`period-btn ${period === "week" ? "is-active" : ""}`}
+            onClick={() => setPeriod("week")}
+          >
+            이번 주
+          </button>
+        </div>
+      </SectionHeader>
 
-    //   <div className="section-swiper">
-    //     <Swiper
-    //       key={period}
-    //       modules={[Navigation, A11y]}
-    //       navigation={{ prevEl: ".section-prev", nextEl: ".section-next" }}
-    //       spaceBetween={20}
-    //       a11y={{ enabled: true }}
-    //       slidesPerView={5}
-    //       slidesPerGroup={5}
-    //       breakpoints={{
-    //         320: { slidesPerView: 1, slidesPerGroup: 1 },
-    //         640: { slidesPerView: 2, slidesPerGroup: 2 },
-    //         1024: { slidesPerView: 4, slidesPerGroup: 4 },
-    //         1280: { slidesPerView: 5, slidesPerGroup: 5 },
-    //       }}
-    //       rewind={true}
-    //     >
-    //       {data.map((movie) => (
-    //         <SwiperSlide key={movie.id}>
-    //           <SectionCard
-    //             posterPath={movie.poster_path}
-    //             title={movie.title}
-    //             meta={[
-    //               {
-    //                 icon: runtime,
-    //                 text: formatRuntime(movie.runtime),
-    //                 alt: "런타임",
-    //               },
-    //               {
-    //                 icon: vote,
-    //                 text: (movie.vote_average ?? 0).toFixed(1),
-    //                 alt: "평점",
-    //               },
-    //             ]}
-    //           />
-    //         </SwiperSlide>
-    //       ))}
-    //     </Swiper>
-    //   </div>
-    // </section>
-    <SwiperSkeleton count={5} />
+      <div className="section-swiper">
+        <Swiper
+          key={period}
+          modules={[Navigation, A11y]}
+          navigation={{ prevEl: ".section-prev", nextEl: ".section-next" }}
+          spaceBetween={20}
+          a11y={{ enabled: true }}
+          slidesPerView={5}
+          slidesPerGroup={5}
+          breakpoints={{
+            320: { slidesPerView: 1, slidesPerGroup: 1 },
+            640: { slidesPerView: 2, slidesPerGroup: 2 },
+            1024: { slidesPerView: 4, slidesPerGroup: 4 },
+            1280: { slidesPerView: 5, slidesPerGroup: 5 },
+          }}
+          rewind={true}
+        >
+          {data.map((movie) => (
+            <SwiperSlide key={movie.id}>
+              <SectionCard
+                posterPath={movie.poster_path}
+                title={movie.title}
+                meta={[
+                  {
+                    icon: runtime,
+                    text: formatRuntime(movie.runtime),
+                    alt: "런타임",
+                  },
+                  {
+                    icon: vote,
+                    text: (movie.vote_average ?? 0).toFixed(1),
+                    alt: "평점",
+                  },
+                ]}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </section>
   );
 };
 

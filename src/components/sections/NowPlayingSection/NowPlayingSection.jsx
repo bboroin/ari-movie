@@ -46,66 +46,65 @@ const NowPlayingSection = () => {
   if (loading) return <NowPlayingSkeleton perRow={10} />;
 
   return (
-    // <section className="section">
-    //   <SectionHeader
-    //     title="Now Playing"
-    //     desc="극장에서 상영 중인 최신 영화들"
-    //     hasNav={false}
-    //   />
+    <section className="section">
+      <SectionHeader
+        title="Now Playing"
+        desc="극장에서 상영 중인 최신 영화들"
+        hasNav={false}
+      />
 
-    //   {trailer && (
-    //     <TrailerModal
-    //       trailer={trailer}
-    //       onClose={handleTrailerClose}
-    //       display="center"
-    //     />
-    //   )}
+      {trailer && (
+        <TrailerModal
+          trailer={trailer}
+          onClose={handleTrailerClose}
+          display="center"
+        />
+      )}
 
-    //   <div
-    //     className={`poster-container ${animate ? "" : "is-paused"}`}
-    //     onMouseEnter={onStop}
-    //     onMouseLeave={onRun}
-    //   >
-    //     <div className="row">
-    //       <ul className="poster-list poster-list--left">
-    //         {[...rows.page1, ...rows.page1].map((movie, i) => (
-    //           <li className="poster-card" key={`${movie.id}-p1-${i}`}>
-    //             <button
-    //               className="trailer-btn"
-    //               onClick={() => handleTrailerOpen(movie)}
-    //             >
-    //               <img
-    //                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-    //                 alt={movie.title}
-    //                 loading="lazy"
-    //               />
-    //             </button>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </div>
+      <div
+        className={`poster-container ${animate ? "" : "is-paused"}`}
+        onMouseEnter={onStop}
+        onMouseLeave={onRun}
+      >
+        <div className="row">
+          <ul className="poster-list poster-list--left">
+            {[...rows.page1, ...rows.page1].map((movie, i) => (
+              <li className="poster-card" key={`${movie.id}-p1-${i}`}>
+                <button
+                  className="trailer-btn"
+                  onClick={() => handleTrailerOpen(movie)}
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    alt={movie.title}
+                    loading="lazy"
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-    //     <div className="row">
-    //       <ul className="poster-list poster-list--right">
-    //         {[...rows.page2, ...rows.page2].map((movie, i) => (
-    //           <li className="poster-card" key={`${movie.id}-p2-${i}`}>
-    //             <button
-    //               className="trailer-btn"
-    //               onClick={() => handleTrailerOpen(movie)}
-    //             >
-    //               <img
-    //                 src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-    //                 alt={movie.title}
-    //                 loading="lazy"
-    //               />
-    //             </button>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </section>
-    <NowPlayingSkeleton perRow={10} />
+        <div className="row">
+          <ul className="poster-list poster-list--right">
+            {[...rows.page2, ...rows.page2].map((movie, i) => (
+              <li className="poster-card" key={`${movie.id}-p2-${i}`}>
+                <button
+                  className="trailer-btn"
+                  onClick={() => handleTrailerOpen(movie)}
+                >
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                    alt={movie.title}
+                    loading="lazy"
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
   );
 };
 
