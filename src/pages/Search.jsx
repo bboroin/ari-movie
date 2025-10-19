@@ -5,6 +5,7 @@ import SectionHeader from "../components/sections/common/SectionHeader";
 import SectionCard from "../components/sections/common/SectionCard";
 import Pagination from "../components/sections/common/Pagination";
 import "./Search.css";
+import { getDDay } from "../utils/format";
 import SearchSkeleton from "../components/sections/skeleton/SearchSkeleton";
 
 const Search = () => {
@@ -98,6 +99,7 @@ const Search = () => {
                 key={movie.id}
                 posterPath={movie.poster_path}
                 title={movie.title}
+                badge={movie.release_date ? getDDay(movie.release_date) : null}
                 meta={[
                   {
                     icon: "/src/assets/icons/release.svg",
