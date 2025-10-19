@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Header.css";
 import searchIcon from "../../assets/icons/search.svg";
 import avatarIcon from "../../assets/icons/avatar.svg";
@@ -17,9 +17,9 @@ const Header = () => {
 
   return (
     <div className="header">
-      <div className="logo">
+      <Link to="/" className="logo">
         <img src="/logo.png" alt="로고" />
-      </div>
+      </Link>
       <form className="search-container" onSubmit={handleSubmit}>
         <input
           className="search-input"
