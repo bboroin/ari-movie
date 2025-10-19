@@ -1,20 +1,23 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useSearchMovie } from "../hooks/useSearchMovie";
-import SectionHeader from "../components/sections/common/SectionHeader";
-import SectionCard from "../components/sections/common/SectionCard";
-import Pagination from "../components/sections/common/Pagination";
-import "./Search.css";
-import { getDDay } from "../utils/format";
-import SearchSkeleton from "../components/sections/skeleton/SearchSkeleton";
+import { useSearchMovie } from "../../../hooks/useSearchMovie";
+import { useSortedMovies } from "../../../hooks/useSortedMovies";
+import SectionHeader from "../common/SectionHeader";
+import SectionCard from "../common/SectionCard";
+import Pagination from "../common/Pagination";
+import SortControls from "./SortControls";
+import "./SearchSection.css";
+import SearchSkeleton from "../skeleton/SearchSkeleton";
+import { getDDay } from "../../../utils/format";
 
-const Search = () => {
+const SearchSection = () => {
   const [params, setParams] = useSearchParams();
   const query = params.get("q") ?? "";
   const page = Math.max(1, Number(params.get("page") || 1));
 
   const { data, loading, error } = useSearchMovie(query, page);
   const results = useMemo(() => data.results ?? [], [data.results]);
+  const { sortedResults, sortOption, setSortOption } = useSortedMovies(results);
 
   const handlePageChange = (nextPage) => {
     const next = new URLSearchParams(params);
@@ -23,30 +26,6 @@ const Search = () => {
     setParams(next);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const [sortOption, setSortOption] = useState("date-desc");
-
-  const sortedResults = useMemo(() => {
-    const sorted = [...results];
-    switch (sortOption) {
-      case "date-desc":
-        return sorted.sort(
-          (a, b) => new Date(b.release_date) - new Date(a.release_date)
-        );
-      case "date-asc":
-        return sorted.sort(
-          (a, b) => new Date(a.release_date) - new Date(b.release_date)
-        );
-      case "vote-desc":
-        return sorted.sort((a, b) => b.vote_average - a.vote_average);
-      case "vote-asc":
-        return sorted.sort((a, b) => a.vote_average - b.vote_average);
-      default:
-        return sorted;
-    }
-  }, [results, sortOption]);
-
-  const handleSortChange = (e) => setSortOption(e.target.value);
 
   const hasResults = !loading && !error && results.length > 0;
 
@@ -70,14 +49,7 @@ const Search = () => {
       />
 
       {hasResults && (
-        <div className="sort-controls">
-          <select value={sortOption} onChange={handleSortChange}>
-            <option value="date-desc">개봉일 최신순</option>
-            <option value="date-asc">개봉일 오래된순</option>
-            <option value="vote-desc">평점 높은순</option>
-            <option value="vote-asc">평점 낮은순</option>
-          </select>
-        </div>
+        <SortControls value={sortOption} onChange={setSortOption} />
       )}
 
       {/* 상태별 UI */}
@@ -127,4 +99,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchSection;
