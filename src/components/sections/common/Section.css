@@ -131,9 +131,3 @@
   letter-spacing: 0.5px;
   z-index: var(--z-upcoming-dday);
 }
-
-.poster-list--grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 14px;
-}
