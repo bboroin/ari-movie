@@ -4,6 +4,7 @@ import SectionHeader from "../components/sections/common/SectionHeader";
 import SectionCard from "../components/sections/common/SectionCard";
 import Pagination from "../components/sections/common/Pagination";
 import "../components/sections/common/Section.css";
+import SearchSkeleton from "../components/sections/skeleton/SearchSkeleton";
 
 const Search = () => {
   const [params, setParams] = useSearchParams();
@@ -23,6 +24,11 @@ const Search = () => {
 
   const hasResults = !loading && !error && results.length > 0;
 
+  if (loading) {
+    const skeletonCount = Math.min(data?.results?.length, 20);
+    return <SearchSkeleton count={skeletonCount} />;
+  }
+
   return (
     <section className="section">
       <SectionHeader
@@ -38,13 +44,12 @@ const Search = () => {
       />
 
       {/* 상태별 UI */}
-      {loading && <p className="section-desc">검색 중...</p>}
       {error && (
         <p className="section-desc" style={{ color: "red" }}>
           {error}
         </p>
       )}
-      {!loading && !error && results.length === 0 && (
+      {!error && results.length === 0 && (
         <p className="section-desc">검색 결과가 없습니다.</p>
       )}
 
