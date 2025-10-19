@@ -27,7 +27,7 @@ export function getDDay(releaseDate) {
 
   if (diffDays > 0) return `D-${diffDays}`;
   if (diffDays === 0) return "D-Day";
-  return "개봉";
+  return null;
 }
 
 // 런타임 포맷 (분 → h m)

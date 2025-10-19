@@ -1,1 +1,10 @@
 /* App 컴포넌트 전용 스타일 */
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}

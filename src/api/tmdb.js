@@ -146,3 +146,24 @@ export async function fetchNowPlayingPagesWithTrailers() {
   ]);
   return { page1: p1, page2: p2 };
 }
+
+// Search Movie
+export async function searchMovies(query, page = 1) {
+  // 공백 검색 방지 + 기본 형태 반환
+  if (!query?.trim()) {
+    return { results: [], page: 1, total_pages: 0, total_results: 0 };
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/search/movie?language=ko-KR&region=KR&include_adult=false&query=${encodeURIComponent(
+        query
+      )}&page=${page}`,
+      options
+    );
+    return await response.json(); // { page, results, total_pages, total_results }
+  } catch (err) {
+    console.log("Failed to search Movies", err);
+    throw err;
+  }
+}

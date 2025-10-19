@@ -1,7 +1,7 @@
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 
-const SectionHeader = ({ title, desc, children, hasNav = true }) => {
+const SectionHeader = ({ title, desc, pageInfo, children, hasNav = true }) => {
   return (
     <>
       <div className="section-header section-header--bar">
@@ -21,7 +21,12 @@ const SectionHeader = ({ title, desc, children, hasNav = true }) => {
         )}
       </div>
 
-      <p className="section-desc">{desc}</p>
+      {(desc || pageInfo) && (
+        <div className="section-info">
+          <p className="section-desc">{desc}</p>
+          {pageInfo && <p className="section-page">{pageInfo}</p>}
+        </div>
+      )}
     </>
   );
 };
