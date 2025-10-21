@@ -9,17 +9,17 @@ const options = {
 };
 
 // Movie Genres
-export async function fetchGenreMap({ signal } = {}) {
+export async function fetchGenreMap() {
   try {
     const res = await fetch(
       "https://api.themoviedb.org/3/genre/movie/list?language=ko",
-      { ...options, signal }
+      options
     );
     const data = await res.json();
     const genreMap = Object.fromEntries(data.genres.map((g) => [g.id, g.name]));
     return genreMap;
   } catch (err) {
-    if (err.name === "AbortError") return null;
+    console.error("Failed to fetch Movie Genres", err);
     throw err;
   }
 }
