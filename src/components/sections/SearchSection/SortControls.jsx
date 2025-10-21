@@ -1,12 +1,27 @@
+import Select from "react-select";
+import "./SearchSection.css";
+
+const options = [
+  { value: "date-desc", label: "개봉일 최신순" },
+  { value: "date-asc", label: "개봉일 오래된순" },
+  { value: "vote-desc", label: "평점 높은순" },
+  { value: "vote-asc", label: "평점 낮은순" },
+];
+
 const SortControls = ({ value, onChange }) => {
+  const selectedOption = options.find((opt) => opt.value === value);
+
   return (
     <div className="sort-controls">
-      <select value={value} onChange={(e) => onChange(e.target.value)}>
-        <option value="date-desc">개봉일 최신순</option>
-        <option value="date-asc">개봉일 오래된순</option>
-        <option value="vote-desc">평점 높은순</option>
-        <option value="vote-asc">평점 낮은순</option>
-      </select>
+      <Select
+        unstyled
+        classNamePrefix="rs"
+        className="sort-select"
+        value={selectedOption}
+        onChange={(option) => onChange(option.value)}
+        options={options}
+        isSearchable={false}
+      />
     </div>
   );
 };
