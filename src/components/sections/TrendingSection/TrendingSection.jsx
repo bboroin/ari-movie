@@ -3,8 +3,8 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useEffect, useState } from "react";
-import { fetchTrendingMoviesWithRuntime } from "../../../api/tmdb";
+import { useState } from "react";
+import { useTrendingMoviesWithRuntime } from "../../../hooks/useTrendingMoviesWithRuntime"; // ✅ 신규 훅
 import "./TrendingSection.css";
 import "../common/Section.css";
 import SectionHeader from "../common/SectionHeader";
@@ -15,23 +15,8 @@ import vote from "../../../assets/icons/vote.svg";
 import runtime from "../../../assets/icons/runtime.svg";
 
 const TrendingSection = () => {
-  const [data, setData] = useState([]);
   const [period, setPeriod] = useState("day");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await fetchTrendingMoviesWithRuntime(period);
-        setData(data);
-      } catch (err) {
-        console.error("fetchMovies failed:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMovies();
-  }, [period]);
+  const { data, loading } = useTrendingMoviesWithRuntime(period);
 
   if (loading) return <SwiperSkeleton count={5} />;
 

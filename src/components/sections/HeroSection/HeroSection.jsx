@@ -3,34 +3,20 @@ import { Pagination, Autoplay, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { useEffect, useState, useRef } from "react";
-import { fetchHeroMovies, fetchTrailers } from "../../../api/tmdb";
+import { useState, useRef } from "react";
+import { useHeroMovies } from "../../../hooks/useHeroMovies";
 import { useGenres } from "../../../hooks/useGenres";
+import { fetchTrailers } from "../../../api/tmdb";
 import "./HeroSection.css";
 import HeroSkeleton from "../skeleton/HeroSkeleton";
 import TrailerModal from "../NowPlayingSection/TrailerModal";
 import playIcon from "../../../assets/icons/play.svg";
 
 const HeroSection = () => {
-  const [data, setData] = useState([]);
+  const { data, loading } = useHeroMovies();
   const genreMap = useGenres(null);
   const [trailer, setTrailer] = useState("");
   const swiperRef = useRef(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await fetchHeroMovies();
-        setData(data);
-      } catch (err) {
-        console.error("fetchMovies failed:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMovies();
-  }, []);
 
   async function handleTrailerOpen(movie) {
     const url = await fetchTrailers(movie.id);

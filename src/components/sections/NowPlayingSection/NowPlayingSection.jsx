@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { fetchNowPlayingPagesWithTrailers } from "../../../api/tmdb";
+import { useState } from "react";
+import { useNowPlayingPagesWithTrailers } from "../../../hooks/useNowPlayingWithTrailers";
+
 import "./NowPlayingSection.css";
 import "../common/Section.css";
 import SectionHeader from "../common/SectionHeader";
@@ -7,10 +8,9 @@ import NowPlayingSkeleton from "../skeleton/NowPlayingSkeleton";
 import TrailerModal from "./TrailerModal";
 
 const NowPlayingSection = () => {
-  const [rows, setRows] = useState({ page1: [], page2: [] });
+  const { data: rows, loading } = useNowPlayingPagesWithTrailers();
   const [animate, setAnimate] = useState(true);
   const [trailer, setTrailer] = useState(""); // iframe src
-  const [loading, setLoading] = useState(true);
 
   const onStop = () => {
     if (!trailer) setAnimate(false);
@@ -18,20 +18,6 @@ const NowPlayingSection = () => {
   const onRun = () => {
     if (!trailer) setAnimate(true);
   };
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await fetchNowPlayingPagesWithTrailers();
-        setRows(data);
-      } catch (err) {
-        console.error("fetchMovies failed:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMovies();
-  }, []);
 
   function handleTrailerOpen(movie) {
     setAnimate(false);

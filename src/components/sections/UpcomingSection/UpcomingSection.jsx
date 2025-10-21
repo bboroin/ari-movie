@@ -3,8 +3,7 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useEffect, useState } from "react";
-import { fetchUpcomingMovies } from "../../../api/tmdb";
+import { useUpcomingMovies } from "../../../hooks/useUpcomingMovies";
 import { getDDay } from "../../../utils/format";
 import "../common/Section.css";
 import SectionHeader from "../common/SectionHeader";
@@ -15,23 +14,7 @@ import release from "../../../assets/icons/release.svg";
 import popularity from "../../../assets/icons/popularity.svg";
 
 const UpcomingSection = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const data = await fetchUpcomingMovies();
-        setData(data);
-      } catch (err) {
-        console.error("fetchMovies failed:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMovies();
-  }, []);
-
+  const { data, loading } = useUpcomingMovies();
   if (loading) return <SwiperSkeleton count={5} />;
 
   return (
