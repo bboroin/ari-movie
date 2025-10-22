@@ -1,11 +1,25 @@
-/* Hero */
-.hero-section .react-loading-skeleton {
-  --base-color: var(--sk-base-color);
-  --highlight-color: var(--sk-highlight-color);
+.section.is-skeleton .section-header {
+  margin-bottom: 50px;
 }
-.section .react-loading-skeleton {
-  --base-color: var(--sk-base-color);
-  --highlight-color: var(--sk-highlight-color);
+
+.sk-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Hero */
+.sk-svg-cover {
+  height: 100%;
+  width: 100%;
+}
+
+.sk-hero-overlay {
+  opacity: 0.4;
+}
+
+.hero-content-skeleton {
+  width: min(100%, 660px);
 }
 
 /* Trending, Upcoming */
@@ -21,4 +35,9 @@
 }
 .row-bottom {
   transform: translateX(-100px);
+}
+
+/* Search */
+.section.is-skeleton .poster-list--grid {
+  margin-top: 50px;
 }
