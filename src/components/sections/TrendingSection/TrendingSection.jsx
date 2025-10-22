@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { useState } from "react";
-import { useTrendingMoviesWithRuntime } from "../../../hooks/useTrendingMoviesWithRuntime"; // ✅ 신규 훅
+import { useTrendingMoviesWithRuntime } from "../../../hooks/useTrendingMoviesWithRuntime";
 import "./TrendingSection.css";
 import "../common/Section.css";
 import SectionHeader from "../common/SectionHeader";

@@ -1,13 +1,38 @@
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+// SwiperSkeleton.jsx
+import ContentLoader from "react-content-loader";
 import "./Skeleton.css";
+
+const TitleSkeleton = ({ width, height }) => (
+  <ContentLoader
+    speed={1.6}
+    viewBox={`0 0 ${width} ${height}`}
+    width={width}
+    height={height}
+    backgroundColor="var(--sk-base-color)"
+    foregroundColor="var(--sk-highlight-color)"
+    className="sk-svg"
+  >
+    <rect x="0" y="0" rx="5" ry="5" width={width} height={height} />
+  </ContentLoader>
+);
+
+const CardSkeleton = () => (
+  <ContentLoader
+    speed={1.6}
+    viewBox="0 0 200 340" // 카드 비율(포스터 + 텍스트)
+    backgroundColor="var(--sk-base-color)"
+    foregroundColor="var(--sk-highlight-color)"
+  >
+    <rect x="0" y="0" width="200" height="340" />
+  </ContentLoader>
+);
 
 const SwiperSkeleton = ({ count = 5 }) => {
   return (
-    <section className="section">
+    <section className="section is-skeleton">
       <div className="section-header">
         <h2 className="section-title">
-          <Skeleton width={160} height={33} />
+          <TitleSkeleton width={250} height={40} />
         </h2>
       </div>
 
@@ -16,16 +41,7 @@ const SwiperSkeleton = ({ count = 5 }) => {
           {Array.from({ length: count }).map((_, i) => (
             <div className="card" key={i}>
               <div className="card-poster">
-                <Skeleton height="100%" />
-              </div>
-              <div className="card-content">
-                <div className="card-title">
-                  <Skeleton width="80%" height={19} />
-                </div>
-                <div className="card-meta">
-                  <Skeleton height={14} width={50} />
-                  <Skeleton height={14} width={30} />
-                </div>
+                <CardSkeleton />
               </div>
             </div>
           ))}
