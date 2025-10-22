@@ -69,6 +69,7 @@ const SearchSection = () => {
             {sortedResults.map((movie) => (
               <SectionCard
                 key={movie.id}
+                id={movie.id}
                 posterPath={movie.poster_path}
                 title={movie.title}
                 badge={movie.release_date ? getDDay(movie.release_date) : null}
