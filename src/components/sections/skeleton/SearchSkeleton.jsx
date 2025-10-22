@@ -1,36 +1,53 @@
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import ContentLoader from "react-content-loader";
 import "./Skeleton.css";
 
-const SearchSkeleton = ({ count = 20 }) => {
+const TextSkeleton = ({ width, height, className }) => (
+  <div className={className}>
+    <ContentLoader
+      speed={1.6}
+      viewBox={`0 0 ${width} ${height}`}
+      width={width}
+      height={height}
+      backgroundColor="var(--sk-base-color)"
+      foregroundColor="var(--sk-highlight-color)"
+      className="sk-svg"
+      role="img"
+    >
+      <rect x="0" y="0" rx="5" ry="5" width={width} height={height} />
+    </ContentLoader>
+  </div>
+);
+
+const CardSkeleton = () => (
+  <div className="card-poster">
+    <ContentLoader
+      speed={1.6}
+      viewBox="0 0 205 305"
+      backgroundColor="var(--sk-base-color)"
+      foregroundColor="var(--sk-highlight-color)"
+    >
+      <rect x="0" y="0" width="200" height="300" />
+    </ContentLoader>
+  </div>
+);
+
+const SearchSkeleton = ({ count }) => {
   return (
-    <section className="section">
+    <section className="section is-skeleton">
       <div className="section-header">
         <h2 className="section-title">
-          <Skeleton width={160} height={33} />
+          <TextSkeleton width={250} height={40} />
         </h2>
       </div>
+
       <div className="section-info">
-        <Skeleton width={200} height={18} />
-        <Skeleton width={80} height={18} />
+        <TextSkeleton className={"section-desc"} width={200} height={20} />
+        <TextSkeleton className={"section-page"} width={80} height={20} />
       </div>
 
       <div className="poster-list--grid">
         {Array.from({ length: count }).map((_, i) => (
-          <div className="card" key={i}>
-            <div className="card-poster">
-              <Skeleton height="100%" />
-            </div>
-            <div className="card-content">
-              <div className="card-title">
-                <Skeleton width="80%" height={19} />
-              </div>
-              <div className="card-meta">
-                <Skeleton height={14} width={50} />
-                <Skeleton height={14} width={30} />
-              </div>
-            </div>
-          </div>
+          <CardSkeleton key={i} />
         ))}
       </div>
     </section>

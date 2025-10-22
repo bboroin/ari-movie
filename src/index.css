@@ -32,11 +32,12 @@
   --z-hero-overlay: 100;
   --z-hero-content: 101;
   --z-trailer-modal: 500;
+  --z-dropdown: 600;
   --z-header: 1000;
 
   /* Skeleton */
-  --sk-base-color: #555555ff;
-  --sk-highlight-color: #e2e2e2ff;
+  --sk-base-color: #2d2d2d;
+  --sk-highlight-color: #4a4a4a;
 }
 
 /* ===================== Reset ===================== */

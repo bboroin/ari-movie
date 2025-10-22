@@ -29,7 +29,7 @@ const NowPlayingSection = () => {
     setAnimate(true);
   }
 
-  if (loading) return <NowPlayingSkeleton perRow={10} />;
+  if (loading) return <NowPlayingSkeleton />;
 
   return (
     <section className="section">

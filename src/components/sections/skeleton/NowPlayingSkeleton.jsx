@@ -1,35 +1,56 @@
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import ContentLoader from "react-content-loader";
 import "./Skeleton.css";
 
-const NowPlayingSkeleton = () => {
-  return (
-    <section className="section">
-      <div className="section-header">
-        <h2 className="section-title">
-          <Skeleton width={130} height={33} />
-        </h2>
-      </div>
+const TitleSkeleton = ({ width, height }) => (
+  <ContentLoader
+    speed={1.6}
+    viewBox={`0 0 ${width} ${height}`}
+    width={width}
+    height={height}
+    backgroundColor="var(--sk-base-color)"
+    foregroundColor="var(--sk-highlight-color)"
+    className="sk-svg"
+  >
+    <rect x="0" y="0" rx="5" ry="5" width={width} height={height} />
+  </ContentLoader>
+);
 
-      <div className="poster-container">
-        <div className="row">
-          {/* 윗줄 */}
-          <div className="poster-list row-top">
-            {[...Array(10)].map((_, i) => (
-              <Skeleton className="poster-card" key={`top-${i}`} />
-            ))}
-          </div>
+const PosterSkeleton = () => (
+  <div className="poster-card">
+    <ContentLoader
+      speed={1.6}
+      viewBox="0 0 220 330"
+      backgroundColor="var(--sk-base-color)"
+      foregroundColor="var(--sk-highlight-color)"
+    >
+      <rect x="0" y="0" width="220" height="330" />
+    </ContentLoader>
+  </div>
+);
 
-          {/* 아랫줄 */}
-          <div className="poster-list row-bottom">
-            {[...Array(10)].map((_, i) => (
-              <Skeleton className="poster-card" key={`bottom-${i}`} />
-            ))}
-          </div>
+const NowPlayingSkeleton = () => (
+  <section className="section is-skeleton">
+    <div className="section-header">
+      <h2 className="section-title">
+        <TitleSkeleton width={250} height={40} />
+      </h2>
+    </div>
+
+    <div className="poster-container">
+      <div className="row">
+        <div className="poster-list row-top">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <PosterSkeleton key={`top-${i}`} />
+          ))}
+        </div>
+        <div className="poster-list row-bottom">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <PosterSkeleton key={`bottom-${i}`} />
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default NowPlayingSkeleton;
