@@ -1,4 +1,5 @@
 import { get, REGION } from "./client";
+import { pickBestTrailer } from "./videos";
 import { getToday, getMonthsAgo } from "../utils/format";
 
 // Hero Movies
@@ -57,21 +58,12 @@ export async function fetchNowPlayingMovies(page = 1) {
   return data.results || [];
 }
 
-// Trailers(간단 버전: 첫 번째 YouTube)
-export async function fetchTrailers(movieId) {
-  const data = await get(`/movie/${movieId}/videos`);
-  const trailer = data.results?.find((v) => v.site === "YouTube");
-  return trailer
-    ? `https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1`
-    : null;
-}
-
 // Now Playing + Trailers
 export async function fetchNowPlayingWithTrailers(page = 1) {
   const movies = await fetchNowPlayingMovies(page);
   const settled = await Promise.allSettled(
     movies.map(async (m) => {
-      const url = await fetchTrailers(m.id);
+      const url = await pickBestTrailer(m.id);
       return { ...m, trailerUrl: url };
     })
   );

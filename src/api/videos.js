@@ -1,3 +1,5 @@
+import { get } from "./client";
+
 // 트레일러 선택 유틸 (YouTube + Official/Trailer 우선 + 최신 공개일)
 export function pickBestTrailer(videos = []) {
   const yt = videos.filter((v) => v.site === "YouTube");
@@ -23,4 +25,9 @@ export function pickBestTrailer(videos = []) {
   return best
     ? `https://www.youtube.com/embed/${best.key}?autoplay=1&mute=1`
     : null;
+}
+
+export async function getBestTrailerUrl(movieId) {
+  const data = await get(`/movie/${movieId}/videos`);
+  return pickBestTrailer(data.results || []);
 }
