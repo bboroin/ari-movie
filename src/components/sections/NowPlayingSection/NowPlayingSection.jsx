@@ -10,22 +10,25 @@ import TrailerModal from "./TrailerModal";
 const NowPlayingSection = () => {
   const { data: rows, loading } = useNowPlayingPagesWithTrailers();
   const [animate, setAnimate] = useState(true);
-  const [trailer, setTrailer] = useState(""); // iframe src
+  const [trailer, setTrailer] = useState({ url: "", id: null }); // iframe src
 
   const onStop = () => {
-    if (!trailer) setAnimate(false);
+    if (!trailer.url) setAnimate(false);
   };
   const onRun = () => {
-    if (!trailer) setAnimate(true);
+    if (!trailer.url) setAnimate(true);
   };
 
   function handleTrailerOpen(movie) {
     setAnimate(false);
-    setTrailer(movie.trailerUrl || "");
+    setTrailer({
+      url: movie.trailerUrl || "",
+      id: movie.id,
+    });
   }
 
   function handleTrailerClose() {
-    setTrailer("");
+    setTrailer({ url: "", id: null });
     setAnimate(true);
   }
 
@@ -39,9 +42,10 @@ const NowPlayingSection = () => {
         hasNav={false}
       />
 
-      {trailer && (
+      {Boolean(trailer.url) && (
         <TrailerModal
-          trailer={trailer}
+          id={trailer.id}
+          trailer={trailer.url}
           onClose={handleTrailerClose}
           display="center"
         />
