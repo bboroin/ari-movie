@@ -20,12 +20,14 @@ export default function TrailerModal({ id, trailer, onClose, display }) {
             className="trailer-frame"
           />
         )}
-        <Link to={`/movie/${id}`}>
-          <button className="trailer-detail">View Details</button>
-        </Link>
-        <button className="trailer-close" onClick={onClose}>
-          ✕
-        </button>
+        <div className="trailer-toolbar">
+          <Link to={`/movie/${id}`}>
+            <button className="trailer-detail">View Details</button>
+          </Link>
+          <button className="trailer-close" onClick={onClose}>
+            ✕
+          </button>
+        </div>
       </div>
     </div>
   );
