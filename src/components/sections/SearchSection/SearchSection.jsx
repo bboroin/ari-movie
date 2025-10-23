@@ -24,7 +24,6 @@ const SearchSection = () => {
     next.set("q", query);
     next.set("page", String(nextPage));
     setParams(next);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const hasResults = !loading && !error && results.length > 0;

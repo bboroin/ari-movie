@@ -5,10 +5,12 @@ import Home from "./pages/Home";
 import SearchResult from "./pages/SearchResult";
 import "./App.css";
 import MovieDetail from "./pages/MovieDetail";
+import ScrollToTop from "./components/sections/common/ScrollToTop";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="App">
         <Header />
         <main>
