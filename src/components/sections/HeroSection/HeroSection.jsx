@@ -20,10 +20,6 @@ const HeroSection = () => {
 
   async function handleTrailerOpen(movie) {
     const url = await fetchTrailers(movie.id);
-    if (!url) {
-      alert("트레일러가 준비되지 않은 영화입니다.");
-      return;
-    }
     setTrailer({ url, id: movie.id });
     swiperRef.current?.autoplay?.stop?.();
   }
@@ -71,7 +67,7 @@ const HeroSection = () => {
                   <span>TRAILER</span>
                 </button>
               </div>
-              {Boolean(trailer.url) && (
+              {trailer.id !== null && (
                 <TrailerModal
                   id={trailer.id}
                   trailer={trailer.url}
