@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import { useState, useRef } from "react";
 import { useHeroMovies } from "../../../hooks/useHeroMovies";
 import { useGenres } from "../../../hooks/useGenres";
-import { fetchTrailers } from "../../../api/tmdb";
+import { fetchTrailers } from "../../../api/movies";
 import "./HeroSection.css";
 import HeroSkeleton from "../skeleton/HeroSkeleton";
 import TrailerModal from "../NowPlayingSection/TrailerModal";

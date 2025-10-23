@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { searchMovies } from "../api/tmdb";
+import { searchMovies } from "../api/movies";
 import { useDebounce } from "./useDebounce";
 
 export function useSearchMovie(query, page = 1) {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchTrendingMoviesWithRuntime } from "../api/tmdb";
+import { fetchTrendingMoviesWithRuntime } from "../api/movies";
 
 export function useTrendingMoviesWithRuntime(period = "day") {
   const [data, setData] = useState([]);

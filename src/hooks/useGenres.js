@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchGenreMap } from "../api/genres";
+import { fetchGenreMap } from "../api/movies";
 
 export function useGenres() {
   const [genreMap, setGenreMap] = useState(null);
