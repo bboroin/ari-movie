@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import { useState, useRef } from "react";
 import { useHeroMovies } from "../../../hooks/useHeroMovies";
 import { useGenres } from "../../../hooks/useGenres";
-import { fetchTrailers } from "../../../api/tmdb";
+import { getBestTrailerUrl } from "../../../api/videos";
 import "./HeroSection.css";
 import HeroSkeleton from "../skeleton/HeroSkeleton";
 import TrailerModal from "../NowPlayingSection/TrailerModal";
@@ -19,7 +19,7 @@ const HeroSection = () => {
   const swiperRef = useRef(null);
 
   async function handleTrailerOpen(movie) {
-    const url = await fetchTrailers(movie.id);
+    const url = await getBestTrailerUrl(movie.id);
     setTrailer({ url, id: movie.id });
     swiperRef.current?.autoplay?.stop?.();
   }

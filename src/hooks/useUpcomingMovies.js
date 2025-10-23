@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchUpcomingMovies } from "../api/tmdb";
+import { fetchUpcomingMovies } from "../api/movies";
 
 export function useUpcomingMovies() {
   const [data, setData] = useState([]);
