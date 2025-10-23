@@ -1,18 +1,33 @@
+import { Link } from "react-router-dom";
 import "./TrailerModal.css";
+import noTrailer from "../../../assets/trailer-default.svg";
 
-export default function TrailerModal({ trailer, onClose, display }) {
+export default function TrailerModal({ id, trailer, onClose, display }) {
   return (
     <div className={`trailer-modal trailer-modal--${display}`}>
       <div className="trailer-frame-wrap">
-        <iframe
-          className="trailer-iframe"
-          src={trailer}
-          title="Trailer"
-          allowFullScreen
-        />
-        <button className="trailer-close" onClick={onClose}>
-          ✕
-        </button>
+        {trailer ? (
+          <iframe
+            className="trailer-iframe"
+            src={trailer}
+            title="Trailer"
+            allowFullScreen
+          />
+        ) : (
+          <img
+            src={noTrailer}
+            alt="트레일러 영상 대체 이미지"
+            className="trailer-frame"
+          />
+        )}
+        <div className="trailer-toolbar">
+          <Link to={`/movie/${id}`}>
+            <button className="trailer-detail">View Details</button>
+          </Link>
+          <button className="trailer-close" onClick={onClose}>
+            ✕
+          </button>
+        </div>
       </div>
     </div>
   );

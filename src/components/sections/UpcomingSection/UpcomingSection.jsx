@@ -44,6 +44,7 @@ const UpcomingSection = () => {
           {data.map((movie) => (
             <SwiperSlide key={movie.id}>
               <SectionCard
+                id={movie.id}
                 posterPath={movie.poster_path}
                 title={movie.title}
                 badge={movie.release_date ? getDDay(movie.release_date) : null}

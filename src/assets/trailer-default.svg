@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  width="1280"
+  height="720"
+  viewBox="0 0 1280 720"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Trailer Unavailable Placeholder</title>
+  <desc id="desc">A 16:9 video placeholder with a play icon and timeline bar</desc>
+
+  <style>
+    :root {
+      --bg-start:#2d2d2d;
+      --bg-end:#0f0f0f;
+      --frame:#ffffff22;
+      --accent:#1ed5aa;
+      --text:#e8eefc;
+      --glow:#5d6c7079;
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="var(--bg-start)" />
+      <stop offset="100%" stop-color="var(--bg-end)" />
+    </linearGradient>
+
+    <radialGradient id="v" cx="50%" cy="45%" r="70%">
+      <stop offset="0%" stop-color="#00000000" />
+      <stop offset="100%" stop-color="#00000066" />
+    </radialGradient>
+
+    <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#00000066" />
+    </filter>
+  </defs>
+
+  <!-- ✅ 바깥 전체 영역은 완전 검정 -->
+  <rect x="0" y="0" width="1280" height="720" fill="#000000" />
+
+  <!-- ✅ 영상(그라디언트)은 가운데 프레임 영역만 -->
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="1200" height="640" rx="18" ry="18" fill="url(#g)" />
+    <rect x="0" y="0" width="1200" height="640" rx="18" ry="18" fill="url(#v)" />
+  </g>
+
+  <!-- Frame outline -->
+  <g transform="translate(40,40)">
+    <rect
+      x="0"
+      y="0"
+      width="1200"
+      height="640"
+      rx="18"
+      ry="18"
+      fill="none"
+      stroke="var(--frame)"
+      stroke-width="2"
+    />
+    <rect
+      x="6"
+      y="6"
+      width="1188"
+      height="628"
+      rx="14"
+      ry="14"
+      fill="none"
+      stroke="#ffffff12"
+      stroke-width="1"
+    />
+  </g>
+
+  <!-- Play button -->
+  <g transform="translate(640,360)" filter="url(#softShadow)">
+    <circle r="70" fill="var(--glow)" />
+    <circle r="60" fill="#ffffff20" stroke="var(--accent)" stroke-width="2" />
+    <polygon points="-18,-28 32,0 -18,28" fill="var(--accent)" />
+  </g>
+
+  <!-- Timeline -->
+  <g transform="translate(120, 600)">
+    <rect x="0" y="0" width="1040" height="6" rx="3" fill="#ffffff26" />
+    <rect x="0" y="0" width="620" height="6" rx="3" fill="#ffffff4a" />
+    <rect x="0" y="0" width="380" height="6" rx="3" fill="var(--accent)" />
+    <circle cx="380" cy="3" r="8" fill="#fff" stroke="var(--accent)" stroke-width="2" />
+  </g>
+
+  <!-- Caption -->
+  <g text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, Roboto, Noto Sans KR, Arial">
+    <text x="640" y="500" font-size="38" fill="var(--text)" opacity="0.95" letter-spacing="0.3px">
+      트레일러가 준비되지 않은 영화입니다.
+    </text>
+  </g>
+
+  <!-- Film corners -->
+  <g opacity="0.18">
+    <rect x="56" y="56" width="36" height="8" rx="2" fill="#fff" />
+    <rect x="100" y="56" width="36" height="8" rx="2" fill="#fff" />
+    <rect x="1088" y="56" width="36" height="8" rx="2" fill="#fff" />
+    <rect x="1132" y="56" width="36" height="8" rx="2" fill="#fff" />
+    <rect x="56" y="656" width="36" height="8" rx="2" fill="#fff" />
+    <rect x="100" y="656" width="36" height="8" rx="2" fill="#fff" />
+    <rect x="1088" y="656" width="36" height="8" rx="2" fill="#fff" />
+    <rect x="1132" y="656" width="36" height="8" rx="2" fill="#fff" />
+  </g>
+</svg>

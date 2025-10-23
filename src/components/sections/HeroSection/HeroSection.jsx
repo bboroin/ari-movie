@@ -15,21 +15,17 @@ import playIcon from "../../../assets/icons/play.svg";
 const HeroSection = () => {
   const { data, loading } = useHeroMovies();
   const genreMap = useGenres(null);
-  const [trailer, setTrailer] = useState("");
+  const [trailer, setTrailer] = useState({ url: "", id: null });
   const swiperRef = useRef(null);
 
   async function handleTrailerOpen(movie) {
     const url = await fetchTrailers(movie.id);
-    if (!url) {
-      alert("트레일러가 준비되지 않은 영화입니다.");
-      return;
-    }
-    setTrailer(url || "");
+    setTrailer({ url, id: movie.id });
     swiperRef.current?.autoplay?.stop?.();
   }
 
   function handleTrailerClose() {
-    setTrailer("");
+    setTrailer({ url: "", id: null });
     swiperRef.current?.autoplay?.start?.();
   }
 
@@ -71,9 +67,10 @@ const HeroSection = () => {
                   <span>TRAILER</span>
                 </button>
               </div>
-              {trailer && (
+              {trailer.id !== null && (
                 <TrailerModal
-                  trailer={trailer}
+                  id={trailer.id}
+                  trailer={trailer.url}
                   onClose={handleTrailerClose}
                   display="right"
                 />
