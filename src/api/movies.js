@@ -1,5 +1,5 @@
 import { get, REGION } from "./client";
-import { pickBestTrailer } from "./videos";
+import { getBestTrailerUrl } from "./videos";
 import { getToday, getMonthsAgo } from "../utils/format";
 
 // Hero Movies
@@ -24,6 +24,14 @@ export async function fetchTrendingMovies(period = "day") {
 // Movie Details(단일)
 export async function fetchMovieDetails(id) {
   return get(`/movie/${id}`);
+}
+
+// Movie Detail(append: 디테일 전용)
+export async function fetchMovieDetailFull(id) {
+  return get(`/movie/${id}`, {
+    append_to_response:
+      "videos,images,credits,keywords,external_ids,release_dates,recommendations",
+  });
 }
 
 // Trending with runtime
@@ -63,7 +71,7 @@ export async function fetchNowPlayingWithTrailers(page = 1) {
   const movies = await fetchNowPlayingMovies(page);
   const settled = await Promise.allSettled(
     movies.map(async (m) => {
-      const url = await pickBestTrailer(m.id);
+      const url = await getBestTrailerUrl(m.id);
       return { ...m, trailerUrl: url };
     })
   );
