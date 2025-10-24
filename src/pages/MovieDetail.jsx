@@ -1,32 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import DetailHero from "../components/sections/DetailSection/DetailHero";
-import { fetchMovieDetailFull } from "../api/movies";
 import { getBestTrailerUrl } from "../api/videos";
+import { useMovieDetailFull } from "../hooks/useMovieDetailFull";
+import DetailHero from "../components/sections/DetailSection/DetailHero";
 import TrailerModal from "../components/sections/NowPlayingSection/TrailerModal";
 
 const MovieDetail = () => {
   const { id } = useParams();
-  const [detail, setDetail] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { detail, loading } = useMovieDetailFull(id);
   const [trailer, setTrailer] = useState({ url: "", id: null });
-
-  useEffect(() => {
-    let ignore = false;
-    (async () => {
-      try {
-        const data = await fetchMovieDetailFull(id);
-        if (!ignore) setDetail(data);
-      } catch (err) {
-        console.error("Failed to fetch movie detail:", err);
-      } finally {
-        if (!ignore) setLoading(false);
-      }
-    })();
-    return () => {
-      ignore = true;
-    };
-  }, [id]);
 
   const handleTrailerOpen = async () => {
     const url = await getBestTrailerUrl(id);
