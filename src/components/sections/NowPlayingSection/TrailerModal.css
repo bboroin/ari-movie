@@ -35,7 +35,7 @@
   top: -50px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   gap: 15px;
   padding: 10px;
   background: black;

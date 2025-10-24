@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 import "./TrailerModal.css";
 import noTrailer from "../../../assets/trailer-default.svg";
 
-export default function TrailerModal({ id, trailer, onClose, display }) {
+export default function TrailerModal({
+  id,
+  trailer,
+  onClose,
+  display,
+  detailBtn = true,
+}) {
   return (
     <div className={`trailer-modal trailer-modal--${display}`}>
       <div className="trailer-frame-wrap">
@@ -21,9 +27,11 @@ export default function TrailerModal({ id, trailer, onClose, display }) {
           />
         )}
         <div className="trailer-toolbar">
-          <Link to={`/movie/${id}`}>
-            <button className="trailer-detail">View Details</button>
-          </Link>
+          {detailBtn ? (
+            <Link to={`/movie/${id}`}>
+              <button className="trailer-detail">View Details</button>
+            </Link>
+          ) : null}
           <button className="trailer-close" onClick={onClose}>
             ✕
           </button>
