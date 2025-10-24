@@ -15,16 +15,19 @@ import playIcon from "../../../assets/icons/play.svg";
 const HeroSection = () => {
   const { data, loading } = useHeroMovies();
   const genreMap = useGenres(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [trailer, setTrailer] = useState({ url: "", id: null });
   const swiperRef = useRef(null);
 
   async function handleTrailerOpen(movie) {
     const url = await getBestTrailerUrl(movie.id);
+    setIsOpen(true);
     setTrailer({ url, id: movie.id });
     swiperRef.current?.autoplay?.stop?.();
   }
 
   function handleTrailerClose() {
+    setIsOpen(false);
     setTrailer({ url: "", id: null });
     swiperRef.current?.autoplay?.start?.();
   }
@@ -67,7 +70,7 @@ const HeroSection = () => {
                   <span>TRAILER</span>
                 </button>
               </div>
-              {trailer.id !== null && (
+              {isOpen && (
                 <TrailerModal
                   id={trailer.id}
                   trailer={trailer.url}
