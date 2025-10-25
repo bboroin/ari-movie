@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   formatRuntime,
   formatDate,
@@ -6,9 +6,14 @@ import {
 } from "../../../utils/format";
 import playIcon from "../../../assets/icons/play.svg";
 import noPoster from "../../../assets/poster-default.svg";
+import quoteOpen from "../../../assets/icons/quote-open.png";
+import quoteClose from "../../../assets/icons/quote-close.png";
+import favOutline from "../../../assets/icons/fav-outline.svg";
+import favFilled from "../../../assets/icons/fav-filled.svg";
 import "./DetailHero.css";
 
 const DetailHero = ({ detail, onPlayTrailer }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   if (!detail) return null;
 
   const {
@@ -31,7 +36,7 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
   const genreNames = genres.map((g) => g.name);
 
   const backdropUrl = backdrop_path
-    ? `https://image.tmdb.org/t/p/w1280${backdrop_path}`
+    ? `https://image.tmdb.org/t/p/original${backdrop_path}`
     : null;
 
   const posterUrl = poster_path
@@ -62,9 +67,6 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
             {year ? <span className="detail-hero__year">({year})</span> : null}
           </h1>
 
-          {/* 태그라인 */}
-          {tagline ? <p className="detail-hero__tagline">{tagline}</p> : null}
-
           {/* 연령가 · 런타임 · 개봉일 */}
           <ul className="detail-hero__meta">
             {certification ? (
@@ -78,21 +80,26 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
             ) : null}
           </ul>
 
+          {/* 태그라인 */}
+          {tagline ? (
+            <p className="detail-hero__tagline">
+              <img src={quoteOpen} alt="인용문 열기" />
+              <i>{tagline}</i>
+              <img src={quoteClose} alt="인용문 닫기" />
+            </p>
+          ) : null}
+
           {/* 장르 */}
-          <div className="detail-hero__tags">
+          <div className="hero-tags">
             {genreNames.map((name) => (
-              <span className="detail-hero__tag" key={name}>
+              <span className="hero-tag" key={name}>
                 {name}
               </span>
             ))}
           </div>
 
           {/* 개요 */}
-          {overview && (
-            <p className="detail-hero__overview" aria-label="개요">
-              {overview}
-            </p>
-          )}
+          {overview && <p className="detail-hero__overview">{overview}</p>}
 
           {/* 액션 버튼 */}
           <div className="detail-hero__actions">
@@ -105,8 +112,15 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
               <span>TRAILER</span>
             </button>
 
-            <button type="button" className="hero-great-btn">
-              즐겨찾기
+            <button
+              type="button"
+              className={`hero-fav-btn ${isFavorite ? "active" : ""}`}
+              onClick={() => setIsFavorite(!isFavorite)}
+            >
+              <img
+                src={isFavorite ? favFilled : favOutline}
+                alt="즐겨찾기 버튼"
+              />
             </button>
           </div>
         </div>
