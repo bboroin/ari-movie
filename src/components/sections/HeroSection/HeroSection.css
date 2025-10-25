@@ -55,14 +55,15 @@
 
 .hero-tags {
   display: flex;
+  flex-wrap: wrap;
   gap: 13px;
 }
 
 .hero-tag {
+  padding: 6px 10px;
+  font-size: 13px;
   border-radius: 5px;
-  background-color: var(--color-gray-200);
-  padding: 0 6px;
-  font-size: 15px;
+  background: var(--bg-tag);
 }
 
 .hero-trailer-btn {

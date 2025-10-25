@@ -10,6 +10,7 @@ import TrailerModal from "./TrailerModal";
 const NowPlayingSection = () => {
   const { data: rows, loading } = useNowPlayingPagesWithTrailers();
   const [animate, setAnimate] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [trailer, setTrailer] = useState({ url: "", id: null }); // iframe src
 
   const onStop = () => {
@@ -21,6 +22,7 @@ const NowPlayingSection = () => {
 
   function handleTrailerOpen(movie) {
     setAnimate(false);
+    setIsOpen(true);
     setTrailer({
       url: movie.trailerUrl || "",
       id: movie.id,
@@ -28,6 +30,7 @@ const NowPlayingSection = () => {
   }
 
   function handleTrailerClose() {
+    setIsOpen(false);
     setTrailer({ url: "", id: null });
     setAnimate(true);
   }
@@ -42,7 +45,7 @@ const NowPlayingSection = () => {
         hasNav={false}
       />
 
-      {Boolean(trailer.url) && (
+      {isOpen && (
         <TrailerModal
           id={trailer.id}
           trailer={trailer.url}

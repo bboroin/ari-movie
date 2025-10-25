@@ -1,6 +1,14 @@
 // YYYY-MM-DD 포맷 문자열로 변환
-export function formatDate(date) {
-  return date.toISOString().split("T")[0];
+export function formatDate(value) {
+  if (!value) return null;
+
+  let dateObj = value;
+  if (typeof value === "string") {
+    dateObj = new Date(value); // "2024-07-15" 같은 문자열 대응
+  }
+  if (!(dateObj instanceof Date) || isNaN(dateObj)) return null;
+
+  return dateObj.toISOString().slice(0, 10).replace(/-/g, "-");
 }
 
 // 오늘 날짜
@@ -36,4 +44,22 @@ export function formatRuntime(mins) {
   const h = Math.floor(mins / 60);
   const m = mins % 60;
   return h ? `${h}h ${m}m` : `${m}m`;
+}
+
+// 국가별 영화 연령 등급 선택
+export function pickCertification(releaseDates) {
+  if (!releaseDates?.results) return null;
+
+  const pick = (cc) => {
+    const entry = releaseDates.results.find(
+      (r) => r.iso_3166_1 === cc && r.release_dates?.length
+    );
+    if (!entry) return null;
+
+    // certification이 비어 있지 않은 첫 release_date 항목
+    const valid = entry.release_dates.find((d) => d.certification);
+    return valid?.certification || null;
+  };
+
+  return pick("KR") || pick("US") || pick("GB") || null;
 }
