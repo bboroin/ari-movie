@@ -6,6 +6,7 @@ import {
 } from "../../../utils/format";
 import playIcon from "../../../assets/icons/play.svg";
 import noPoster from "../../../assets/poster-default.svg";
+import "./DetailHero.css";
 
 const DetailHero = ({ detail, onPlayTrailer }) => {
   if (!detail) return null;
