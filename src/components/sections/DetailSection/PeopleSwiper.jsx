@@ -12,7 +12,10 @@ function PeopleSwiper({ people = [], type }) {
     <div className="section-swiper">
       <Swiper
         modules={[Navigation, A11y]}
-        navigation={{ prevEl: ".section-prev", nextEl: ".section-next" }}
+        navigation={{
+          prevEl: '.section-prev[data-nav="people"]',
+          nextEl: '.section-next[data-nav="people"]',
+        }}
         a11y={{ enabled: true }}
         slidesPerView={7}
         slidesPerGroup={7}

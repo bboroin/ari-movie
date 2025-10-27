@@ -33,10 +33,10 @@ export default function DetailPeople({ cast = [], crew = [] }) {
           ))}
         </div>
         <div className="section-nav">
-          <button className="section-prev">
+          <button className="section-prev" data-nav="people">
             <img src={arrowPrev} alt="이전 버튼" />
           </button>
-          <button className="section-next">
+          <button className="section-next" data-nav="people">
             <img src={arrowNext} alt="다음 버튼" />
           </button>
         </div>

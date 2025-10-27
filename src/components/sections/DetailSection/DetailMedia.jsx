@@ -36,10 +36,10 @@ const DetailMedia = ({ videos = [], backdrops = [], posters = [], onPlay }) => {
           ))}
         </div>
         <div className="section-nav">
-          <button className="section-prev" type="button">
+          <button className="section-prev" type="button" data-nav="media">
             <img src={arrowPrev} alt="이전 버튼" />
           </button>
-          <button className="section-next" type="button">
+          <button className="section-next" type="button" data-nav="media">
             <img src={arrowNext} alt="다음 버튼" />
           </button>
         </div>

@@ -1,7 +1,14 @@
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
 
-const SectionHeader = ({ title, desc, pageInfo, children, hasNav = true }) => {
+const SectionHeader = ({
+  title,
+  desc,
+  pageInfo,
+  children,
+  hasNav = true,
+  navId,
+}) => {
   return (
     <>
       <div className="section-header section-header--bar">
@@ -11,10 +18,10 @@ const SectionHeader = ({ title, desc, pageInfo, children, hasNav = true }) => {
 
         {hasNav && (
           <div className="section-nav">
-            <button className="section-prev">
+            <button className="section-prev" data-nav={navId}>
               <img src={arrowPrev} alt="이전 버튼" />
             </button>
-            <button className="section-next">
+            <button className="section-next" data-nav={navId}>
               <img src={arrowNext} alt="다음 버튼" />
             </button>
           </div>
