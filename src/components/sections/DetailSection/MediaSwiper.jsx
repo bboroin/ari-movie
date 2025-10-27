@@ -3,10 +3,8 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import PersonCard from "./PersonCard";
-
-function PeopleSwiper({ people = [], type }) {
-  if (!people?.length) return <p className="empty">표시할 인물이 없습니다.</p>;
+const MediaSwiper = ({ items = [], renderItem, getKey = (_, i) => i }) => {
+  if (!items?.length) return <p className="empty">표시할 항목이 없습니다.</p>;
 
   return (
     <div className="section-swiper">
@@ -26,19 +24,12 @@ function PeopleSwiper({ people = [], type }) {
         }}
         rewind={true}
       >
-        {people.map((p) => (
-          <SwiperSlide>
-            <PersonCard
-              key={`${type}-${p.id}`}
-              name={p.name}
-              sub={type === "cast" ? p.character : p.job || p.department}
-              imgPath={p.profile_path}
-            />
-          </SwiperSlide>
+        {items.map((item, i) => (
+          <SwiperSlide key={getKey(item, i)}>{renderItem(item, i)}</SwiperSlide>
         ))}
       </Swiper>
     </div>
   );
-}
+};
 
-export default PeopleSwiper;
+export default MediaSwiper;

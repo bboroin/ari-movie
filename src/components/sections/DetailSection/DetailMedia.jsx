@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
 import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
+import MediaSwiper from "./MediaSwiper";
 import "./DetailMedia.css";
 
 const TABS = [
@@ -45,63 +46,69 @@ const DetailMedia = ({ videos = [], backdrops = [], posters = [], onPlay }) => {
       </div>
 
       <div className="media-panelwrap">
-        {active === "videos" && (
-          <ul className="media-panel videos">
-            {videos.length === 0 && (
-              <li className="empty">준비된 영상이 없습니다.</li>
-            )}
-            {videos.map((v) => (
-              <li key={v.id} className="media-card video">
-                <button
-                  className="thumb"
-                  onClick={() => onPlay?.(v.key)}
-                  type="button"
-                >
+        {active === "videos" &&
+          (videos.length === 0 ? (
+            <div className="empty">준비된 영상이 없습니다.</div>
+          ) : (
+            <MediaSwiper
+              items={videos}
+              getKey={(v) => v.id}
+              renderItem={(v) => (
+                <div className="media-card">
+                  <button
+                    className="thumb"
+                    onClick={() => onPlay?.(v.key)}
+                    type="button"
+                  >
+                    <img
+                      src={`https://i.ytimg.com/vi/${v.key}/hqdefault.jpg`}
+                      alt={v.name || v.type}
+                      loading="lazy"
+                    />
+                  </button>
+                  <div className="title">{v.name}</div>
+                </div>
+              )}
+            />
+          ))}
+
+        {active === "backdrops" &&
+          (backdrops.length === 0 ? (
+            <div className="empty">준비된 배경 이미지가 없습니다.</div>
+          ) : (
+            <MediaSwiper
+              items={backdrops}
+              getKey={(img, i) => `bd-${img.file_path}-${i}`}
+              renderItem={(img, i) => (
+                <div className="media-card">
                   <img
-                    src={`https://i.ytimg.com/vi/${v.key}/hqdefault.jpg`}
-                    alt={v.name || v.type}
+                    src={`https://image.tmdb.org/t/p/w780${img.file_path}`}
+                    alt={`backdrop-${i}`}
                     loading="lazy"
                   />
-                </button>
-                <div className="title">{v.name}</div>
-              </li>
-            ))}
-          </ul>
-        )}
+                </div>
+              )}
+            />
+          ))}
 
-        {active === "backdrops" && (
-          <ul className="media-panel">
-            {backdrops.length === 0 && (
-              <li className="empty">준비된 배경 이미지가 없습니다.</li>
-            )}
-            {backdrops.map((img, i) => (
-              <li key={i} className="media-card">
-                <img
-                  src={`https://image.tmdb.org/t/p/original${img.file_path}`}
-                  alt={`backdrop-${i}`}
-                  loading="lazy"
-                />
-              </li>
-            ))}
-          </ul>
-        )}
-
-        {active === "posters" && (
-          <ul className="media-panel">
-            {posters.length === 0 && (
-              <li className="empty">준비된 포스터가 없습니다.</li>
-            )}
-            {posters.map((img, i) => (
-              <li key={i} className="media-card">
-                <img
-                  src={`https://image.tmdb.org/t/p/original${img.file_path}`}
-                  alt={`poster-${i}`}
-                  loading="lazy"
-                />
-              </li>
-            ))}
-          </ul>
-        )}
+        {active === "posters" &&
+          (posters.length === 0 ? (
+            <div className="empty">준비된 포스터가 없습니다.</div>
+          ) : (
+            <MediaSwiper
+              items={posters}
+              getKey={(img, i) => `po-${img.file_path}-${i}`}
+              renderItem={(img, i) => (
+                <div className="media-card">
+                  <img
+                    src={`https://image.tmdb.org/t/p/w342${img.file_path}`}
+                    alt={`poster-${i}`}
+                    loading="lazy"
+                  />
+                </div>
+              )}
+            />
+          ))}
       </div>
     </section>
   );
