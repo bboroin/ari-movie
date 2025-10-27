@@ -75,3 +75,8 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.empty {
+  color: var(--color-gray-300);
+  padding: 24px 0;
+}
