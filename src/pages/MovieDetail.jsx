@@ -7,6 +7,7 @@ import DetailHero from "../components/sections/DetailSection/DetailHero";
 import TrailerModal from "../components/sections/NowPlayingSection/TrailerModal";
 import DetailPeople from "../components/sections/DetailSection/DetailPeople";
 import DetailMedia from "../components/sections/DetailSection/DetailMedia";
+import DetailInfo from "../components/sections/DetailSection/DetailInfo";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -57,6 +58,8 @@ const MovieDetail = () => {
         posters={detail?.images?.posters ?? []}
         onPlay={handlePlay}
       />
+
+      <DetailInfo detail={detail} />
     </div>
   );
 };
