@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { getBestTrailerUrl } from "../api/videos";
 import { useMovieDetailFull } from "../hooks/useMovieDetailFull";
+import { sortCrew } from "../utils/sort";
 import DetailHero from "../components/sections/DetailSection/DetailHero";
 import TrailerModal from "../components/sections/NowPlayingSection/TrailerModal";
+import DetailPeople from "../components/sections/DetailSection/DetailPeople";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -22,6 +24,8 @@ const MovieDetail = () => {
     setIsOpen(false);
   };
 
+  const sortedCrew = sortCrew(detail?.credits?.crew ?? []);
+
   if (loading) return <div>로딩 중...</div>;
   if (!detail) return <div>영화 정보를 불러올 수 없습니다.</div>;
 
@@ -38,6 +42,11 @@ const MovieDetail = () => {
           detailBtn={false}
         />
       )}
+
+      <DetailPeople
+        cast={detail?.credits?.cast ?? []}
+        crew={sortedCrew ?? []}
+      />
     </div>
   );
 };
