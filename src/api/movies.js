@@ -31,6 +31,7 @@ export async function fetchMovieDetailFull(id) {
   return get(`/movie/${id}`, {
     append_to_response:
       "videos,images,credits,keywords,external_ids,release_dates,recommendations",
+    include_image_language: "ko,en,null",
   });
 }
 
