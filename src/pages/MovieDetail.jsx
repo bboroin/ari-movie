@@ -6,6 +6,7 @@ import { sortCrew } from "../utils/sort";
 import DetailHero from "../components/sections/DetailSection/DetailHero";
 import TrailerModal from "../components/sections/NowPlayingSection/TrailerModal";
 import DetailPeople from "../components/sections/DetailSection/DetailPeople";
+import DetailMedia from "../components/sections/DetailSection/DetailMedia";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -13,8 +14,10 @@ const MovieDetail = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [trailer, setTrailer] = useState({ url: "", id: null });
 
-  const handleTrailerOpen = async () => {
-    const url = await getBestTrailerUrl(id);
+  const handlePlay = async (videoKey) => {
+    const url = videoKey
+      ? `https://www.youtube.com/embed/${videoKey}?autoplay=1&mute=1`
+      : await getBestTrailerUrl(id);
     setIsOpen(true);
     setTrailer({ url, id });
   };
@@ -31,7 +34,7 @@ const MovieDetail = () => {
 
   return (
     <div>
-      <DetailHero detail={detail} onPlayTrailer={handleTrailerOpen} />
+      <DetailHero detail={detail} onPlayTrailer={() => handlePlay()} />
 
       {isOpen && (
         <TrailerModal
@@ -46,6 +49,13 @@ const MovieDetail = () => {
       <DetailPeople
         cast={detail?.credits?.cast ?? []}
         crew={sortedCrew ?? []}
+      />
+
+      <DetailMedia
+        videos={detail?.videos?.results ?? []}
+        backdrops={detail?.images?.backdrops ?? []}
+        posters={detail?.images?.posters ?? []}
+        onPlay={handlePlay}
       />
     </div>
   );

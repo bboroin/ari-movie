@@ -106,7 +106,7 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
             <button
               type="button"
               className="hero-trailer-btn"
-              onClick={() => onPlayTrailer?.(detail)}
+              onClick={() => onPlayTrailer?.()}
             >
               <img src={playIcon} alt="트레일러 재생 버튼" />
               <span>TRAILER</span>
