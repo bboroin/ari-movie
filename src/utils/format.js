@@ -63,3 +63,36 @@ export function pickCertification(releaseDates) {
 
   return pick("KR") || pick("US") || pick("GB") || null;
 }
+
+// 간단 통화 포맷 (USD, 0단위 반올림)
+export const formatMoney = (num) => {
+  if (typeof num !== "number" || !isFinite(num) || num <= 0) return "—";
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(num);
+};
+
+// 비율(%) 포맷
+export const formatPercent = (ratio) => {
+  if (typeof ratio !== "number" || !isFinite(ratio)) return null;
+  return `${(ratio * 100).toFixed(1)}%`;
+};
+
+// ISO 639-1 언어코드 → 라벨 변환
+export const languageLabel = (code) => {
+  const map = {
+    en: "English",
+    ko: "Korean",
+    ja: "Japanese",
+    fr: "French",
+    de: "German",
+    es: "Spanish",
+    zh: "Chinese",
+    it: "Italian",
+    ru: "Russian",
+    hi: "Hindi",
+  };
+  return map[code] || code || "—";
+};
