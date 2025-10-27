@@ -38,6 +38,10 @@
 }
 
 /* Search */
+.section.is-skeleton .search {
+  margin-top: 100px;
+}
+
 .section.is-skeleton .poster-list--grid {
   margin-top: 50px;
 }
