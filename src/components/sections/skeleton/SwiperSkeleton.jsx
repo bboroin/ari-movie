@@ -1,4 +1,3 @@
-// SwiperSkeleton.jsx
 import ContentLoader from "react-content-loader";
 import "./Skeleton.css";
 

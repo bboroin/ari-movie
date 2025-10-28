@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchHeroMovies } from "../api/movies";
+import { fetchHeroMovies } from "@api/movies";
 
 export function useHeroMovies() {
   const [data, setData] = useState([]);

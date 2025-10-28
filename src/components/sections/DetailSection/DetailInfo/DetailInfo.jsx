@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  formatMoney,
-  formatPercent,
-  languageLabel,
-} from "../../../../utils/format";
+import { formatMoney, formatPercent, languageLabel } from "@utils/format";
 import "./DetailInfo.css";
 
 const buildExternalLinks = (external_ids = {}, homepage) => {

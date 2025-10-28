@@ -1,5 +1,5 @@
-import githubLogo from "../../assets/icons/github-logo.png";
-import tmdbLogo from "../../assets/icons/tmdb-logo.svg";
+import githubLogo from "@assets/icons/github-logo.png";
+import tmdbLogo from "@assets/icons/tmdb-logo.svg";
 import "./Footer.css";
 
 const Footer = () => {

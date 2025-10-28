@@ -3,15 +3,15 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useUpcomingMovies } from "../../../hooks/useUpcomingMovies";
-import { getDDay } from "../../../utils/format";
-import "../common/Section.css";
-import SectionHeader from "../common/SectionHeader";
-import SectionCard from "../common/SectionCard";
-import SwiperSkeleton from "../skeleton/SwiperSkeleton";
+import { useUpcomingMovies } from "@hooks/useUpcomingMovies";
+import { getDDay } from "@utils/format";
+import "@components/sections/common/Section.css";
+import SectionHeader from "@components/sections/common/SectionHeader";
+import SectionCard from "@components/sections/common/SectionCard";
+import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
 
-import release from "../../../assets/icons/release.svg";
-import popularity from "../../../assets/icons/popularity.svg";
+import release from "@assets/icons/release.svg";
+import popularity from "@assets/icons/popularity.svg";
 
 const UpcomingSection = () => {
   const { data, loading } = useUpcomingMovies();

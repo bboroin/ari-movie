@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useNowPlayingPagesWithTrailers } from "../../../hooks/useNowPlayingWithTrailers";
 
 import "./NowPlayingSection.css";
-import "../common/Section.css";
-import SectionHeader from "../common/SectionHeader";
-import NowPlayingSkeleton from "../skeleton/NowPlayingSkeleton";
-import TrailerModal from "./TrailerModal";
+import "@components/sections/common/Section.css";
+import SectionHeader from "@components/sections/common/SectionHeader";
+import NowPlayingSkeleton from "@components/sections/skeleton/NowPlayingSkeleton";
+import TrailerModal from "@components/sections/common/TrailerModal";
 
 const NowPlayingSection = () => {
   const { data: rows, loading } = useNowPlayingPagesWithTrailers();

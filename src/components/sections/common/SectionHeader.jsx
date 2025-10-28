@@ -1,5 +1,5 @@
-import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
-import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
+import arrowNext from "@assets/icons/arrow-icon-next.svg";
+import arrowPrev from "@assets/icons/arrow-icon-prev.svg";
 
 const SectionHeader = ({
   title,
