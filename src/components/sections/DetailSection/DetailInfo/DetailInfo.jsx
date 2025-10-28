@@ -3,7 +3,7 @@ import {
   formatMoney,
   formatPercent,
   languageLabel,
-} from "../../../utils/format";
+} from "../../../../utils/format";
 import "./DetailInfo.css";
 
 const buildExternalLinks = (external_ids = {}, homepage) => {
@@ -47,6 +47,7 @@ const extractKeywords = (detail) => {
 
 const DetailInfo = ({ detail }) => {
   const originalTitle = detail?.original_title || "—";
+  const productionCountries = detail?.production_countries || "—";
   const originalLanguage = detail?.original_language || null;
   const budget = detail?.budget ?? null;
   const revenue = detail?.revenue ?? null;
@@ -71,6 +72,10 @@ const DetailInfo = ({ detail }) => {
             <div className="info-meta-row">
               <dt>Title</dt>
               <dd>{originalTitle}</dd>
+            </div>
+            <div className="info-meta-row">
+              <dt>Country</dt>
+              <dd>{productionCountries.map((c) => c.name).join(", ")}</dd>
             </div>
             <div className="info-meta-row">
               <dt>Language</dt>

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import PeopleSwiper from "./PeopleSwiper";
 import "./DetailPeople.css";
-import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
-import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
+import arrowNext from "../../../../assets/icons/arrow-icon-next.svg";
+import arrowPrev from "../../../../assets/icons/arrow-icon-prev.svg";
 
 const TABS = [
-  { key: "cast", label: "출연진" },
-  { key: "crew", label: "제작진" },
+  { key: "cast", label: "Cast" },
+  { key: "crew", label: "Crew" },
 ];
 
 export default function DetailPeople({ cast = [], crew = [] }) {

@@ -3,13 +3,13 @@ import {
   formatRuntime,
   formatDate,
   pickCertification,
-} from "../../../utils/format";
-import playIcon from "../../../assets/icons/play.svg";
-import noPoster from "../../../assets/poster-default.svg";
-import quoteOpen from "../../../assets/icons/quote-open.png";
-import quoteClose from "../../../assets/icons/quote-close.png";
-import favOutline from "../../../assets/icons/fav-outline.svg";
-import favFilled from "../../../assets/icons/fav-filled.svg";
+} from "../../../../utils/format";
+import playIcon from "../../../../assets/icons/play.svg";
+import noPoster from "../../../../assets/poster-default.svg";
+import quoteOpen from "../../../../assets/icons/quote-open.png";
+import quoteClose from "../../../../assets/icons/quote-close.png";
+import favOutline from "../../../../assets/icons/fav-outline.svg";
+import favFilled from "../../../../assets/icons/fav-filled.svg";
 import "./DetailHero.css";
 
 const DetailHero = ({ detail, onPlayTrailer }) => {

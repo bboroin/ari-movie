@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import arrowNext from "../../../assets/icons/arrow-icon-next.svg";
-import arrowPrev from "../../../assets/icons/arrow-icon-prev.svg";
+import arrowNext from "../../../../assets/icons/arrow-icon-next.svg";
+import arrowPrev from "../../../../assets/icons/arrow-icon-prev.svg";
 import MediaSwiper from "./MediaSwiper";
 import "./DetailMedia.css";
 
 const TABS = [
-  { key: "videos", label: "영상" },
-  { key: "backdrops", label: "배경" },
-  { key: "posters", label: "포스터" },
+  { key: "videos", label: "Video" },
+  { key: "backdrops", label: "Backdrop" },
+  { key: "posters", label: "Poster" },
 ];
 
 const DetailMedia = ({ videos = [], backdrops = [], posters = [], onPlay }) => {
