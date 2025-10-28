@@ -1,4 +1,4 @@
-import SearchSection from "../components/sections/SearchSection/SearchSection";
+import SearchSection from "@components/sections/SearchSection/SearchSection";
 
 const SearchResult = () => {
   return (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import arrowNext from "../../../../assets/icons/arrow-icon-next.svg";
-import arrowPrev from "../../../../assets/icons/arrow-icon-prev.svg";
+import arrowNext from "@assets/icons/arrow-icon-next.svg";
+import arrowPrev from "@assets/icons/arrow-icon-prev.svg";
 import MediaSwiper from "./MediaSwiper";
 import "./DetailMedia.css";
 

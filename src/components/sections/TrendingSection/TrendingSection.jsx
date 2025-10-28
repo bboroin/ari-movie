@@ -4,15 +4,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 import { useState } from "react";
-import { useTrendingMoviesWithRuntime } from "../../../hooks/useTrendingMoviesWithRuntime";
+import { useTrendingMoviesWithRuntime } from "@hooks/useTrendingMoviesWithRuntime";
 import "./TrendingSection.css";
-import "../common/Section.css";
-import SectionHeader from "../common/SectionHeader";
-import SectionCard from "../common/SectionCard";
-import { formatRuntime } from "../../../utils/format";
-import SwiperSkeleton from "../skeleton/SwiperSkeleton";
-import vote from "../../../assets/icons/vote.svg";
-import runtime from "../../../assets/icons/runtime.svg";
+import "@components/sections/common/Section.css";
+import SectionHeader from "@components/sections/common/SectionHeader";
+import SectionCard from "@components/sections/common/SectionCard";
+import { formatRuntime } from "@utils/format";
+import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
+import vote from "@assets/icons/vote.svg";
+import runtime from "@assets/icons/runtime.svg";
 
 const TrendingSection = () => {
   const [period, setPeriod] = useState("day");

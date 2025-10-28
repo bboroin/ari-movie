@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./TrailerModal.css";
-import noTrailer from "../../../assets/trailer-default.svg";
+import noTrailer from "@assets/trailer-default.svg";
 
 export default function TrailerModal({
   id,

@@ -1,14 +1,14 @@
 import { useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useSearchMovie } from "../../../hooks/useSearchMovie";
-import { useSortedMovies } from "../../../hooks/useSortedMovies";
-import SectionHeader from "../common/SectionHeader";
-import SectionCard from "../common/SectionCard";
-import Pagination from "../common/Pagination";
+import { useSearchMovie } from "@hooks/useSearchMovie";
+import { useSortedMovies } from "@hooks/useSortedMovies";
+import SectionHeader from "@components/sections/common/SectionHeader";
+import SectionCard from "@components/sections/common/SectionCard";
+import Pagination from "@components/sections/common/Pagination";
 import SortControls from "./SortControls";
 import "./SearchSection.css";
-import SearchSkeleton from "../skeleton/SearchSkeleton";
-import { getDDay } from "../../../utils/format";
+import SearchSkeleton from "@components/sections/skeleton/SearchSkeleton";
+import { getDDay } from "@utils/format";
 
 const SearchSection = () => {
   const [params, setParams] = useSearchParams();

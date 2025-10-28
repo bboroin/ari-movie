@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import noPoster from "../../../assets/poster-default.svg";
+import noPoster from "@assets/poster-default.svg";
 import "./Section.css";
 
 const IMG = (p) => (p ? `https://image.tmdb.org/t/p/original/${p}` : noPoster);

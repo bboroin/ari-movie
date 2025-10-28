@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchNowPlayingPagesWithTrailers } from "../api/movies";
+import { fetchNowPlayingPagesWithTrailers } from "@api/movies";
 
 export function useNowPlayingPagesWithTrailers() {
   const [data, setData] = useState({ page1: [], page2: [] });

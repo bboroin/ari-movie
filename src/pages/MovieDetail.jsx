@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { getBestTrailerUrl } from "../api/videos";
-import { useMovieDetailFull } from "../hooks/useMovieDetailFull";
-import { sortCrew } from "../utils/sort";
-import DetailHero from "../components/sections/DetailSection/DetailHero/DetailHero";
-import TrailerModal from "../components/sections/NowPlayingSection/TrailerModal";
-import DetailPeople from "../components/sections/DetailSection/DetailPeople/DetailPeople";
-import DetailMedia from "../components/sections/DetailSection/DetailMedia/DetailMedia";
-import DetailInfo from "../components/sections/DetailSection/DetailInfo/DetailInfo";
+import { getBestTrailerUrl } from "@api/videos";
+import { useMovieDetailFull } from "@hooks/useMovieDetailFull";
+import { sortCrew } from "@utils/sort";
+import DetailHero from "@components/sections/DetailSection/DetailHero/DetailHero";
+import TrailerModal from "@components/sections/common/TrailerModal";
+import DetailPeople from "@components/sections/DetailSection/DetailPeople/DetailPeople";
+import DetailMedia from "@components/sections/DetailSection/DetailMedia/DetailMedia";
+import DetailInfo from "@components/sections/DetailSection/DetailInfo/DetailInfo";
 
 const MovieDetail = () => {
   const { id } = useParams();

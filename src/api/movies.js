@@ -1,6 +1,6 @@
 import { get, REGION } from "./client";
 import { getBestTrailerUrl } from "./videos";
-import { getToday, getMonthsAgo } from "../utils/format";
+import { getToday, getMonthsAgo } from "@utils/format";
 
 // Hero Movies
 export async function fetchHeroMovies() {

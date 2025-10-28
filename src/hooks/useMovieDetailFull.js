@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchMovieDetailFull } from "../api/movies";
+import { fetchMovieDetailFull } from "@api/movies";
 
 export function useMovieDetailFull(id) {
   const [detail, setDetail] = useState(null);

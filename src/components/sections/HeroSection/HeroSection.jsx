@@ -4,13 +4,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import { useState, useRef } from "react";
-import { useHeroMovies } from "../../../hooks/useHeroMovies";
-import { useGenres } from "../../../hooks/useGenres";
-import { getBestTrailerUrl } from "../../../api/videos";
+import { useHeroMovies } from "@hooks/useHeroMovies";
+import { useGenres } from "@hooks/useGenres";
+import { getBestTrailerUrl } from "@api/videos";
 import "./HeroSection.css";
-import HeroSkeleton from "../skeleton/HeroSkeleton";
-import TrailerModal from "../NowPlayingSection/TrailerModal";
-import playIcon from "../../../assets/icons/play.svg";
+import HeroSkeleton from "@components/sections/skeleton/HeroSkeleton";
+import TrailerModal from "@components/sections/common/TrailerModal";
+import playIcon from "@assets/icons/play.svg";
 
 const HeroSection = () => {
   const { data, loading } = useHeroMovies();

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Header.css";
-import searchIcon from "../../assets/icons/search.svg";
-import avatarIcon from "../../assets/icons/avatar.svg";
+import searchIcon from "@assets/icons/search.svg";
+import avatarIcon from "@assets/icons/avatar.svg";
 
 const Header = () => {
   const [query, setQuery] = useState(""); // 검색어 상태
