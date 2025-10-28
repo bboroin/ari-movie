@@ -27,6 +27,8 @@
   --bg-card: #151515;
   --bg-pill: rgba(255, 255, 255, 0.08);
   --bg-tag: rgba(255, 255, 255, 0.18);
+  --bg-meta-card: #111214;
+  --bd-meta-card: #1c1d20;
 
   /* Layers */
   --z-upcoming-dday: 5;

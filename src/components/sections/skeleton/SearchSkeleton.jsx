@@ -34,15 +34,10 @@ const CardSkeleton = () => (
 const SearchSkeleton = ({ count }) => {
   return (
     <section className="section is-skeleton">
-      <div className="section-header">
+      <div className="section-header search">
         <h2 className="section-title">
           <TextSkeleton width={250} height={40} />
         </h2>
-      </div>
-
-      <div className="section-info">
-        <TextSkeleton className={"section-desc"} width={200} height={20} />
-        <TextSkeleton className={"section-page"} width={80} height={20} />
       </div>
 
       <div className="poster-list--grid">

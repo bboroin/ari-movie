@@ -26,6 +26,7 @@ const TrendingSection = () => {
         title="Trending"
         desc="전 세계에서 가장 주목받는 영화들"
         hasNav={true}
+        navId="trending"
       >
         <div className="trending-period">
           <button
@@ -47,7 +48,10 @@ const TrendingSection = () => {
         <Swiper
           key={period}
           modules={[Navigation, A11y]}
-          navigation={{ prevEl: ".section-prev", nextEl: ".section-next" }}
+          navigation={{
+            prevEl: '.section-prev[data-nav="trending"]',
+            nextEl: '.section-next[data-nav="trending"]',
+          }}
           spaceBetween={20}
           a11y={{ enabled: true }}
           slidesPerView={5}
