@@ -5,23 +5,27 @@ import "swiper/css/navigation";
 
 import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
-import { useRecommendationMovies } from "@hooks/useRecommendationMovies";
+import { useCollectionMovies } from "@/hooks/useCollectionMovies";
 import { getDDay } from "@utils/format";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
 import release from "@assets/icons/release.svg";
 import vote from "@assets/icons/vote.svg";
 
-export default function DetailRecommended({ id }) {
-  const { data, loading } = useRecommendationMovies(id);
+const DetailCollection = ({ id }) => {
+  const { collection, parts, loading } = useCollectionMovies(id);
 
   if (loading) return <SwiperSkeleton count={5} />;
 
-  if (!data.length) {
+  if (!parts.length) {
     return (
-      <section className="detail-recommended section">
+      <section className="detail-related section">
         <SectionHeader
-          title="Recommended Movies"
-          desc="이 영화와 비슷한 작품"
+          title="Collection Movies"
+          desc={
+            collection?.name
+              ? `"${collection.name}" 에 포함된 영화들`
+              : "같은 컬렉션에 포함된 영화들"
+          }
         />
         <p className="empty">표시할 항목이 없습니다.</p>
       </section>
@@ -29,20 +33,24 @@ export default function DetailRecommended({ id }) {
   }
 
   return (
-    <section className="detail-recommended section">
+    <section className="detail-related section">
       <SectionHeader
-        title="Recommended Movies"
-        desc="이 영화와 비슷한 작품"
+        title="Collection Movies"
+        desc={
+          collection?.name
+            ? `"${collection.name}" 에 포함된 영화들`
+            : "컬렉션에 포함된 영화들"
+        }
         hasNav={true}
-        navId="recommended"
+        navId="collection"
       />
 
       <div className="section-swiper">
         <Swiper
           modules={[Navigation, A11y]}
           navigation={{
-            prevEl: '.section-prev[data-nav="recommended"]',
-            nextEl: '.section-next[data-nav="recommended"]',
+            prevEl: '.section-prev[data-nav="collection"]',
+            nextEl: '.section-next[data-nav="collection"]',
           }}
           spaceBetween={20}
           a11y={{ enabled: true }}
@@ -56,7 +64,7 @@ export default function DetailRecommended({ id }) {
           }}
           rewind={true}
         >
-          {data.map((movie) => (
+          {parts.map((movie) => (
             <SwiperSlide key={movie.id}>
               <SectionCard
                 id={movie.id}
@@ -78,4 +86,6 @@ export default function DetailRecommended({ id }) {
       </div>
     </section>
   );
-}
+};
+
+export default DetailCollection;
