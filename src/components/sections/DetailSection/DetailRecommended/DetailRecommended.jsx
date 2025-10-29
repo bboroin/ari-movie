@@ -3,35 +3,46 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useUpcomingMovies } from "@hooks/useUpcomingMovies";
-import { getDDay } from "@utils/format";
-import "@components/sections/common/Section.css";
 import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
+import { useRecommendationMovies } from "@hooks/useRecommendationMovies";
+import { getDDay } from "@utils/format";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
-
 import release from "@assets/icons/release.svg";
-import popularity from "@assets/icons/popularity.svg";
+import vote from "@assets/icons/vote.svg";
 
-const UpcomingSection = () => {
-  const { data, loading } = useUpcomingMovies();
+export default function DetailRecommended({ id }) {
+  const { data, loading } = useRecommendationMovies(id);
+
   if (loading) return <SwiperSkeleton count={5} />;
 
+  if (!data.length) {
+    return (
+      <section className="detail-recommended section">
+        <SectionHeader
+          title="Recommended Movies"
+          desc="이 영화와 비슷한 작품"
+        />
+        <p className="empty">표시할 항목이 없습니다.</p>
+      </section>
+    );
+  }
+
   return (
-    <section className="section">
+    <section className="detail-recommended section">
       <SectionHeader
-        title="Upcoming Movies"
-        desc="개봉을 앞둔 기대작들"
+        title="Recommended Movies"
+        desc="이 영화와 비슷한 작품"
         hasNav={true}
-        navId="upcoming"
+        navId="recommended"
       />
 
       <div className="section-swiper">
         <Swiper
           modules={[Navigation, A11y]}
           navigation={{
-            prevEl: '.section-prev[data-nav="upcoming"]',
-            nextEl: '.section-next[data-nav="upcoming"]',
+            prevEl: '.section-prev[data-nav="recommended"]',
+            nextEl: '.section-next[data-nav="recommended"]',
           }}
           spaceBetween={20}
           a11y={{ enabled: true }}
@@ -55,9 +66,9 @@ const UpcomingSection = () => {
                 meta={[
                   { icon: release, text: movie.release_date, alt: "개봉일" },
                   {
-                    icon: popularity,
-                    text: Math.round(movie.popularity),
-                    alt: "인기도",
+                    icon: vote,
+                    text: (movie.vote_average ?? 0).toFixed(1),
+                    alt: "평점",
                   },
                 ]}
               />
@@ -67,6 +78,4 @@ const UpcomingSection = () => {
       </div>
     </section>
   );
-};
-
-export default UpcomingSection;
+}

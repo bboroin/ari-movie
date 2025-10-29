@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNowPlayingPagesWithTrailers } from "../../../hooks/useNowPlayingWithTrailers";
+import { useNowPlayingPagesWithTrailers } from "@hooks/useNowPlayingWithTrailers";
 
 import "./NowPlayingSection.css";
 import "@components/sections/common/Section.css";
@@ -40,7 +40,7 @@ const NowPlayingSection = () => {
   return (
     <section className="section">
       <SectionHeader
-        title="Now Playing"
+        title="Now Playing Movies"
         desc="극장에서 상영 중인 최신 영화들"
         hasNav={false}
       />

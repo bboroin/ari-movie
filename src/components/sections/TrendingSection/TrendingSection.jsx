@@ -23,7 +23,7 @@ const TrendingSection = () => {
   return (
     <section className="section">
       <SectionHeader
-        title="Trending"
+        title="Trending Movies"
         desc="전 세계에서 가장 주목받는 영화들"
         hasNav={true}
         navId="trending"
