@@ -35,6 +35,11 @@ export async function fetchMovieDetailFull(id) {
   });
 }
 
+// Movie Collection
+export async function fetchCollection(collectionId) {
+  return get(`/collection/${collectionId}`);
+}
+
 // Trending with runtime
 export async function fetchTrendingMoviesWithRuntime(period = "day") {
   const list = await fetchTrendingMovies(period);

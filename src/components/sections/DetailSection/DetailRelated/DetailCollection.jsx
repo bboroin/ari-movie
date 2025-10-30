@@ -3,35 +3,54 @@ import { Navigation, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useUpcomingMovies } from "@hooks/useUpcomingMovies";
-import { getDDay } from "@utils/format";
-import "@components/sections/common/Section.css";
 import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
+import { useCollectionMovies } from "@/hooks/useCollectionMovies";
+import { getDDay } from "@utils/format";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
-
 import release from "@assets/icons/release.svg";
-import popularity from "@assets/icons/popularity.svg";
+import vote from "@assets/icons/vote.svg";
 
-const UpcomingSection = () => {
-  const { data, loading } = useUpcomingMovies();
+const DetailCollection = ({ id }) => {
+  const { collection, parts, loading } = useCollectionMovies(id);
+
   if (loading) return <SwiperSkeleton count={5} />;
 
+  if (!parts.length) {
+    return (
+      <section className="detail-related section">
+        <SectionHeader
+          title="Collection Movies"
+          desc={
+            collection?.name
+              ? `"${collection.name}" 에 포함된 영화들`
+              : "같은 컬렉션에 포함된 영화들"
+          }
+        />
+        <p className="empty">표시할 항목이 없습니다.</p>
+      </section>
+    );
+  }
+
   return (
-    <section className="section">
+    <section className="detail-related section">
       <SectionHeader
-        title="Upcoming Movies"
-        desc="개봉을 앞둔 기대작들"
+        title="Collection Movies"
+        desc={
+          collection?.name
+            ? `"${collection.name}" 에 포함된 영화들`
+            : "컬렉션에 포함된 영화들"
+        }
         hasNav={true}
-        navId="upcoming"
+        navId="collection"
       />
 
       <div className="section-swiper">
         <Swiper
           modules={[Navigation, A11y]}
           navigation={{
-            prevEl: '.section-prev[data-nav="upcoming"]',
-            nextEl: '.section-next[data-nav="upcoming"]',
+            prevEl: '.section-prev[data-nav="collection"]',
+            nextEl: '.section-next[data-nav="collection"]',
           }}
           spaceBetween={20}
           a11y={{ enabled: true }}
@@ -45,7 +64,7 @@ const UpcomingSection = () => {
           }}
           rewind={true}
         >
-          {data.map((movie) => (
+          {parts.map((movie) => (
             <SwiperSlide key={movie.id}>
               <SectionCard
                 id={movie.id}
@@ -55,9 +74,9 @@ const UpcomingSection = () => {
                 meta={[
                   { icon: release, text: movie.release_date, alt: "개봉일" },
                   {
-                    icon: popularity,
-                    text: Math.round(movie.popularity),
-                    alt: "인기도",
+                    icon: vote,
+                    text: (movie.vote_average ?? 0).toFixed(1),
+                    alt: "평점",
                   },
                 ]}
               />
@@ -69,4 +88,4 @@ const UpcomingSection = () => {
   );
 };
 
-export default UpcomingSection;
+export default DetailCollection;

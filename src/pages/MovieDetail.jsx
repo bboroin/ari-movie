@@ -8,6 +8,8 @@ import TrailerModal from "@components/sections/common/TrailerModal";
 import DetailPeople from "@components/sections/DetailSection/DetailPeople/DetailPeople";
 import DetailMedia from "@components/sections/DetailSection/DetailMedia/DetailMedia";
 import DetailInfo from "@components/sections/DetailSection/DetailInfo/DetailInfo";
+import Recommendation from "@/components/sections/DetailSection/DetailRelated/DetailRecommended";
+import DetailCollection from "@/components/sections/DetailSection/DetailRelated/DetailCollection";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -60,6 +62,9 @@ const MovieDetail = () => {
       />
 
       <DetailInfo detail={detail} />
+
+      <DetailCollection id={id} />
+      <Recommendation id={id} />
     </div>
   );
 };
