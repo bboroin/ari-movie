@@ -14,14 +14,14 @@ import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
 import vote from "@assets/icons/vote.svg";
 import runtime from "@assets/icons/runtime.svg";
 
-const TrendingSection = () => {
+const TrendingSection = ({ id }) => {
   const [period, setPeriod] = useState("day");
   const { data, loading } = useTrendingMoviesWithRuntime(period);
 
   if (loading) return <SwiperSkeleton count={5} />;
 
   return (
-    <section className="section">
+    <section id={id} className="section">
       <SectionHeader
         title="Trending Movies"
         desc="전 세계에서 가장 주목받는 영화들"
