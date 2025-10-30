@@ -50,21 +50,33 @@ const MovieDetail = () => {
       )}
 
       <DetailPeople
+        anchorId="people"
         cast={detail?.credits?.cast ?? []}
         crew={sortedCrew ?? []}
       />
 
       <DetailMedia
+        anchorId="media"
         videos={detail?.videos?.results ?? []}
         backdrops={detail?.images?.backdrops ?? []}
         posters={detail?.images?.posters ?? []}
         onPlay={handlePlay}
       />
 
-      <DetailInfo detail={detail} />
+      <DetailInfo anchorId="info" detail={detail} />
 
-      <DetailCollection id={id} />
-      <Recommendation id={id} />
+      <DetailCollection anchorId="collection" movieId={id} />
+      <Recommendation anchorId="recommended" movieId={id} />
+
+      <SideDockNav
+        items={[
+          { label: "People", selector: "#people" },
+          { label: "Media", selector: "#media" },
+          { label: "Info", selector: "#info" },
+          { label: "Collection", selector: "#collection" },
+          { label: "Recommended", selector: "#recommended" },
+        ]}
+      />
     </div>
   );
 };

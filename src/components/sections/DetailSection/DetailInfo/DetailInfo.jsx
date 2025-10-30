@@ -41,7 +41,7 @@ const extractKeywords = (detail) => {
   return Array.isArray(list) ? list : [];
 };
 
-const DetailInfo = ({ detail }) => {
+const DetailInfo = ({ anchorId, detail }) => {
   const originalTitle = detail?.original_title || "—";
   const productionCountries = detail?.production_countries || "—";
   const originalLanguage = detail?.original_language || null;
@@ -59,7 +59,7 @@ const DetailInfo = ({ detail }) => {
   const links = buildExternalLinks(detail?.external_ids, detail?.homepage);
 
   return (
-    <section className="detail-info section">
+    <section id={anchorId} className="detail-info section">
       <div className="info-grid">
         {/* 원제/원어 */}
         <div className="info-card">
