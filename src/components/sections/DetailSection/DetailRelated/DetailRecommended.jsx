@@ -29,7 +29,7 @@ export default function DetailRecommended({ anchorId, movieId }) {
   }
 
   return (
-    <section className="detail-recommended section">
+    <section id={anchorId} className="detail-recommended section">
       <SectionHeader
         title="Recommended Movies"
         desc="이 영화와 비슷한 작품"

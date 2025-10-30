@@ -10,6 +10,7 @@ import DetailMedia from "@components/sections/DetailSection/DetailMedia/DetailMe
 import DetailInfo from "@components/sections/DetailSection/DetailInfo/DetailInfo";
 import Recommendation from "@/components/sections/DetailSection/DetailRelated/DetailRecommended";
 import DetailCollection from "@/components/sections/DetailSection/DetailRelated/DetailCollection";
+import SideNav from "@/components/sections/common/SideNav";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -68,13 +69,13 @@ const MovieDetail = () => {
       <DetailCollection anchorId="collection" movieId={id} />
       <Recommendation anchorId="recommended" movieId={id} />
 
-      <SideDockNav
+      <SideNav
         items={[
-          { label: "People", selector: "#people" },
-          { label: "Media", selector: "#media" },
-          { label: "Info", selector: "#info" },
-          { label: "Collection", selector: "#collection" },
-          { label: "Recommended", selector: "#recommended" },
+          { label: "People", selector: "people" },
+          { label: "Media", selector: "media" },
+          { label: "Info", selector: "info" },
+          { label: "Collection", selector: "collection" },
+          { label: "Recommended", selector: "recommended" },
         ]}
       />
     </div>
