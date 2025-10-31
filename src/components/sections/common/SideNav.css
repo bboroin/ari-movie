@@ -9,6 +9,9 @@
   border-radius: 12px;
   padding: 12px 8px;
   z-index: var(--z-sidenav);
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 180ms ease, transform 220ms ease;
 }
 
 .sidenav-list {
@@ -27,9 +30,6 @@
   min-height: 20px;
   color: #fff;
   font-size: 12px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -41,8 +41,29 @@
   text-decoration-color: var(--color-primary);
 }
 
+.sidenav-toggle {
+  position: fixed;
+  top: 210px;
+  right: 20px;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--color-primary);
+  display: flex;
+  place-items: center;
+  z-index: var(--z-sidenav);
+}
+.sidenav.sidenav-collapsed {
+  opacity: 0;
+  transform: translateX(12px);
+  pointer-events: none;
+}
+
 @media (max-width: 1024px) {
-  .sidenav {
+  .sidenav,
+  .sidenav-toggle {
     display: none;
   }
 }
