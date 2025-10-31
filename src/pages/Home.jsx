@@ -15,9 +15,9 @@ const Home = () => {
 
       <SideNav
         items={[
-          { label: "Trending", selector: "trending" },
-          { label: "Now Playing", selector: "now-playing" },
-          { label: "Upcoming", selector: "upcoming" },
+          { label: "Trending", short: "Trend", selector: "trending" },
+          { label: "Now Playing", short: "Now", selector: "now-playing" },
+          { label: "Upcoming", short: "Soon", selector: "upcoming" },
         ]}
       />
     </div>

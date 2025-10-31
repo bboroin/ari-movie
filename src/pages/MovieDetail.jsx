@@ -71,11 +71,11 @@ const MovieDetail = () => {
 
       <SideNav
         items={[
-          { label: "People", selector: "people" },
-          { label: "Media", selector: "media" },
-          { label: "Info", selector: "info" },
-          { label: "Collection", selector: "collection" },
-          { label: "Recommended", selector: "recommended" },
+          { label: "People", short: "People", selector: "people" },
+          { label: "Media", short: "Media", selector: "media" },
+          { label: "Info", short: "Info", selector: "info" },
+          { label: "Collection", short: "Coll.", selector: "collection" },
+          { label: "Recommended", short: "Rec.", selector: "recommended" },
         ]}
       />
     </div>

@@ -43,6 +43,7 @@ export default function SideNav({ items = [], offsetTop = 80 }) {
                 <button
                   type="button"
                   className="sidenav-btn"
+                  data-short={it.short || it.label}
                   onClick={() => scrollToId(it.selector)}
                 >
                   <span className="sidenav-label">{it.label}</span>

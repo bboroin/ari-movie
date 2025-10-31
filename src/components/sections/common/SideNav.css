@@ -62,8 +62,35 @@
 }
 
 @media (max-width: 1024px) {
-  .sidenav,
   .sidenav-toggle {
     display: none;
+  }
+
+  .sidenav {
+    width: 50px;
+  }
+
+  .sidenav-label {
+    visibility: hidden;
+    position: relative;
+  }
+  .sidenav-btn {
+    position: relative;
+  }
+
+  .sidenav-btn::after {
+    content: attr(data-short);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  .sidenav-btn:hover::after {
+    color: var(--color-primary);
+    text-decoration-line: underline;
+    text-decoration-color: var(--color-primary);
   }
 }
