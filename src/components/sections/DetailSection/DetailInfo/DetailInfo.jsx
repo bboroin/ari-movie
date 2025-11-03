@@ -1,6 +1,7 @@
 import React from "react";
 import { formatMoney, formatPercent, languageLabel } from "@utils/format";
 import "./DetailInfo.css";
+import DetailInfoSkeleton from "@components/sections/skeleton/DetailInfoSkeleton";
 
 const buildExternalLinks = (external_ids = {}, homepage) => {
   const items = [];
