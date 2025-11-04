@@ -3,7 +3,6 @@ import arrowNext from "@assets/icons/arrow-icon-next.svg";
 import arrowPrev from "@assets/icons/arrow-icon-prev.svg";
 import MediaSwiper from "./MediaSwiper";
 import "./DetailMedia.css";
-import DetailSwiperSkeleton from "@components/sections/skeleton/DetailSwiperSkeleton";
 
 const TABS = [
   { key: "videos", label: "Video" },

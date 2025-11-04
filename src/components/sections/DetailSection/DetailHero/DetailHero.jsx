@@ -6,7 +6,6 @@ import quoteOpen from "@assets/icons/quote-open.png";
 import quoteClose from "@assets/icons/quote-close.png";
 import favOutline from "@assets/icons/fav-outline.svg";
 import favFilled from "@assets/icons/fav-filled.svg";
-import DetailHeroSkeleton from "@components/sections/skeleton/DetailHeroSkeleton";
 import "./DetailHero.css";
 
 const DetailHero = ({ detail, onPlayTrailer }) => {

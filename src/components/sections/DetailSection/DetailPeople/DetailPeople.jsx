@@ -3,7 +3,6 @@ import PeopleSwiper from "./PeopleSwiper";
 import "./DetailPeople.css";
 import arrowNext from "@assets/icons/arrow-icon-next.svg";
 import arrowPrev from "@assets/icons/arrow-icon-prev.svg";
-import DetailSwiperSkeleton from "@components/sections/skeleton/DetailSwiperSkeleton";
 
 const TABS = [
   { key: "cast", label: "Cast" },

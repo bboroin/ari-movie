@@ -11,6 +11,9 @@ import DetailInfo from "@components/sections/DetailSection/DetailInfo/DetailInfo
 import Recommendation from "@/components/sections/DetailSection/DetailRelated/DetailRecommended";
 import DetailCollection from "@/components/sections/DetailSection/DetailRelated/DetailCollection";
 import SideNav from "@/components/sections/common/SideNav";
+import DetailHeroSkeleton from "@components/sections/skeleton/DetailHeroSkeleton";
+import DetailInfoSkeleton from "@components/sections/skeleton/DetailInfoSkeleton";
+import DetailSwiperSkeleton from "@/components/sections/skeleton/DetailSwiperSkeleton";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -33,12 +36,15 @@ const MovieDetail = () => {
 
   const sortedCrew = sortCrew(detail?.credits?.crew ?? []);
 
-  if (loading) return <div>로딩 중...</div>;
-  if (!detail) return <div>영화 정보를 불러올 수 없습니다.</div>;
+  if (!loading && !detail) return <div>영화 정보를 불러올 수 없습니다.</div>;
 
   return (
     <div>
-      <DetailHero detail={detail} onPlayTrailer={() => handlePlay()} />
+      {loading ? (
+        <DetailHeroSkeleton />
+      ) : (
+        <DetailHero detail={detail} onPlayTrailer={() => handlePlay()} />
+      )}
 
       {isOpen && (
         <TrailerModal
@@ -50,21 +56,33 @@ const MovieDetail = () => {
         />
       )}
 
-      <DetailPeople
-        anchorId="people"
-        cast={detail?.credits?.cast ?? []}
-        crew={sortedCrew ?? []}
-      />
+      {loading ? (
+        <DetailSwiperSkeleton count={7} />
+      ) : (
+        <DetailPeople
+          anchorId="people"
+          cast={detail?.credits?.cast ?? []}
+          crew={sortedCrew ?? []}
+        />
+      )}
 
-      <DetailMedia
-        anchorId="media"
-        videos={detail?.videos?.results ?? []}
-        backdrops={detail?.images?.backdrops ?? []}
-        posters={detail?.images?.posters ?? []}
-        onPlay={handlePlay}
-      />
+      {loading ? (
+        <DetailSwiperSkeleton count={7} />
+      ) : (
+        <DetailMedia
+          anchorId="media"
+          videos={detail?.videos?.results ?? []}
+          backdrops={detail?.images?.backdrops ?? []}
+          posters={detail?.images?.posters ?? []}
+          onPlay={handlePlay}
+        />
+      )}
 
-      <DetailInfo anchorId="info" detail={detail} />
+      {loading ? (
+        <DetailInfoSkeleton />
+      ) : (
+        <DetailInfo anchorId="info" detail={detail} />
+      )}
 
       <DetailCollection anchorId="collection" movieId={id} />
       <Recommendation anchorId="recommended" movieId={id} />
