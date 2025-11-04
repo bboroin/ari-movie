@@ -45,3 +45,17 @@
 .section.is-skeleton .poster-list--grid {
   margin-top: 50px;
 }
+
+/* People, Media */
+.section.is-skeleton .detail-header {
+  display: flex;
+  justify-content: flex-start;
+}
+.section.is-skeleton .people-skeleton-row {
+  display: flex;
+  gap: 16px;
+  overflow: hidden;
+}
+.section.is-skeleton .people-skeleton-card {
+  flex: 0 0 200px;
+}
