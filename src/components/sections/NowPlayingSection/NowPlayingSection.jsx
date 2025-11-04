@@ -7,7 +7,7 @@ import SectionHeader from "@components/sections/common/SectionHeader";
 import NowPlayingSkeleton from "@components/sections/skeleton/NowPlayingSkeleton";
 import TrailerModal from "@components/sections/common/TrailerModal";
 
-const NowPlayingSection = () => {
+const NowPlayingSection = ({ id }) => {
   const { data: rows, loading } = useNowPlayingPagesWithTrailers();
   const [animate, setAnimate] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ const NowPlayingSection = () => {
   if (loading) return <NowPlayingSkeleton />;
 
   return (
-    <section className="section">
+    <section id={id} className="section">
       <SectionHeader
         title="Now Playing Movies"
         desc="극장에서 상영 중인 최신 영화들"

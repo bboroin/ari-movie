@@ -13,12 +13,12 @@ import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
 import release from "@assets/icons/release.svg";
 import popularity from "@assets/icons/popularity.svg";
 
-const UpcomingSection = () => {
+const UpcomingSection = ({ id }) => {
   const { data, loading } = useUpcomingMovies();
   if (loading) return <SwiperSkeleton count={5} />;
 
   return (
-    <section className="section">
+    <section id={id} className="section">
       <SectionHeader
         title="Upcoming Movies"
         desc="개봉을 앞둔 기대작들"

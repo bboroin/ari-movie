@@ -11,14 +11,14 @@ import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
 import release from "@assets/icons/release.svg";
 import vote from "@assets/icons/vote.svg";
 
-export default function DetailRecommended({ id }) {
-  const { data, loading } = useRecommendationMovies(id);
+export default function DetailRecommended({ anchorId, movieId }) {
+  const { data, loading } = useRecommendationMovies(movieId);
 
   if (loading) return <SwiperSkeleton count={5} />;
 
   if (!data.length) {
     return (
-      <section className="detail-related section">
+      <section id={anchorId} className="detail-related section">
         <SectionHeader
           title="Recommended Movies"
           desc="이 영화와 비슷한 작품"
@@ -29,7 +29,7 @@ export default function DetailRecommended({ id }) {
   }
 
   return (
-    <section className="detail-recommended section">
+    <section id={anchorId} className="detail-recommended section">
       <SectionHeader
         title="Recommended Movies"
         desc="이 영화와 비슷한 작품"

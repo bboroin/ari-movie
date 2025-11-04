@@ -11,14 +11,14 @@ import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
 import release from "@assets/icons/release.svg";
 import vote from "@assets/icons/vote.svg";
 
-const DetailCollection = ({ id }) => {
-  const { collection, parts, loading } = useCollectionMovies(id);
+const DetailCollection = ({ anchorId, movieId }) => {
+  const { collection, parts, loading } = useCollectionMovies(movieId);
 
   if (loading) return <SwiperSkeleton count={5} />;
 
   if (!parts.length) {
     return (
-      <section className="detail-related section">
+      <section id={anchorId} className="detail-related section">
         <SectionHeader
           title="Collection Movies"
           desc={
@@ -33,7 +33,7 @@ const DetailCollection = ({ id }) => {
   }
 
   return (
-    <section className="detail-related section">
+    <section id={anchorId} className="detail-related section">
       <SectionHeader
         title="Collection Movies"
         desc={

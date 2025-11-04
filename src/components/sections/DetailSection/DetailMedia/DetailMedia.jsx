@@ -10,7 +10,13 @@ const TABS = [
   { key: "posters", label: "Poster" },
 ];
 
-const DetailMedia = ({ videos = [], backdrops = [], posters = [], onPlay }) => {
+const DetailMedia = ({
+  anchorId,
+  videos = [],
+  backdrops = [],
+  posters = [],
+  onPlay,
+}) => {
   const [active, setActive] = useState("videos");
 
   const counts = {
@@ -20,7 +26,7 @@ const DetailMedia = ({ videos = [], backdrops = [], posters = [], onPlay }) => {
   };
 
   return (
-    <section className="detail-media section">
+    <section id={anchorId} className="detail-media section">
       <div className="detail-header">
         <div>
           {TABS.map(({ key, label }) => (

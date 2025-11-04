@@ -66,6 +66,32 @@
   background: var(--bg-tag);
 }
 
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  font-weight: 700;
+}
+
+.hero-detail-btn {
+  border: 1px solid #fff;
+  border-radius: 50px;
+  width: 100px;
+  padding: 10px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.hero-detail-btn:hover {
+  background: var(--gradient-primary-soft);
+  border-color: transparent;
+}
+
 .hero-trailer-btn {
   background: var(--gradient-primary-soft);
   border-radius: 5px;
@@ -78,8 +104,4 @@
 }
 .hero-trailer-btn:hover {
   background: var(--gradient-primary);
-}
-
-.hero-trailer-btn span {
-  font-weight: 700;
 }

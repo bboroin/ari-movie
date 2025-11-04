@@ -3,6 +3,7 @@ import { Pagination, Autoplay, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
+import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useHeroMovies } from "@hooks/useHeroMovies";
 import { useGenres } from "@hooks/useGenres";
@@ -62,13 +63,18 @@ const HeroSection = () => {
                     </span>
                   ))}
                 </div>
-                <button
-                  className="hero-trailer-btn"
-                  onClick={() => handleTrailerOpen(movie)}
-                >
-                  <img src={playIcon} alt="트레일러 재생 버튼" />
-                  <span>TRAILER</span>
-                </button>
+                <div className="hero-buttons">
+                  <button
+                    className="hero-trailer-btn"
+                    onClick={() => handleTrailerOpen(movie)}
+                  >
+                    <img src={playIcon} alt="트레일러 재생 버튼" />
+                    <span>TRAILER</span>
+                  </button>
+                  <Link to={`/movie/${movie.id}`} className="hero-detail-btn">
+                    MORE INFO
+                  </Link>
+                </div>
               </div>
               {isOpen && (
                 <TrailerModal
@@ -76,6 +82,7 @@ const HeroSection = () => {
                   trailer={trailer.url}
                   onClose={handleTrailerClose}
                   display="right"
+                  detailBtn={false}
                 />
               )}
             </div>

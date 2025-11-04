@@ -29,7 +29,7 @@ export default function TrailerModal({
         <div className="trailer-toolbar">
           {detailBtn ? (
             <Link to={`/movie/${id}`}>
-              <button className="trailer-detail">View Details</button>
+              <button className="hero-detail-btn">MORE INFO</button>
             </Link>
           ) : null}
           <button className="trailer-close" onClick={onClose}>

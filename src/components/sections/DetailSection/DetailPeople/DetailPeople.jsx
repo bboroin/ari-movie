@@ -9,7 +9,7 @@ const TABS = [
   { key: "crew", label: "Crew" },
 ];
 
-export default function DetailPeople({ cast = [], crew = [] }) {
+export default function DetailPeople({ anchorId, cast = [], crew = [] }) {
   const [active, setActive] = useState("cast");
 
   const counts = {
@@ -18,7 +18,7 @@ export default function DetailPeople({ cast = [], crew = [] }) {
   };
 
   return (
-    <section className="detail-people section">
+    <section id={anchorId} className="detail-people section">
       <div className="detail-header">
         <div>
           {TABS.map(({ key, label }) => (

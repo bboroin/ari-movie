@@ -16,6 +16,7 @@
   --color-gray-300: #9aa0a6;
 
   /* Backgrounds */
+  --bg: #0f0f0f;
   --bg-overlay: rgba(0, 0, 0, 1);
   --bg-header: linear-gradient(
     to bottom,
@@ -35,6 +36,7 @@
   --z-hero-overlay: 100;
   --z-hero-content: 101;
   --z-trailer-modal: 500;
+  --z-sidenav: 550;
   --z-dropdown: 600;
   --z-header: 1000;
 
@@ -55,7 +57,7 @@ html,
 body {
   font-family: "Pretendard", "Noto Sans KR", sans-serif;
   color: #ffffff;
-  background-color: #0f0f0f;
+  background-color: var(--bg);
 }
 
 a {
