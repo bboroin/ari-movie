@@ -162,6 +162,7 @@
     flex-direction: column;
     gap: 16px;
     padding: 80px 16px 48px;
+    margin-top: 50px;
   }
 
   .detail-hero__poster {
@@ -173,5 +174,15 @@
 
   .detail-hero__content {
     width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detail-hero__title,
+  .detail-hero__tagline,
+  .detail-hero__overview {
+    max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
