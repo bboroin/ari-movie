@@ -25,6 +25,10 @@
   padding-bottom: 30px;
 }
 
+.media-panelwrap .swiper-scrollbar {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .detail-media.section {
     padding: 30px 30px;
@@ -35,6 +39,7 @@
   }
 
   .media-panelwrap .swiper-scrollbar {
+    display: block;
     height: 8px;
     background: var(--bg-pill);
     border-radius: 4px;

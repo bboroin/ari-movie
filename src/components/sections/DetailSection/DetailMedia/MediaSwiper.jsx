@@ -12,25 +12,18 @@ const MediaSwiper = ({ items = [], renderItem, getKey = (_, i) => i }) => {
       <Swiper
         modules={[Navigation, A11y, Scrollbar]}
         scrollbar={{ enabled: true, draggable: true, hide: false }}
+        navigation={{
+          prevEl: '.section-prev[data-nav="media"]',
+          nextEl: '.section-next[data-nav="media"]',
+        }}
         a11y={{ enabled: true }}
         slidesPerView={7}
         slidesPerGroup={7}
         spaceBetween={20}
         breakpoints={{
-          0: {
-            navigation: false,
-            slidesPerView: 2,
-          },
+          0: { slidesPerView: 2 },
           480: { slidesPerView: 3 },
-          768: {
-            slidesPerView: 5,
-            slidesPerGroup: 5,
-            navigation: {
-              prevEl: '.section-prev[data-nav="media"]',
-              nextEl: '.section-next[data-nav="media"]',
-            },
-            scrollbar: false,
-          },
+          768: { slidesPerView: 5, slidesPerGroup: 5 },
           1024: { slidesPerView: 6, slidesPerGroup: 6 },
           1280: { slidesPerView: 7, slidesPerGroup: 7 },
         }}
