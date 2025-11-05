@@ -76,19 +76,19 @@ const HeroSection = () => {
                   </Link>
                 </div>
               </div>
-              {isOpen && (
-                <TrailerModal
-                  id={trailer.id}
-                  trailer={trailer.url}
-                  onClose={handleTrailerClose}
-                  display="right"
-                  detailBtn={false}
-                />
-              )}
             </div>
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {isOpen && (
+        <TrailerModal
+          id={trailer.id}
+          trailer={trailer.url}
+          onClose={handleTrailerClose}
+          detailBtn={false}
+        />
+      )}
     </section>
   );
 };

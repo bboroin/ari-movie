@@ -51,7 +51,6 @@ const MovieDetail = () => {
           id={trailer.id}
           trailer={trailer.url}
           onClose={handleTrailerClose}
-          display="center"
           detailBtn={false}
         />
       )}
