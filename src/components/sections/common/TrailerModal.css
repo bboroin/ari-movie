@@ -5,17 +5,8 @@
   background: rgba(0, 0, 0, 0.7);
   z-index: var(--z-trailer-modal);
   display: flex;
-  align-items: center;
-}
-
-.trailer-modal--center {
   justify-content: center;
-}
-
-.trailer-modal--right {
-  justify-content: flex-end;
-  padding-right: 30px;
-  padding-top: 100px;
+  align-items: center;
 }
 
 .trailer-frame-wrap {

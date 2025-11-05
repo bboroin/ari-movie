@@ -6,11 +6,10 @@ export default function TrailerModal({
   id,
   trailer,
   onClose,
-  display,
   detailBtn = true,
 }) {
   return (
-    <div className={`trailer-modal trailer-modal--${display}`}>
+    <div className="trailer-modal">
       <div className="trailer-frame-wrap">
         {trailer ? (
           <iframe

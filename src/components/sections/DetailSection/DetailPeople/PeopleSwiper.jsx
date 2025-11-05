@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, A11y } from "swiper/modules";
+import { Navigation, A11y, Scrollbar } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 import PersonCard from "./PersonCard";
 
@@ -9,9 +10,10 @@ function PeopleSwiper({ people = [], type }) {
   if (!people?.length) return <p className="empty">표시할 인물이 없습니다.</p>;
 
   return (
-    <div className="section-swiper">
+    <div className="people-swiper section-swiper">
       <Swiper
-        modules={[Navigation, A11y]}
+        modules={[Navigation, A11y, Scrollbar]}
+        scrollbar={{ enabled: true, draggable: true, hide: false }}
         navigation={{
           prevEl: '.section-prev[data-nav="people"]',
           nextEl: '.section-next[data-nav="people"]',
@@ -21,8 +23,8 @@ function PeopleSwiper({ people = [], type }) {
         slidesPerGroup={7}
         spaceBetween={20}
         breakpoints={{
-          0: { slidesPerView: 2, slidesPerGroup: 2 },
-          480: { slidesPerView: 3, slidesPerGroup: 3 },
+          0: { slidesPerView: 2 },
+          480: { slidesPerView: 3 },
           768: { slidesPerView: 5, slidesPerGroup: 5 },
           1024: { slidesPerView: 6, slidesPerGroup: 6 },
           1280: { slidesPerView: 7, slidesPerGroup: 7 },

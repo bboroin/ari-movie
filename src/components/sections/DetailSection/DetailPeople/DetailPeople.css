@@ -56,7 +56,6 @@
 .person-default {
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, #222, #111 60%, #222);
 }
 .person-name {
   margin-top: 8px;
@@ -79,4 +78,33 @@
 .empty {
   color: var(--color-gray-300);
   padding: 24px 0;
+}
+
+.people-panelwrap .swiper {
+  padding-bottom: 30px;
+}
+
+.people-panelwrap .swiper-scrollbar {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .detail-people.section {
+    padding: 30px 30px;
+  }
+
+  .detail-people .section-nav {
+    display: none;
+  }
+
+  .people-panelwrap .swiper-scrollbar {
+    display: block;
+    height: 8px;
+    background: var(--bg-pill);
+    border-radius: 4px;
+  }
+  .people-panelwrap .swiper-scrollbar-drag {
+    background: var(--color-primary);
+    border-radius: 4px;
+  }
 }
