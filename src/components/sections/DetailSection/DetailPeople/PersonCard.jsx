@@ -1,5 +1,6 @@
 const IMG = (path, size = 185) =>
   path ? `https://image.tmdb.org/t/p/w${size}${path}` : null;
+import personDefault from "@assets/person-default.svg";
 
 function PersonCard({ name, sub, imgPath }) {
   const src = IMG(imgPath);
@@ -9,7 +10,11 @@ function PersonCard({ name, sub, imgPath }) {
         {src ? (
           <img src={src} alt={`${name} 프로필`} loading="lazy" />
         ) : (
-          <div className="person-default" />
+          <img
+            src={personDefault}
+            alt="기본 프로필 이미지"
+            className="person-default"
+          />
         )}
       </div>
       <div className="person-name" title={name}>
