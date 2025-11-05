@@ -80,3 +80,27 @@
   color: var(--color-gray-300);
   padding: 24px 0;
 }
+
+.people-panelwrap .swiper {
+  padding-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+  .detail-people.section {
+    padding: 30px 30px;
+  }
+
+  .detail-people .section-nav {
+    display: none;
+  }
+
+  .people-panelwrap .swiper-scrollbar {
+    height: 8px;
+    background: var(--bg-pill);
+    border-radius: 4px;
+  }
+  .people-panelwrap .swiper-scrollbar-drag {
+    background: var(--color-primary);
+    border-radius: 4px;
+  }
+}
