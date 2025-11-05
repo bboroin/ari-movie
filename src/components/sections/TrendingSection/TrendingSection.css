@@ -1,14 +1,13 @@
 .trending-period {
   display: inline-flex;
   gap: 6px;
-  background: var(--bg-pill);
   padding: 4px;
   border-radius: 5px;
   align-self: center;
 }
 .period-btn {
   border: 0;
-  background: transparent;
+  background: var(--bg-pill);
   color: var(--color-gray-100);
   border-radius: 5px;
   padding: 6px 12px;
@@ -21,4 +20,20 @@
 }
 .period-btn:focus-visible {
   outline: 2px solid var(--color-primary);
+}
+
+@media (max-width: 767px) {
+  .trending-period {
+    grid-area: controls;
+    justify-self: center;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    gap: 6px;
+    padding: 4px;
+  }
+  .period-btn {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
 }

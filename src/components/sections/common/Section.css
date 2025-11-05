@@ -131,3 +131,57 @@
   letter-spacing: 0.5px;
   z-index: var(--z-upcoming-dday);
 }
+
+@media (max-width: 1023px) {
+  .section {
+    padding: 50px 60px;
+  }
+  .section-title {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title nav"
+      "controls controls";
+    row-gap: 10px;
+    align-items: center;
+  }
+
+  .section-header--bar {
+    padding-left: 10px;
+    margin-bottom: 4px;
+  }
+  .section-header--bar::before {
+    top: 2px;
+    bottom: 2px;
+    width: 3px;
+  }
+
+  .section-title {
+    grid-area: title;
+    font-size: 22px;
+    line-height: 1.2;
+  }
+  .section-nav {
+    grid-area: nav;
+    display: inline-flex;
+    gap: 6px;
+  }
+
+  .section-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .section {
+    padding: 40px 30px;
+  }
+  .section-swiper .swiper {
+    padding: 2px 0 6px;
+  }
+}
