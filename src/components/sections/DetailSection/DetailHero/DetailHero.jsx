@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import GenreTags from "@/components/sections/common/GenreTags";
 import { formatRuntime, formatDate, pickCertification } from "@utils/format";
 import playIcon from "@assets/icons/play.svg";
 import noPoster from "@assets/poster-default.svg";
@@ -28,8 +29,6 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
   const runtimeText = formatRuntime(runtime);
   const certification = pickCertification(release_dates);
   const dateText = formatDate(release_date);
-
-  const genreNames = genres.map((g) => g.name);
 
   const backdropUrl = backdrop_path
     ? `https://image.tmdb.org/t/p/original${backdrop_path}`
@@ -86,13 +85,7 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
           ) : null}
 
           {/* 장르 */}
-          <div className="hero-tags">
-            {genreNames.map((name) => (
-              <span className="hero-tag" key={name}>
-                {name}
-              </span>
-            ))}
-          </div>
+          <GenreTags genres={genres} />
 
           {/* 개요 */}
           {overview && <p className="detail-hero__overview">{overview}</p>}

@@ -6,16 +6,15 @@ import "swiper/css/pagination";
 import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useHeroMovies } from "@hooks/useHeroMovies";
-import { useGenres } from "@hooks/useGenres";
 import { getBestTrailerUrl } from "@api/videos";
 import "./HeroSection.css";
+import GenreTags from "@/components/sections/common/GenreTags";
 import HeroSkeleton from "@components/sections/skeleton/HeroSkeleton";
 import TrailerModal from "@components/sections/common/TrailerModal";
 import playIcon from "@assets/icons/play.svg";
 
 const HeroSection = () => {
   const { data, loading } = useHeroMovies();
-  const genreMap = useGenres(null);
   const [isOpen, setIsOpen] = useState(false);
   const [trailer, setTrailer] = useState({ url: "", id: null });
   const swiperRef = useRef(null);
@@ -56,13 +55,7 @@ const HeroSection = () => {
               <div className="hero-content">
                 <h2 className="hero-title">{movie.title}</h2>
                 <p className="hero-overview">{movie.overview}</p>
-                <div className="hero-tags">
-                  {movie.genre_ids.map((id) => (
-                    <span key={id} className="hero-tag">
-                      {genreMap?.[id] ?? ""}
-                    </span>
-                  ))}
-                </div>
+                <GenreTags ids={movie.genre_ids} />
                 <div className="hero-buttons">
                   <button
                     className="hero-trailer-btn"
