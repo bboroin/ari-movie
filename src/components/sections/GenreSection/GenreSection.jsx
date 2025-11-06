@@ -1,9 +1,11 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import { useDiscoverByGenre } from "@hooks/useDiscoverByGenre";
+import { useSortedMovies } from "@hooks/useSortedMovies";
 import SectionCard from "@components/sections/common/SectionCard";
 import SectionHeader from "@components/sections/common/SectionHeader";
 import "./GenreSection.css";
 import { getDDay } from "@utils/format";
+import SortControls from "../SearchSection/SortControls";
 
 export default function GenreSection() {
   const { genreId } = useParams();
@@ -11,6 +13,7 @@ export default function GenreSection() {
   const name = sp.get("name") || "";
   const { data, loading } = useDiscoverByGenre(genreId);
   const results = data?.results ?? [];
+  const { sortedResults, sortOption, setSortOption } = useSortedMovies(results);
 
   if (loading) return <p>불러오는 중...</p>;
   if (!results.length) return <p>해당 장르의 영화가 없습니다.</p>;
@@ -31,8 +34,10 @@ export default function GenreSection() {
         hasNav={false}
       />
 
+      <SortControls value={sortOption} onChange={setSortOption} />
+
       <div className="poster-list--grid">
-        {results.map((movie) => (
+        {sortedResults.map((movie) => (
           <SectionCard
             key={movie.id}
             id={movie.id}
