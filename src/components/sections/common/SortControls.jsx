@@ -1,25 +1,23 @@
 import Select from "react-select";
+import { SERVER_SORT_OPTIONS, DEFAULT_SERVER_SORT } from "@utils/sort";
 
-const options = [
-  { value: "date-desc", label: "개봉일 최신순" },
-  { value: "date-asc", label: "개봉일 오래된순" },
-  { value: "vote-desc", label: "평점 높은순" },
-  { value: "vote-asc", label: "평점 낮은순" },
-];
-
-const SortControls = ({ value, onChange }) => {
-  const selectedOption = options.find((opt) => opt.value === value);
+const SortControls = ({ value, onChange, disabled = false }) => {
+  const selected =
+    SERVER_SORT_OPTIONS.find((opt) => opt.value === value) ||
+    SERVER_SORT_OPTIONS.find((opt) => opt.value === DEFAULT_SERVER_SORT);
 
   return (
     <div className="sort-controls">
       <Select
+        inputId="server-sort"
         unstyled
         classNamePrefix="rs"
         className="sort-select"
-        value={selectedOption}
-        onChange={(option) => onChange(option.value)}
-        options={options}
         isSearchable={false}
+        isDisabled={disabled}
+        value={selected}
+        options={SERVER_SORT_OPTIONS}
+        onChange={(opt) => onChange(opt.value)}
       />
     </div>
   );

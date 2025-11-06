@@ -1,30 +1,51 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useDiscoverByGenre } from "@hooks/useDiscoverByGenre";
-import { useSortedMovies } from "@hooks/useSortedMovies";
 import SectionCard from "@components/sections/common/SectionCard";
 import SectionHeader from "@components/sections/common/SectionHeader";
 import Pagination from "@components/sections/common/Pagination";
+import SortControls from "@components/sections/common/SortControls";
+import { DEFAULT_SERVER_SORT } from "@utils/sort";
 import "./GenreSection.css";
 import { getDDay } from "@utils/format";
-import SortControls from "@components/sections/common/SortControls";
 
 export default function GenreSection() {
   const { genreId } = useParams();
   const [params, setParams] = useSearchParams();
+
   const name = params.get("name") || "";
   const page = Math.max(1, Number(params.get("page") || 1));
+  const sort = params.get("sort") || DEFAULT_SERVER_SORT;
 
-  const { data, loading, error } = useDiscoverByGenre(genreId, page);
+  // 장르가 바뀌면 page=1, sort 기본값 보장
+  useEffect(() => {
+    setParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set("name", name);
+      next.set("page", "1");
+      if (!next.get("sort")) next.set("sort", DEFAULT_SERVER_SORT);
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [genreId]);
+
+  const { data, loading, error } = useDiscoverByGenre(genreId, page, sort);
   const results = useMemo(() => data?.results ?? [], [data?.results]);
-  const { sortedResults, sortOption, setSortOption } = useSortedMovies(results);
-
   const hasResults = !loading && !error && results.length > 0;
 
   const handlePageChange = (nextPage) => {
     const next = new URLSearchParams(params);
     next.set("name", name);
+    next.set("sort", sort);
     next.set("page", String(nextPage));
+    setParams(next);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const handleSortChange = (nextSort) => {
+    const next = new URLSearchParams(params);
+    next.set("sort", nextSort);
+    next.set("page", "1");
     setParams(next);
   };
 
@@ -43,13 +64,14 @@ export default function GenreSection() {
             개의 영화가 존재합니다.
           </>
         }
-        pageInfo={`${data.page} / ${data.total_pages} 페이지`}
+        pageInfo={`${data.page} / ${Math.min(
+          data.total_pages ?? 1,
+          500
+        )} 페이지`}
         hasNav={false}
       />
 
-      {hasResults && (
-        <SortControls value={sortOption} onChange={setSortOption} />
-      )}
+      {hasResults && <SortControls value={sort} onChange={handleSortChange} />}
 
       {/* 상태별 UI */}
       {error && (
@@ -64,7 +86,7 @@ export default function GenreSection() {
       {hasResults && (
         <>
           <div className="poster-list--grid">
-            {sortedResults.map((movie) => (
+            {results.map((movie) => (
               <SectionCard
                 key={movie.id}
                 id={movie.id}

@@ -1,6 +1,7 @@
 import { get, REGION } from "./client";
 import { getBestTrailerUrl } from "./videos";
 import { getToday, getMonthsAgo } from "@utils/format";
+import { DEFAULT_SERVER_SORT } from "@utils/sort";
 
 // Hero Movies
 export async function fetchHeroMovies() {
@@ -114,10 +115,25 @@ export async function fetchGenreMap() {
 }
 
 // Discover By Genre
-export async function discoverByGenre(genreId, page = 1) {
-  return get("/discover/movie", {
+export async function discoverByGenre(
+  genreId,
+  page = 1,
+  sortBy = DEFAULT_SERVER_SORT
+) {
+  const today = getToday();
+
+  const params = {
     with_genres: genreId,
     include_adult: false,
     page,
-  });
+    sort_by: sortBy,
+    "release_date.lte": today, // 개봉된 영화만
+  };
+
+  // 평점순 정렬일 때는 최소 투표 수 제한
+  if (sortBy.startsWith("vote_average.")) {
+    params["vote_count.gte"] = 100;
+  }
+
+  return get("/discover/movie", params);
 }

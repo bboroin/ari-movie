@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { discoverByGenre } from "@api/movies";
+import { DEFAULT_SERVER_SORT } from "@utils/sort";
 
-export function useDiscoverByGenre(genreId, page = 1) {
+export function useDiscoverByGenre(
+  genreId,
+  page = 1,
+  sortBy = DEFAULT_SERVER_SORT
+) {
   const [data, setData] = useState({
     results: [],
     page: 1,
@@ -21,7 +26,7 @@ export function useDiscoverByGenre(genreId, page = 1) {
       setError("");
 
       try {
-        const res = await discoverByGenre(genreId, page);
+        const res = await discoverByGenre(genreId, page, sortBy);
         if (!ignore) setData(res);
       } catch (err) {
         console.error("discoverByGenre failed:", err);
@@ -44,7 +49,7 @@ export function useDiscoverByGenre(genreId, page = 1) {
     return () => {
       ignore = true;
     };
-  }, [genreId, page]);
+  }, [genreId, page, sortBy]);
 
   return { data, loading, error };
 }

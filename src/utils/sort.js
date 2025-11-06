@@ -8,3 +8,13 @@ export function sortCrew(crew = []) {
     return (a.department || "").localeCompare(b.department || "");
   });
 }
+
+export const SERVER_SORT_OPTIONS = [
+  { value: "popularity.desc", label: "인기순" },
+  { value: "release_date.desc", label: "개봉일 최신순" },
+  { value: "release_date.asc", label: "개봉일 오래된순" },
+  { value: "vote_average.desc", label: "평점 높은순" },
+  { value: "vote_average.asc", label: "평점 낮은순" },
+];
+
+export const DEFAULT_SERVER_SORT = "popularity.desc";
