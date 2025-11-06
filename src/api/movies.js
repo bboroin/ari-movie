@@ -112,3 +112,12 @@ export async function fetchGenreMap() {
   const data = await get("/genre/movie/list", { language: "ko" });
   return Object.fromEntries((data.genres || []).map((g) => [g.id, g.name]));
 }
+
+// Discover By Genre
+export async function discoverByGenre(genreId, page = 1) {
+  return get("/discover/movie", {
+    with_genres: genreId,
+    include_adult: false,
+    page,
+  });
+}

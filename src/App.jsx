@@ -5,6 +5,7 @@ import Home from "@pages/Home";
 import SearchResult from "@pages/SearchResult";
 import MovieDetail from "@pages/MovieDetail";
 import ScrollToTop from "@components/sections/common/ScrollToTop";
+import GenreList from "./pages/GenreList";
 import "./App.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/search" element={<SearchResult />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
+            <Route path="/genre/:genreId" element={<GenreList />} />
           </Routes>
         </main>
         <Footer />
