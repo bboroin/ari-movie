@@ -1,5 +1,4 @@
 import Select from "react-select";
-import "./SearchSection.css";
 
 const options = [
   { value: "date-desc", label: "개봉일 최신순" },

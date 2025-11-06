@@ -7,7 +7,7 @@ import SectionHeader from "@components/sections/common/SectionHeader";
 import Pagination from "@components/sections/common/Pagination";
 import "./GenreSection.css";
 import { getDDay } from "@utils/format";
-import SortControls from "../SearchSection/SortControls";
+import SortControls from "@components/sections/common/SortControls";
 
 export default function GenreSection() {
   const { genreId } = useParams();

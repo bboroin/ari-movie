@@ -9,7 +9,7 @@ export function useSearchMovie(query, page = 1) {
     total_pages: 0,
     total_results: 0,
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   // 입력값을 디바운스로 제어

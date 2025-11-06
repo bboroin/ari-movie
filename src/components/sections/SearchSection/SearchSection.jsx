@@ -5,7 +5,7 @@ import { useSortedMovies } from "@hooks/useSortedMovies";
 import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
 import Pagination from "@components/sections/common/Pagination";
-import SortControls from "./SortControls";
+import SortControls from "@components/sections/common/SortControls";
 import "./SearchSection.css";
 import SearchSkeleton from "@components/sections/skeleton/SearchSkeleton";
 import { getDDay } from "@utils/format";
@@ -90,7 +90,7 @@ const SearchSection = () => {
 
           <Pagination
             page={data.page}
-            totalPages={data.total_pages}
+            totalPages={Math.min(data.total_pages ?? 1, 500)}
             onChange={handlePageChange}
           />
         </>
