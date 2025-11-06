@@ -1,22 +1,28 @@
 import Select from "react-select";
-import { SERVER_SORT_OPTIONS, DEFAULT_SERVER_SORT } from "@utils/sort";
 
-const SortControls = ({ value, onChange, disabled = false }) => {
+const SortControls = ({
+  value,
+  onChange,
+  options,
+  defaultValue,
+  disabled = false,
+}) => {
   const selected =
-    SERVER_SORT_OPTIONS.find((opt) => opt.value === value) ||
-    SERVER_SORT_OPTIONS.find((opt) => opt.value === DEFAULT_SERVER_SORT);
+    options.find((opt) => opt.value === value) ||
+    options.find((opt) => opt.value === defaultValue) ||
+    options[0];
 
   return (
     <div className="sort-controls">
       <Select
-        inputId="server-sort"
+        inputId="sort-select"
         unstyled
         classNamePrefix="rs"
         className="sort-select"
         isSearchable={false}
         isDisabled={disabled}
         value={selected}
-        options={SERVER_SORT_OPTIONS}
+        options={options}
         onChange={(opt) => onChange(opt.value)}
       />
     </div>

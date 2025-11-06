@@ -5,7 +5,7 @@ import SectionCard from "@components/sections/common/SectionCard";
 import SectionHeader from "@components/sections/common/SectionHeader";
 import Pagination from "@components/sections/common/Pagination";
 import SortControls from "@components/sections/common/SortControls";
-import { DEFAULT_SERVER_SORT } from "@utils/sort";
+import { SERVER_SORT_OPTIONS, DEFAULT_SERVER_SORT } from "@utils/sort";
 import "./GenreSection.css";
 import { getDDay } from "@utils/format";
 
@@ -39,7 +39,6 @@ export default function GenreSection() {
     next.set("sort", sort);
     next.set("page", String(nextPage));
     setParams(next);
-    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleSortChange = (nextSort) => {
@@ -71,7 +70,14 @@ export default function GenreSection() {
         hasNav={false}
       />
 
-      {hasResults && <SortControls value={sort} onChange={handleSortChange} />}
+      {hasResults && (
+        <SortControls
+          value={sort}
+          onChange={handleSortChange}
+          options={SERVER_SORT_OPTIONS}
+          defaultValue={DEFAULT_SERVER_SORT}
+        />
+      )}
 
       {/* 상태별 UI */}
       {error && (

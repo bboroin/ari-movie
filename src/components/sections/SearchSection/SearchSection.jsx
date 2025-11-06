@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useSearchMovie } from "@hooks/useSearchMovie";
 import { useSortedMovies } from "@hooks/useSortedMovies";
@@ -6,6 +6,7 @@ import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
 import Pagination from "@components/sections/common/Pagination";
 import SortControls from "@components/sections/common/SortControls";
+import { CLIENT_SORT_OPTIONS, DEFAULT_CLIENT_SORT } from "@utils/sort";
 import "./SearchSection.css";
 import SearchSkeleton from "@components/sections/skeleton/SearchSkeleton";
 import { getDDay } from "@utils/format";
@@ -14,15 +15,34 @@ const SearchSection = () => {
   const [params, setParams] = useSearchParams();
   const query = params.get("q") ?? "";
   const page = Math.max(1, Number(params.get("page") || 1));
+  const sort = params.get("sort") || DEFAULT_CLIENT_SORT;
 
   const { data, loading, error } = useSearchMovie(query, page);
   const results = useMemo(() => data.results ?? [], [data.results]);
   const { sortedResults, sortOption, setSortOption } = useSortedMovies(results);
 
+  useEffect(() => {
+    if (!sort) {
+      const next = new URLSearchParams(params);
+      next.set("sort", DEFAULT_CLIENT_SORT);
+      setParams(next, { replace: true });
+    } else {
+      setSortOption(sort);
+    }
+  }, [sort, params, setParams, setSortOption]);
+
   const handlePageChange = (nextPage) => {
     const next = new URLSearchParams(params);
     next.set("q", query);
+    next.set("sort", sort);
     next.set("page", String(nextPage));
+    setParams(next);
+  };
+
+  const handleSortChange = (nextSort) => {
+    const next = new URLSearchParams(params);
+    next.set("sort", nextSort);
+    next.set("page", "1");
     setParams(next);
   };
 
@@ -48,7 +68,12 @@ const SearchSection = () => {
       />
 
       {hasResults && (
-        <SortControls value={sortOption} onChange={setSortOption} />
+        <SortControls
+          value={sortOption}
+          onChange={handleSortChange}
+          options={CLIENT_SORT_OPTIONS}
+          defaultValue={DEFAULT_CLIENT_SORT}
+        />
       )}
 
       {/* 상태별 UI */}
