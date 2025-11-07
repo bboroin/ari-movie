@@ -1,39 +1,41 @@
 import { useMemo, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { useSearchMovie } from "@hooks/useSearchMovie";
-import { useSortedMovies } from "@hooks/useSortedMovies";
-import SectionHeader from "@components/sections/common/SectionHeader";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useDiscoverByGenre } from "@hooks/useDiscoverByGenre";
 import SectionCard from "@components/sections/common/SectionCard";
+import SectionHeader from "@components/sections/common/SectionHeader";
 import Pagination from "@components/sections/common/Pagination";
 import SortControls from "@components/sections/common/SortControls";
-import { CLIENT_SORT_OPTIONS, DEFAULT_CLIENT_SORT } from "@utils/sort";
-import "./SearchSection.css";
-import SearchSkeleton from "@components/sections/skeleton/SearchSkeleton";
+import { SERVER_SORT_OPTIONS, DEFAULT_SERVER_SORT } from "@utils/sort";
+import "./GenreSection.css";
 import { getDDay } from "@utils/format";
 
-const SearchSection = () => {
+export default function GenreSection() {
+  const { genreId } = useParams();
   const [params, setParams] = useSearchParams();
-  const query = params.get("q") ?? "";
+
+  const name = params.get("name") || "";
   const page = Math.max(1, Number(params.get("page") || 1));
-  const sort = params.get("sort") || DEFAULT_CLIENT_SORT;
+  const sort = params.get("sort") || DEFAULT_SERVER_SORT;
 
-  const { data, loading, error } = useSearchMovie(query, page);
-  const results = useMemo(() => data.results ?? [], [data.results]);
-  const { sortedResults, sortOption, setSortOption } = useSortedMovies(results);
-
+  // 장르가 바뀌면 page=1, sort 기본값 보장
   useEffect(() => {
-    if (!sort) {
-      const next = new URLSearchParams(params);
-      next.set("sort", DEFAULT_CLIENT_SORT);
-      setParams(next, { replace: true });
-    } else {
-      setSortOption(sort);
-    }
-  }, [sort, params, setParams, setSortOption]);
+    setParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set("name", name);
+      next.set("page", "1");
+      if (!next.get("sort")) next.set("sort", DEFAULT_SERVER_SORT);
+      return next;
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [genreId]);
+
+  const { data, loading, error } = useDiscoverByGenre(genreId, page, sort);
+  const results = useMemo(() => data?.results ?? [], [data?.results]);
+  const hasResults = !loading && !error && results.length > 0;
 
   const handlePageChange = (nextPage) => {
     const next = new URLSearchParams(params);
-    next.set("q", query);
+    next.set("name", name);
     next.set("sort", sort);
     next.set("page", String(nextPage));
     setParams(next);
@@ -46,17 +48,12 @@ const SearchSection = () => {
     setParams(next);
   };
 
-  const hasResults = !loading && !error && results.length > 0;
-
-  if (loading) {
-    const skeletonCount = Math.min(data?.results?.length, 20);
-    return <SearchSkeleton count={skeletonCount} />;
-  }
+  if (loading) return <p>불러오는 중...</p>;
 
   return (
-    <section className="section search">
+    <section className="genre section">
       <SectionHeader
-        title={`"${query}" 관련 영화`}
+        title={`"${name}" 장르 영화`}
         desc={
           <>
             총{" "}
@@ -65,19 +62,22 @@ const SearchSection = () => {
                 ? "10,000+"
                 : data.total_results?.toLocaleString?.() ?? 0}
             </span>
-            개의 영화가 검색되었습니다.
+            개의 영화가 존재합니다.
           </>
         }
-        pageInfo={`${page} / ${data.total_pages} 페이지`}
+        pageInfo={`${data.page} / ${Math.min(
+          data.total_pages ?? 1,
+          500
+        )} 페이지`}
         hasNav={false}
       />
 
       {hasResults && (
         <SortControls
-          value={sortOption}
+          value={sort}
           onChange={handleSortChange}
-          options={CLIENT_SORT_OPTIONS}
-          defaultValue={DEFAULT_CLIENT_SORT}
+          options={SERVER_SORT_OPTIONS}
+          defaultValue={DEFAULT_SERVER_SORT}
         />
       )}
 
@@ -88,14 +88,13 @@ const SearchSection = () => {
         </p>
       )}
       {!error && results.length === 0 && (
-        <p className="section-desc">검색 결과가 없습니다.</p>
+        <p className="section-desc">해당 장르의 영화가 존재하지 않습니다.</p>
       )}
 
-      {/* 검색 결과 */}
       {hasResults && (
         <>
           <div className="poster-list--grid">
-            {sortedResults.map((movie) => (
+            {results.map((movie) => (
               <SectionCard
                 key={movie.id}
                 id={movie.id}
@@ -127,6 +126,4 @@ const SearchSection = () => {
       )}
     </section>
   );
-};
-
-export default SearchSection;
+}

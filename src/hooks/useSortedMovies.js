@@ -7,6 +7,8 @@ export const useSortedMovies = (results) => {
     const sorted = [...results];
 
     switch (sortOption) {
+      case "popularity-desc":
+        return sorted.sort((a, b) => b.popularity - a.popularity);
       case "date-desc":
         return sorted.sort(
           (a, b) => new Date(b.release_date) - new Date(a.release_date)

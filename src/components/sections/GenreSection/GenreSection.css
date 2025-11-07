@@ -1,0 +1,15 @@
+.section.genre {
+  margin-top: 100px;
+}
+
+@media (max-width: 767px) {
+  .genre .section-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .genre .section-desc,
+  .genre .section-page {
+    width: 100%;
+  }
+}
