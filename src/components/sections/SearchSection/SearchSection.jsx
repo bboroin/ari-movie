@@ -59,8 +59,13 @@ const SearchSection = () => {
         title={`"${query}" 관련 영화`}
         desc={
           <>
-            총 <span className="highlight">{data.total_results}</span>개의
-            영화가 검색되었습니다.
+            총{" "}
+            <span className="highlight">
+              {data.total_results > 10000
+                ? "10,000+"
+                : data.total_results?.toLocaleString?.() ?? 0}
+            </span>
+            개의 영화가 검색되었습니다.
           </>
         }
         pageInfo={`${page} / ${data.total_pages} 페이지`}

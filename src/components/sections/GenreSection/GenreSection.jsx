@@ -58,7 +58,9 @@ export default function GenreSection() {
           <>
             총{" "}
             <span className="highlight">
-              {data.total_results?.toLocaleString?.() ?? 0}
+              {data.total_results > 10000
+                ? "10,000+"
+                : data.total_results?.toLocaleString?.() ?? 0}
             </span>
             개의 영화가 존재합니다.
           </>
