@@ -1,41 +1,72 @@
 import { useMemo, useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
-import { useDiscoverByGenre } from "@hooks/useDiscoverByGenre";
+import { useDiscoverByGenres } from "@hooks/useDiscoverByGenres";
 import SectionCard from "@components/sections/common/SectionCard";
 import SectionHeader from "@components/sections/common/SectionHeader";
 import Pagination from "@components/sections/common/Pagination";
 import SortControls from "@components/sections/common/SortControls";
+import GenreFilterBar from "./GenreFilterBar";
 import { SERVER_SORT_OPTIONS, DEFAULT_SERVER_SORT } from "@utils/sort";
 import "./GenreSection.css";
 import { getDDay } from "@utils/format";
+import {
+  parseGenres,
+  writeGenres,
+  toggleGenreParam,
+  clearGenresParam,
+} from "@utils/genresQuery";
+import { useGenres } from "@hooks/useGenres";
 
 export default function GenreSection() {
   const { genreId } = useParams();
   const [params, setParams] = useSearchParams();
+  const genresMap = useGenres();
 
-  const name = params.get("name") || "";
   const page = Math.max(1, Number(params.get("page") || 1));
   const sort = params.get("sort") || DEFAULT_SERVER_SORT;
 
-  // 장르가 바뀌면 page=1, sort 기본값 보장
+  const selectedIds = parseGenres(params);
+
   useEffect(() => {
-    setParams((prev) => {
-      const next = new URLSearchParams(prev);
-      next.set("name", name);
-      next.set("page", "1");
-      if (!next.get("sort")) next.set("sort", DEFAULT_SERVER_SORT);
-      return next;
-    });
+    if (!genreId) return;
+    if (!selectedIds.includes(String(genreId))) {
+      const next = writeGenres(params, [...selectedIds, String(genreId)]);
+      setParams(next);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [genreId]);
 
-  const { data, loading, error } = useDiscoverByGenre(genreId, page, sort);
+  const { data, loading, error } = useDiscoverByGenres(
+    selectedIds,
+    page,
+    sort,
+    "and"
+  );
   const results = useMemo(() => data?.results ?? [], [data?.results]);
-  const hasResults = !loading && !error && results.length > 0;
+  const hasResults =
+    selectedIds.length > 0 && !loading && !error && results.length > 0;
 
+  const selectedNames = useMemo(() => {
+    return selectedIds
+      .map((id) => (genresMap ?? {})[String(id)])
+      .filter(Boolean);
+  }, [selectedIds, genresMap]);
+
+  const titleText = useMemo(() => {
+    if (selectedNames.length === 0) return "장르를 선택해 주세요";
+    // 4개 이상이면 요약 표시
+    const MAX = 3;
+    if (selectedNames.length > MAX) {
+      return `${selectedNames.slice(0, MAX).join(" · ")} 외 ${
+        selectedNames.length - MAX
+      }개`;
+    }
+    return selectedNames.join(" · ");
+  }, [selectedNames]);
+
+  // 페이지/정렬 변경
   const handlePageChange = (nextPage) => {
     const next = new URLSearchParams(params);
-    next.set("name", name);
     next.set("sort", sort);
     next.set("page", String(nextPage));
     setParams(next);
@@ -48,28 +79,49 @@ export default function GenreSection() {
     setParams(next);
   };
 
+  // 장르 토글/초기화
+  const handleToggleGenre = (id) => setParams(toggleGenreParam(params, id));
+  const handleClear = () => {
+    const next = new URLSearchParams();
+    next.set("page", "1");
+    next.set("sort", DEFAULT_SERVER_SORT);
+    setParams(next);
+  };
+
   if (loading) return <p>불러오는 중...</p>;
 
   return (
     <section className="genre section">
       <SectionHeader
-        title={`"${name}" 장르 영화`}
+        title={titleText}
         desc={
-          <>
-            총{" "}
-            <span className="highlight">
-              {data.total_results > 10000
-                ? "10,000+"
-                : data.total_results?.toLocaleString?.() ?? 0}
-            </span>
-            개의 영화가 존재합니다.
-          </>
+          selectedIds.length > 0 ? (
+            <>
+              총{" "}
+              <span className="highlight">
+                {data.total_results > 10000
+                  ? "10,000+"
+                  : data.total_results?.toLocaleString?.() ?? 0}
+              </span>
+              개의 영화가 존재합니다.
+            </>
+          ) : (
+            <>장르를 선택하면 영화가 표시됩니다.</>
+          )
         }
-        pageInfo={`${data.page} / ${Math.min(
-          data.total_pages ?? 1,
-          500
-        )} 페이지`}
+        pageInfo={
+          hasResults
+            ? `${data.page} / ${Math.min(data.total_pages ?? 1, 500)} 페이지`
+            : undefined
+        }
         hasNav={false}
+      />
+
+      {/* 장르 필터 바 */}
+      <GenreFilterBar
+        selectedIds={selectedIds}
+        onToggle={handleToggleGenre}
+        onClear={handleClear}
       />
 
       {hasResults && (
@@ -87,8 +139,8 @@ export default function GenreSection() {
           {error}
         </p>
       )}
-      {!error && results.length === 0 && (
-        <p className="section-desc">해당 장르의 영화가 존재하지 않습니다.</p>
+      {!error && selectedIds.length > 0 && results.length === 0 && (
+        <p className="section-desc">해당 조건의 영화가 존재하지 않습니다.</p>
       )}
 
       {hasResults && (
