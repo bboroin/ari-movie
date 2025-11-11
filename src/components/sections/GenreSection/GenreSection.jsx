@@ -9,12 +9,7 @@ import GenreFilterBar from "./GenreFilterBar";
 import { SERVER_SORT_OPTIONS, DEFAULT_SERVER_SORT } from "@utils/sort";
 import "./GenreSection.css";
 import { getDDay } from "@utils/format";
-import {
-  parseGenres,
-  writeGenres,
-  toggleGenreParam,
-  clearGenresParam,
-} from "@utils/genresQuery";
+import { parseGenres, writeGenres, toggleGenreParam } from "@utils/genresQuery";
 import { useGenres } from "@hooks/useGenres";
 
 export default function GenreSection() {

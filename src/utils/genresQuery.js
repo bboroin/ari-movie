@@ -18,10 +18,3 @@ export function toggleGenreParam(params, id) {
   set.has(k) ? set.delete(k) : set.add(k);
   return writeGenres(params, Array.from(set));
 }
-
-export function clearGenresParam(params) {
-  const next = new URLSearchParams(params);
-  next.delete("genres");
-  next.set("page", "1");
-  return next;
-}
