@@ -20,7 +20,7 @@ export default function GenreFilterBar({
             <button
               key={g.id}
               type="button"
-              className={`tag ${active ? "tag--active" : ""}`}
+              className={`hero-tag  ${active ? "tag--active" : ""}`}
               onClick={() => onToggle(String(g.id))}
               aria-pressed={active}
             >
