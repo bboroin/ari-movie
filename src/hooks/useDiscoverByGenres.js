@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { discoverByGenre } from "@api/movies";
+import { discoverByGenres } from "@api/genres";
 import { DEFAULT_SERVER_SORT } from "@utils/sort";
 
-export function useDiscoverByGenre(
-  genreId,
+export function useDiscoverByGenres(
+  genres, // 단일 id 또는 배열
   page = 1,
   sortBy = DEFAULT_SERVER_SORT
 ) {
@@ -17,7 +17,7 @@ export function useDiscoverByGenre(
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!genreId) return;
+    if (!genres || (Array.isArray(genres) && genres.length === 0)) return;
 
     let ignore = false;
 
@@ -26,7 +26,7 @@ export function useDiscoverByGenre(
       setError("");
 
       try {
-        const res = await discoverByGenre(genreId, page, sortBy);
+        const res = await discoverByGenres(genres, page, sortBy);
         if (!ignore) setData(res);
       } catch (err) {
         console.error("discoverByGenre failed:", err);
@@ -49,7 +49,11 @@ export function useDiscoverByGenre(
     return () => {
       ignore = true;
     };
-  }, [genreId, page, sortBy]);
+  }, [
+    Array.isArray(genres) ? genres.join(",") : genres, // 배열이면 문자열로 변환해 의존성 추적
+    page,
+    sortBy,
+  ]);
 
   return { data, loading, error };
 }
