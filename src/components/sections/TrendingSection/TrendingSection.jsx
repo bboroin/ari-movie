@@ -11,8 +11,6 @@ import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
 import { formatRuntime } from "@utils/format";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
-import vote from "@assets/icons/vote.svg";
-import runtime from "@assets/icons/runtime.svg";
 
 const TrendingSection = ({ id }) => {
   const [period, setPeriod] = useState("day");
@@ -73,12 +71,12 @@ const TrendingSection = ({ id }) => {
                 title={movie.title}
                 meta={[
                   {
-                    icon: runtime,
+                    icon: "/src/assets/icons/runtime.svg",
                     text: formatRuntime(movie.runtime),
                     alt: "런타임",
                   },
                   {
-                    icon: vote,
+                    icon: "/src/assets/icons/vote.svg",
                     text: (movie.vote_average ?? 0).toFixed(1),
                     alt: "평점",
                   },

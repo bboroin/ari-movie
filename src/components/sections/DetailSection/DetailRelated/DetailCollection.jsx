@@ -8,8 +8,6 @@ import SectionCard from "@components/sections/common/SectionCard";
 import { useCollectionMovies } from "@/hooks/useCollectionMovies";
 import { getDDay } from "@utils/format";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
-import release from "@assets/icons/release.svg";
-import vote from "@assets/icons/vote.svg";
 
 const DetailCollection = ({ anchorId, movieId }) => {
   const { collection, parts, loading } = useCollectionMovies(movieId);
@@ -73,9 +71,13 @@ const DetailCollection = ({ anchorId, movieId }) => {
                 title={movie.title}
                 badge={movie.release_date ? getDDay(movie.release_date) : null}
                 meta={[
-                  { icon: release, text: movie.release_date, alt: "개봉일" },
                   {
-                    icon: vote,
+                    icon: "/src/assets/icons/release.svg",
+                    text: movie.release_date,
+                    alt: "개봉일",
+                  },
+                  {
+                    icon: "/src/assets/icons/vote.svg",
                     text: (movie.vote_average ?? 0).toFixed(1),
                     alt: "평점",
                   },

@@ -10,9 +10,6 @@ import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
 
-import release from "@assets/icons/release.svg";
-import popularity from "@assets/icons/popularity.svg";
-
 const UpcomingSection = ({ id }) => {
   const { data, loading } = useUpcomingMovies();
   if (loading) return <SwiperSkeleton count={5} />;
@@ -54,9 +51,13 @@ const UpcomingSection = ({ id }) => {
                 title={movie.title}
                 badge={movie.release_date ? getDDay(movie.release_date) : null}
                 meta={[
-                  { icon: release, text: movie.release_date, alt: "개봉일" },
                   {
-                    icon: popularity,
+                    icon: "/src/assets/icons/release.svg",
+                    text: movie.release_date,
+                    alt: "개봉일",
+                  },
+                  {
+                    icon: "/src/assets/icons/popularity.svg",
                     text: Math.round(movie.popularity),
                     alt: "인기도",
                   },
