@@ -8,6 +8,7 @@ import SectionCard from "@components/sections/common/SectionCard";
 import { useRecommendationMovies } from "@hooks/useRecommendationMovies";
 import { getDDay } from "@utils/format";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
+
 import release from "@assets/icons/release.svg";
 import vote from "@assets/icons/vote.svg";
 

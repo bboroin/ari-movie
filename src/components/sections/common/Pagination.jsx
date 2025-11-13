@@ -28,7 +28,7 @@ const Pagination = ({ page, totalPages, onChange }) => {
   };
 
   return (
-    <nav className="pagination" aria-label="검색 결과 페이지네이션">
+    <nav className="pagination" aria-label="결과 페이지네이션">
       <button
         className="pagination-btn"
         onClick={() => go(page - 1)}

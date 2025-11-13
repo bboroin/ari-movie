@@ -11,6 +11,7 @@ import SectionHeader from "@components/sections/common/SectionHeader";
 import SectionCard from "@components/sections/common/SectionCard";
 import { formatRuntime } from "@utils/format";
 import SwiperSkeleton from "@components/sections/skeleton/SwiperSkeleton";
+
 import vote from "@assets/icons/vote.svg";
 import runtime from "@assets/icons/runtime.svg";
 

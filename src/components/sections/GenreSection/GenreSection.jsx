@@ -12,6 +12,9 @@ import { getDDay } from "@utils/format";
 import { parseGenres, writeGenres, toggleGenreParam } from "@utils/genresQuery";
 import { useGenres } from "@hooks/useGenres";
 
+import release from "@assets/icons/release.svg";
+import vote from "@assets/icons/vote.svg";
+
 export default function GenreSection() {
   const { genreId } = useParams();
   const [params, setParams] = useSearchParams();
@@ -86,7 +89,7 @@ export default function GenreSection() {
   if (loading) return <p>불러오는 중...</p>;
 
   return (
-    <section className="genre section">
+    <section className="section list">
       <SectionHeader
         title={titleText}
         desc={
@@ -149,13 +152,9 @@ export default function GenreSection() {
                 title={movie.title}
                 badge={movie.release_date ? getDDay(movie.release_date) : null}
                 meta={[
+                  { icon: release, text: movie.release_date, alt: "개봉일" },
                   {
-                    icon: "/src/assets/icons/release.svg",
-                    text: movie.release_date || "-",
-                    alt: "개봉일",
-                  },
-                  {
-                    icon: "/src/assets/icons/vote.svg",
+                    icon: vote,
                     text: (movie.vote_average ?? 0).toFixed(1),
                     alt: "평점",
                   },

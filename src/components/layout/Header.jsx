@@ -32,9 +32,9 @@ const Header = () => {
           <img src={searchIcon} alt="검색 버튼" />
         </button>
       </form>
-      <button className="user-btn">
+      <Link to="/mypage" className="user-btn">
         <img src={avatarIcon} alt="사용자 프로필" />
-      </button>
+      </Link>
     </div>
   );
 };
