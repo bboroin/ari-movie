@@ -7,6 +7,7 @@ import MovieDetail from "@pages/MovieDetail";
 import ScrollToTop from "@components/sections/common/ScrollToTop";
 import GenreList from "./pages/GenreList";
 import "./App.css";
+import MyPage from "./pages/MyPage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/search" element={<SearchResult />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
             <Route path="/genre/:genreId" element={<GenreList />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </main>
         <Footer />
