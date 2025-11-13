@@ -4,6 +4,9 @@ import SectionCard from "@components/sections/common/SectionCard";
 import SectionHeader from "@/components/sections/common/SectionHeader";
 import Pagination from "@/components/sections/common/Pagination";
 
+import release from "@assets/icons/release.svg";
+import vote from "@assets/icons/vote.svg";
+
 const PAGE_SIZE = 20;
 
 const MyPage = () => {
@@ -44,13 +47,9 @@ const MyPage = () => {
             posterPath={movie.poster_path}
             title={movie.title}
             meta={[
+              { icon: release, text: movie.release_date, alt: "개봉일" },
               {
-                icon: "/src/assets/icons/release.svg",
-                text: movie.release_date || "-",
-                alt: "개봉일",
-              },
-              {
-                icon: "/src/assets/icons/vote.svg",
+                icon: vote,
                 text: (movie.vote_average ?? 0).toFixed(1),
                 alt: "평점",
               },

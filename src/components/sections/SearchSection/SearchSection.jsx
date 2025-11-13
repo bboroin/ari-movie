@@ -11,6 +11,9 @@ import "./SearchSection.css";
 import SearchSkeleton from "@components/sections/skeleton/SearchSkeleton";
 import { getDDay } from "@utils/format";
 
+import release from "@assets/icons/release.svg";
+import vote from "@assets/icons/vote.svg";
+
 const SearchSection = () => {
   const [params, setParams] = useSearchParams();
   const query = params.get("q") ?? "";
@@ -103,13 +106,9 @@ const SearchSection = () => {
                 title={movie.title}
                 badge={movie.release_date ? getDDay(movie.release_date) : null}
                 meta={[
+                  { icon: release, text: movie.release_date, alt: "개봉일" },
                   {
-                    icon: "/src/assets/icons/release.svg",
-                    text: movie.release_date || "-",
-                    alt: "개봉일",
-                  },
-                  {
-                    icon: "/src/assets/icons/vote.svg",
+                    icon: vote,
                     text: (movie.vote_average ?? 0).toFixed(1),
                     alt: "평점",
                   },
