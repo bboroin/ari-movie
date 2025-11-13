@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import GenreTags from "@/components/sections/common/GenreTags";
 import { formatRuntime, formatDate, pickCertification } from "@utils/format";
+import { toggleFavoriteMovie, isFavoriteMovie } from "@utils/favorites";
 import playIcon from "@assets/icons/play.svg";
 import noPoster from "@assets/poster-default.svg";
 import quoteOpen from "@assets/icons/quote-open.png";
@@ -11,6 +12,13 @@ import "./DetailHero.css";
 
 const DetailHero = ({ detail, onPlayTrailer }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const movieId = detail?.id;
+
+  useEffect(() => {
+    if (!movieId) return;
+    setIsFavorite(isFavoriteMovie(movieId));
+  }, [movieId]);
+
   if (!detail) return null;
 
   const {
@@ -37,6 +45,11 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
   const posterUrl = poster_path
     ? `https://image.tmdb.org/t/p/original${poster_path}`
     : noPoster;
+
+  const handleToggleFavorite = () => {
+    toggleFavoriteMovie(detail);
+    setIsFavorite((prev) => !prev);
+  };
 
   return (
     <section className="detail-hero">
@@ -104,7 +117,7 @@ const DetailHero = ({ detail, onPlayTrailer }) => {
             <button
               type="button"
               className={`hero-fav-btn ${isFavorite ? "active" : ""}`}
-              onClick={() => setIsFavorite(!isFavorite)}
+              onClick={handleToggleFavorite}
             >
               <img
                 src={isFavorite ? favFilled : favOutline}
