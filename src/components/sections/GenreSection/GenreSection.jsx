@@ -86,7 +86,7 @@ export default function GenreSection() {
   if (loading) return <p>불러오는 중...</p>;
 
   return (
-    <section className="genre section">
+    <section className="section list">
       <SectionHeader
         title={titleText}
         desc={

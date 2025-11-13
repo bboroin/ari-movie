@@ -54,7 +54,7 @@ const SearchSection = () => {
   }
 
   return (
-    <section className="section search">
+    <section className="section list">
       <SectionHeader
         title={`"${query}" 관련 영화`}
         desc={
