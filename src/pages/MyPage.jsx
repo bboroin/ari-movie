@@ -2,13 +2,22 @@ import { useEffect, useState } from "react";
 import { getFavoriteMovies } from "@utils/favorites";
 import SectionCard from "@components/sections/common/SectionCard";
 import SectionHeader from "@/components/sections/common/SectionHeader";
+import Pagination from "@/components/sections/common/Pagination";
+
+const PAGE_SIZE = 20;
 
 const MyPage = () => {
   const [favorites, setFavorites] = useState(() => getFavoriteMovies());
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     setFavorites(getFavoriteMovies());
+    setPage(1);
   }, []);
+
+  const totalPages = Math.ceil(favorites.length / PAGE_SIZE) || 1;
+  const startIndex = (page - 1) * PAGE_SIZE;
+  const pagedFavorites = favorites.slice(startIndex, startIndex + PAGE_SIZE);
 
   return (
     <section className="section list">
@@ -23,11 +32,12 @@ const MyPage = () => {
             개의 즐겨찾기한 영화가 존재합니다.
           </>
         }
+        pageInfo={`${page} / ${totalPages} 페이지`}
         hasNav={false}
       />
 
       <div className="poster-list--grid">
-        {favorites.map((movie) => (
+        {pagedFavorites.map((movie) => (
           <SectionCard
             key={movie.id}
             id={movie.id}
@@ -48,6 +58,8 @@ const MyPage = () => {
           />
         ))}
       </div>
+
+      <Pagination page={page} totalPages={totalPages} onChange={setPage} />
     </section>
   );
 };
